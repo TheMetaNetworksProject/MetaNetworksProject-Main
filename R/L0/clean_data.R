@@ -6,7 +6,7 @@
 #                   aux_harmonize_datasheet_versions.R (one row per
 #                   interaction record, tagged with source_file), plus
 #                   column_names.csv (schema definition with data_format and
-#                   mandatory_col flags) and aux_text_corrections.csv (known
+#                   mandatory_col flags) and aux_interaction_corrections.csv (known
 #                   interaction-type typos)
 # DATA OUTPUT:      (1) cleaned csv: harmonized data with standardized column
 #                       types and corrected typos/inconsistencies. Exclusion
@@ -51,7 +51,7 @@
 stopifnot(exists("df"), "source_file" %in% names(df))
 
 schema_path <- "./docs/interaction_metadata_schemas/column_names.csv"
-corrections_path <- "./R/L0/aux_text_corrections.csv"
+corrections_path <- "./R/L0/aux_interaction_corrections.csv"
 cleaned_output_path <- "./test_harmonized_output.csv"
 audit_report_path <- "./test_audit_report.csv"
 
@@ -676,7 +676,7 @@ write_clean_audit_outputs <- function(
 #' Run the full clean + audit stage on the harmonized data frame
 #' @param df harmonized data frame (from aux_harmonize_datasheet_versions.R)
 #' @param schema_path path to column_names.csv
-#' @param corrections_path path to aux_text_corrections.csv
+#' @param corrections_path path to aux_interaction_corrections.csv
 #' @param cleaned_output_path file path to write the cleaned csv to
 #' @param audit_report_path file path to write the audit report csv to
 #' @returns list(data = final cleaned df, issues = full issues log,
