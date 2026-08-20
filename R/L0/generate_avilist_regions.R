@@ -7,16 +7,41 @@ data(avilist_2025_short) # Essential fields (~12 fields)
 data(avilist_metadata) # Field descriptions
 
 
-names <- c(df_clean$taxa1_scientific, df_clean$taxa2_scientific) |> unique()
-harmon <- data.frame(amn_name = names)
-temp <- lapply(harmon$amn_name, rgbif::name_backbone)
-n_gbif <- bind_rows(temp)
+avilist_test <- avilist_2025 |>
+  slice_sample(n = 1000) |>
+  dplyr::rename(scientificName = Scientific_name) |>
+  filter(Taxon_rank != "order") |>
+  dplyr::select(Sequence, Taxon_rank, Order, Family, scientificName)
 
-temp2 <- rgbif::name_backbone_checklist(harmon$amn_name)
+# Match Avilist to GBIF
+test <- rgbif::name_backbone_checklist(
+  name_data = avilist_test,
+  rank = avilist_test$Taxon_rank,
+  class = "Aves",
+  order = avilist_test$Order,
+  family = avilist_test$Family,
+  species = avilist_test$scientificName
+)
 
-temp2 <- lapply(harmon$amn_name, taxize::get_gbifid, class = "Aves")
+test3 <- rgbif::name_backbone_checklist(
+  name_data = avilist_test,
+  rank = avilist_test$Taxon_rank,
+  class = "Aves",
+  order = avilist_test$Order #,
+  # verbose     = TRUE,
+  # bucket_size = 25,   # fewer concurrent requests -- less likely to trip a proxy/WAF
+  # sleep       = 2     # more breathing room between batches
+)
 
-harmon$higher_rank <- grepl(" sp.", harmon$amn_name, fixed = T)
+test_small <- rgbif::name_backbone_checklist(
+  name_data = avilist_test[1:5, ],
+  rank = avilist_test$Taxon_rank[1:5],
+  class = "Aves",
+  order = avilist_test$Order[1:5]
+)
+test2 <- rgbif::name_backbone_checklist(
+  name_data = avilist_test
+)
 
 
 source("./R/auxiliary_scripts/aux_scrape_avibase.R")
