@@ -294,6 +294,7 @@ s_7_9_8_6_4_1_5_2 <- load_schema(file_info, "schema_7") |>
     -DatabaseSearchURL,
     -breeding_migration
   ) |>
+  mutate(taxa1_group = "bird", taxa2_group = "bird") |>
   clean_na()
 
 df <- s_7_9_8_6_4_1_5_2
