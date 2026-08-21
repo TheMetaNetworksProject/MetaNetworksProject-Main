@@ -29,6 +29,9 @@ read_avibase <- function(region_code, url, L0_dir = NULL, save_output = FALSE) {
   message("Processing region: ", region_code)
   message("WARNING: This scraper assumes data are in avibase version 8.17.")
   library(rvest)
+  library(tidyr)
+  library(dplyr)
+  library(stringr)
 
   tab <- read_html(url) %>%
     html_table(fill = TRUE) %>%

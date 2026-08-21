@@ -1,36 +1,36 @@
-column_name,data_format,applicable_versions,definition,standardize_for_cleaning,notes
-taxa1_common,character,"1, 2, 3, 4, 5",Common name of the first or focal interacting taxa. (Ex: American robin),x,NA
-taxa2_common,character,"1, 2, 3, 4, 5",Common name of the second interacting taxa. (Ex: Brown creeper),x,NA
-taxa1_scientific,character,"1, 2, 3, 4, 5",Scientific name of the first or focal interacting taxa. (Ex: Turdus migratorius),x,NA
-taxa2_scientific,character,"1, 2, 3, 4, 5",Scientific name of the second  interacting taxa. (Ex: Certhia americana),x,NA
-taxa1_resolution,character,"4, 5","Taxonomic resolution of the first or focal interacting taxa. (Options: Family, Genus, Species, Subspecies)",x,"Actual entry sheet has a lot more options (e.g., subfamily)"
-taxa2_resolution,character,"4, 5","Taxonomic resolution of the second interacting taxa. (Options: Family, Genus, Species, Subspecies)",x,"Actual entry sheet has a lot more options (e.g., subfamily)"
-taxa1_group,factor,"4, 5","Taxonomic group of the first or focal interacting taxa (Options: Bird, Mammal, Plant, Arthropod, Fish, Reptile, Amphibian, Fungi.)",x,Actual entry sheet has more options
-taxa2_group,factor,"4, 5","Taxonomic group of the second interacting taxa (Options: Bird, Mammal, Plant, Arthropod, Fish, Reptile, Amphibian, Fungi.)",x,Actual entry sheet has more options
-effect_tx1_on_tx2,integer,"1, 2, 3, 4, 5","Direction of interaction specific to each taxa. Refer to interaction definitions document. (Options: 1,0, -1)",x,NA
-effect_tx2_on_tx1,integer,"1, 2, 3, 4, 5","Direction of interaction specific to each taxa. Refer to interaction definitions document. (Options: 1,0, -1)",x,NA
-interaction,character,"1, 2, 3, 4, 5",Name of interaction type. Refer to interaction definitions. (Ex: competition-food) https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database/blob/main/data/L0/aux_interaction_defs.csv,x,Need to update link when we change the repo over to new location.
-interaction_strength,factor,"3, 4, 5","Strength of the evidence for the interaction. Enter “weak” if the description is vague, mentions that it is a “possible” or ""likely"" (but not observed) interaction or inferred interaction. Enter “strong” if the interaction was observed, or was strongly stated (Options: weak, strong)",NA,NA
-taxa1_lifestage,character,"3, 4, 5","Life stage appropriate to the interaction for taxa 1. See entry instructions for definitions. Separate multiple with a semicolon. (Options: egg, nestling, fledgling, juvenile, adult) https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database/blob/main/AvianInteractionData_ENTRY_INSTRUCTIONS.md",x,convert to factor?; Need to update link when we change the repo over to new location.
-taxa2_lifestage,character,"3, 4, 5","Life stage appropriate to the interaction for taxa 2. See entry instructions for definitions. Separate multiple with a semicolon. (Options: egg, nestling, fledgling, juvenile, adult) https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database/blob/main/AvianInteractionData_ENTRY_INSTRUCTIONS.md",x,convert to factor?; Need to update link when we change the repo over to new location.
-tx1_life_history_season,character,"4, 5","Life history timing of the interaction for taxa1. (Options: year-round, migration, breeding, non-breeding.)",x,NA
-tx2_life_history_season,character,"4, 5","Life history timing of the interaction for taxa2. (Options: year-round, migration, breeding, non-breeding.)",x,NA
-time_of_year,character,"3, 4, 5","Time of year the interaction occurs. Month(s), seasons or ""year-round"" (Ex: January-April)",NA,NA
-year,integer,"4, 5",Year that the observation was recorded. (Ex: 1997),x,NA
-elevation,numeric,5,"Elevation that the interaction observation occurred, in meters (if given in feet within article, please convert to meters: 1ft = 0.305m) Ex: 1580",NA,NA
-latitude,numeric,5,"Latitude of observed interaction in decimal degrees. If in degrees minutes seconds, convert to DD with https://www.fcc.gov/media/radio/dms-decimal",x,NA
-longitude,numeric,5,"Longitude of observed interaction in decimal degrees. If in degrees minutes seconds, convert to DD with https://www.fcc.gov/media/radio/dms-decimal",x,NA
-location,character,"4, 5","Finest level city, town or province where interaction observation occurred. (Exs: Clark County, WA; Tole, Chiriqui Province)",NA,NA
-country,character,"4, 5",Enter the country or countries where observations occurred. Separate multiple with semicolon. (Ex: Panama;Colombia),NA,NA
-habitat,character,5,Major IUCN habitat type: https://www.iucnredlist.org/resources/habitat-classification-scheme,x,convert to factor?
-habitat_subtype,character,5,IUCN subhabitat type: https://www.iucnredlist.org/resources/habitat-classification-scheme,x,convert to factor?
-source_citation,character,"3, 4, 5","MLA style citation of source. For BOW, found at bottom of the page.",NA,NA
-source_URL,character,"1, 2, 3, 4, 5",Full URL for source of interaction.,NA,NA
-timing_location_habitat_excerpt,character,"4, 5","Copy and paste lines containing information about the date, location, and habitat of the observation. Include section and heading of paragraph if applicable. Add ... between relevant information if sentences omitted from original text",NA,"Technically v4 was timing_location_excerpt, but I'm counting that here..."
-interaction_excerpt,character,"1, 2, 3, 4, 5",Copy and paste lines containing information about the interaction. Include section and heading of paragraph if applicable.,NA,NA
-recorder,character,"1, 2, 3, 4, 5",Name of recorder. (Ex: Lucas Mansfield),NA,NA
-entry_date,character,"1, 2, 3, 4, 5",Date of recording interaction into sheet. Use mm/dd/yyyy format. (Ex: 02/02/2026),NA,NA
-uncertain_interaction,character,"1, 2, 3, 4, 5","If there is uncertainty in the interaction, enter appropriate keyword. See definitions in L0 folder. (Options: likely, unlikely, uncertain species, potential, artificial, uncertain subspecies)",NA,convert to factor?
-entry_changes,character,"1, 2, 3, 4, 5",For use by reviewers only. Enter any changes in this column.,NA,NA
-notes,character,5,Enter any notes you have about the interaction. None are necessary.,NA,NA
-version,factor,5,This is an indicator column that helps us sort sheets later. Please do not edit it.,x,NA
+column_name,data_format,applicable_versions,definition,standardize_for_cleaning,mandatory_col,notes
+taxa1_common,character,"1, 2, 3, 4, 5",Common name of the first or focal interacting taxa. (Ex: American robin),x,NA,NA
+taxa2_common,character,"1, 2, 3, 4, 5",Common name of the second interacting taxa. (Ex: Brown creeper),x,NA,NA
+taxa1_scientific,character,"1, 2, 3, 4, 5",Scientific name of the first or focal interacting taxa. (Ex: Turdus migratorius),x,x,NA
+taxa2_scientific,character,"1, 2, 3, 4, 5",Scientific name of the second  interacting taxa. (Ex: Certhia americana),x,x,NA
+taxa1_resolution,character,"4, 5","Taxonomic resolution of the first or focal interacting taxa. (Options: Family, Genus, Species, Subspecies)",x,NA,"Actual entry sheet has a lot more options (e.g., subfamily)"
+taxa2_resolution,character,"4, 5","Taxonomic resolution of the second interacting taxa. (Options: Family, Genus, Species, Subspecies)",x,NA,"Actual entry sheet has a lot more options (e.g., subfamily)"
+taxa1_group,factor,"4, 5","Taxonomic group of the first or focal interacting taxa (Options: Bird, Mammal, Plant, Arthropod, Fish, Reptile, Amphibian, Fungi.)",x,NA,Actual entry sheet has more options
+taxa2_group,factor,"4, 5","Taxonomic group of the second interacting taxa (Options: Bird, Mammal, Plant, Arthropod, Fish, Reptile, Amphibian, Fungi.)",x,NA,Actual entry sheet has more options
+effect_tx1_on_tx2,integer,"1, 2, 3, 4, 5","Direction of interaction specific to each taxa. Refer to interaction definitions document. (Options: 1,0, -1)",x,x,NA
+effect_tx2_on_tx1,integer,"1, 2, 3, 4, 5","Direction of interaction specific to each taxa. Refer to interaction definitions document. (Options: 1,0, -1)",x,x,NA
+interaction,character,"1, 2, 3, 4, 5",Name of interaction type. Refer to interaction definitions. (Ex: competition-food) https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database/blob/main/data/L0/aux_interaction_defs.csv,x,x,Need to update link when we change the repo over to new location.
+taxa1_lifestage,character,"3, 4, 5","Life stage appropriate to the interaction for taxa 1. See entry instructions for definitions. Separate multiple with a semicolon. (Options: egg, nestling, fledgling, juvenile, adult) https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database/blob/main/AvianInteractionData_ENTRY_INSTRUCTIONS.md",x,NA,convert to factor?; Need to update link when we change the repo over to new location.
+taxa2_lifestage,character,"3, 4, 5","Life stage appropriate to the interaction for taxa 2. See entry instructions for definitions. Separate multiple with a semicolon. (Options: egg, nestling, fledgling, juvenile, adult) https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database/blob/main/AvianInteractionData_ENTRY_INSTRUCTIONS.md",x,NA,convert to factor?; Need to update link when we change the repo over to new location.
+tx1_life_history_season,character,"4, 5","Life history timing of the interaction for taxa1. (Options: year-round, migration, breeding, non-breeding.)",x,NA,NA
+tx2_life_history_season,character,"4, 5","Life history timing of the interaction for taxa2. (Options: year-round, migration, breeding, non-breeding.)",x,NA,NA
+time_of_year,character,"3, 4, 5","Time of year the interaction occurs. Month(s), seasons or ""year-round"" (Ex: January-April)",NA,NA,NA
+year,integer,"4, 5",Year that the observation was recorded. (Ex: 1997),x,NA,NA
+elevation,numeric,5,"Elevation that the interaction observation occurred, in meters (if given in feet within article, please convert to meters: 1ft = 0.305m) Ex: 1580",NA,NA,NA
+latitude,numeric,5,"Latitude of observed interaction in decimal degrees. If in degrees minutes seconds, convert to DD with https://www.fcc.gov/media/radio/dms-decimal",x,NA,NA
+longitude,numeric,5,"Longitude of observed interaction in decimal degrees. If in degrees minutes seconds, convert to DD with https://www.fcc.gov/media/radio/dms-decimal",x,NA,NA
+location,character,"4, 5","Finest level city, town or province where interaction observation occurred. (Exs: Clark County, WA; Tole, Chiriqui Province)",NA,NA,NA
+country,character,"4, 5",Enter the country or countries where observations occurred. Separate multiple with semicolon. (Ex: Panama;Colombia),NA,NA,NA
+habitat,character,5,Major IUCN habitat type: https://www.iucnredlist.org/resources/habitat-classification-scheme,x,NA,convert to factor?
+habitat_subtype,character,5,IUCN subhabitat type: https://www.iucnredlist.org/resources/habitat-classification-scheme,x,NA,convert to factor?
+source_citation,character,"3, 4, 5","MLA style citation of source. For BOW, found at bottom of the page.",NA,NA,NA
+source_URL,character,"1, 2, 3, 4, 5",Full URL for source of interaction.,NA,NA,NA
+timing_location_habitat_excerpt,character,"4, 5","Copy and paste lines containing information about the date, location, and habitat of the observation. Include section and heading of paragraph if applicable. Add ... between relevant information if sentences omitted from original text",NA,NA,"Technically v4 was timing_location_excerpt, but I'm counting that here..."
+interaction_excerpt,character,"1, 2, 3, 4, 5",Copy and paste lines containing information about the interaction. Include section and heading of paragraph if applicable.,NA,NA,NA
+recorder,character,"1, 2, 3, 4, 5",Name of recorder. (Ex: Lucas Mansfield),NA,NA,NA
+entry_date,character,"1, 2, 3, 4, 5",Date of recording interaction into sheet. Use mm/dd/yyyy format. (Ex: 02/02/2026),NA,NA,NA
+uncertain_interaction,character,"1, 2, 3, 4, 5","If there is uncertainty in the interaction, enter appropriate keyword. See definitions in L0 folder. (Options: likely, unlikely, uncertain species, potential, artificial, uncertain subspecies)",NA,NA,convert to factor?
+interaction_strength,factor,"3, 4, 5","Strength of the evidence for the interaction. Enter “weak” if the description is vague, mentions that it is a “possible” or ""likely"" (but not observed) interaction or inferred interaction. Enter “strong” if the interaction was observed, or was strongly stated (Options: weak, strong)",NA,NA,NA
+entry_changes,character,"1, 2, 3, 4, 5",For use by reviewers only. Enter any changes in this column.,NA,NA,NA
+notes,character,5,Enter any notes you have about the interaction. None are necessary.,NA,NA,NA
+version,factor,5,This is an indicator column that helps us sort sheets later. Please do not edit it.,x,NA,NA

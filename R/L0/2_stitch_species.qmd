@@ -17,7 +17,7 @@ date-format: iso
 
 ## About
 
--   PROJECT: AvianMetaNet & Avian Meta-Network
+-   PROJECT: Ecological MetaNetworks
 -   AUTHORS: Phoebe Zarnetske, Pat Bills, Emily Parker, Kelly Kapsar
 -   COLLABORATORS: Vincent Miele, Stephane Dray
 -   DATA INPUT: Data entry CSV files in L0 folder
