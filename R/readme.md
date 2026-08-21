@@ -1,9 +1,9 @@
-# AvianMetaNet Code: 
+# MetaNetworks Project Code: 
 ## Workflow for cleaning and building database
 
 ###  [Spatial and Community Ecology Lab (SpaCE Lab)](https://www.communityecologylab.com)
 
-https://github.com/AvianMetaNetwork/AvianMetaNetwork
+https://github.com/TheMetaNetworksProject/MetaNetworksProject-Main
 
 
 ## Overview
@@ -13,7 +13,7 @@ for how the data are pulled from primary sources, see the [Project readme file](
 in the root directory. 
 
 This documents the process and R code for cleaning and building
-the AvianMetaNet from a collection of data entry tables entered over time
+the MetaNetwork from a collection of data entry tables entered over time
 by contributors to the database, primarily workers in the 
 [Spatial and Community Ecology Lab (SpaCE Lab)](https://www.communityecologylab.com)
 
@@ -30,7 +30,7 @@ The R folders in this project do have some support data used to harmonize and up
 taxonomic designations for species to match current species lists.  See 
 the "*reconcile taxonomy*" step below, in the data folder of this repository. 
 
-## Main database build scripts
+## Main database build scripts [OUTDATED AS OF 21 AUG 2026]
 
 * `R/L0/1_generate_species_lists.R` = Generates species lists used for taxonomic harmonization and regional subsetting
 * `R/L0/2_stitch_species.qmd` = stitches together all individual csvs in /L0/species
@@ -51,7 +51,7 @@ the "*reconcile taxonomy*" step below, in the data folder of this repository.
 - `R/archive`: code from previous versions saved for reference
 - `R/auxiliary scripts`: support scripts not used in the workflow, but helpful for evaluation, etc. 
 
-## Getting Started
+## Getting Started [OUTDATED AS OF 21 AUG 2026]
 
 Summary of the steps to be able to run these scripts and build the database. This 
 assumes the use of Rstudio 2025 version or above.

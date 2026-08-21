@@ -1,4 +1,4 @@
-# AvianMetaNet Data folder
+# MetaNetworks Data folder
 
 `/data/readme.md`
 
@@ -16,7 +16,7 @@ These data are support files used for cleaning and building the database:
     -   taxa 2 or 1: possible values for either interaction code
     -   definition: long description of the interaction
 
--   [**AvianMetaNetwork_DATA_ENTRY_INSTRUCTIONS.md**](../docs/AvianMetaNetwork_DATA_ENTRY_INSTRUCTIONS.md): Detailed protocol for data entry, version control and validation.
+-   [**MetaNetwork_DATA_ENTRY_INSTRUCTIONS.md**](../docs/MetaNetwork_DATA_ENTRY_INSTRUCTIONS.md): Detailed protocol for data entry, version control and validation.
 
 -   **L0/species_checklists**: This folder holds checklists downloaded and used by L0 scripts to build L1 checklists lists based on the [Clements/eBird checklist of birds of the world](https://www.birds.cornell.edu/clementschecklist/) and [Avibase World Bird database](https://avibase.bsc-eoc.org/)
 

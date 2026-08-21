@@ -1,9 +1,9 @@
-# <code style="color : red">MetaNet</code>: 
-## Instructions for Data Entry in <code style="color : red">MetaNet</code> in L0 subdirectory
+# <code style="color : red">The MetaNetworks Project</code>: 
+## Instructions for Data Entry in <code style="color : red">The MetaNetworks Project</code> in L0 subdirectory
 
 From the [Spatial and Community Ecology Lab (SpaCE Lab)](https://www.communityecologylab.com)
 
-https://github.com/SpaCE-Lab-MSU/Avian-Interaction-Database
+https://github.com/TheMetaNetworksProject/MetaNetworksProject-Main
 
 
 Refer to the main [documentation (readme)](../readme.md) file in the parent directory of this repository for information about the Workflow and subdirectory naming conventions.
@@ -11,7 +11,7 @@ Refer to the main [documentation (readme)](../readme.md) file in the parent dire
 
 ## OVERVIEW
 Data entry & checking on species interactions occurs within this 
-L0 portion of our private, in-progress data repository : [AvianMetaNetwork-Working](https://github.com/AvianMetaNetwork/AvianMetaNetwork-Working). 
+L0 portion of our private, in-progress data repository : [AvianMetaNetwork-Working](https://github.com/TheMetaNetworksProject/AvianMetaNetwork-Working). 
 
 Only use GitHub or Google Sheets for data entry and editing of files.
 *Do not use Microsoft Excel* for data entry or any editing of files;
@@ -47,7 +47,7 @@ Taxa look-up table and assignments for data entry. Contains the updates and assi
 
 The first time you use GitHub, do the following: 
 
-- Sign into GitHub and navigate to: https://github.com/AvianMetaNetwork/AvianMetaNetwork. 
+- Sign into GitHub and navigate to: https://github.com//TheMetaNetworksProject/MetaNetworksProject. 
 
 - Install GitHub Desktop (or if you use GitHub command line or github.com, skip this step).
 
@@ -57,7 +57,7 @@ The first time you use GitHub, do the following:
 In GitHub Desktop, select <code style="color : red">MetaNetwork</code>. Click "Fetch origin" to pull the most recent version of the database, which will save it to your GitHub location on your computer (established in Step 1). 
 
 ## Step 3: Select a species to work on
-Navigate to the Google Drive folder `SpaCE_Lab_EcologicalNetworks/metanetwork_L0_entry` and open the `JointProject_TaxaList` Google Sheet.
+Navigate to the Google Drive folder [`SpaCE_Lab_EcologicalNetworks/metanetwork_L0_entry`](https://drive.google.com/drive/u/2/folders/1XFwxLrBDAtoOi_cWz62J8XwBWxFLmQL0?dmr=1&ec=wgc-drive-hero-goto) and open the `JointProject_TaxaList` Google Sheet.
 
 Select a taxa that has not been entered yet, fill in your name or initials with that entry in the "Recorder" column. If you are working on a specific project, ensure that the taxa is included in the target taxa for the project under the **Project_Code** column. Add the date you started this taxa in the **Start_Date** column. If you forget to add a start date, that cell will be highlighted <code style="color : #f4cccc">red</code> as a reminder. Once you claim a taxa, the row is highlighted <code style="color : #fce5cd">amber</code> so that other team members do not start processing the same taxa.
 
@@ -95,7 +95,7 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
   - i) Perform a **Google Scholar Advanced Search** to identify primary literature and other sources online. Navigate to [**Google Scholar**](https://scholar.google.com).
   - ii) Navigate to the Settings by selecting the 3 horizontal lines at the upper left of the page. Click on **Settings**. Select **Languages** and click the option that says "Search only for pages written in these languages." Check "English."
   - iii) Navigate to the Advanced Search by selecting the 3 horizontal lines at the upper left of the page. Click on the **Advanced Search**. Into the cell next to **Find articles with all of the words** paste all the species current and past names for both Common and Scientific names (see the BOW account section "Systematics History" to find these names), in quotes, separated by OR. *If you have questions about the alternative or former names of the species, please consult with the lab before conducting the search since the Systematics History section of accounts can be confusing*. 
-    - Note that you do not have to add subspecies. 
+    - Note that you do not have to add subspecies to the search string. 
     - Note  that capitalization doesn't matter and neither do hyphens (i.e., "Brown-hooded parrot" will return the same results as "Brown hooded parrot"). Also, if you leave off OR, it will be interpreted as AND, requiring all of the text strings to appear in the search result.
     - **EXAMPLE: "Pyrilia haematotis" OR "Brown-hooded parrot"** - [this search yielded 216 results](https://scholar.google.com/scholar?as_q=&as_epq=&as_oq=%22Brown+hooded+parrot%22+%22Pyrilia+haematotis%22&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=&as_yhi=&hl=en&as_sdt=0%2C23).
       - IMPORTANT: Do NOT forget the quotes or the "OR"
@@ -115,7 +115,7 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
 
 ## Step 6: Data entry in the Species sheet
 
-See **_general_intxn_EXAMPLE** in the **metanetwork_L0_entry** folder in Google Drive for an example entry with some commentary about the entry decisions.
+See **_general_intxn_EXAMPLE** in the **taxa_in_progress** folder in Google Drive for an example entry with some commentary about the entry decisions.
 
 Enter interactions for the species you selected by designating the selected species in "taxa1_scientific" and "taxa1_common" in your file, and the species it interacts with in "taxa2_scientific" and "taxa2_common". Refer to the metadata files for rules about how to enter each column, and the information below:
 
@@ -161,8 +161,8 @@ The columns are described below based on the order we feel makes the most sense 
 - You may come across one of several rare cases for a species scientific name in the text:
   - On occasion, you may only be able to find a common name for a taxon referenced in the text (e.g., Yellow Warbler). In these cases, look up the scientific name (*Genus species*).
   - If a specific subspecies is mentioned in reference, then include in the scientific name (*Genus species subspecies*).
-  - If the article addresses a bird as *Genus subspecies* rather than *Genus species subspecies* (e.g. *Mimus orpheus* instead of *Mimus polyglottos orpheus*), enter into taxa1 and taxa2, and indicate a note about the likely species in the name changes column.
-  - If the article uses characters from scripts outside of the English alphabet (e.g. æ, Ø, or Þ), copy paste into the species column exactly as written and include a note about the likely species in the name changes column. When exporting to CSV, double-check that the character looks the same.
+  - If the article addresses a bird as *Genus subspecies* rather than *Genus species subspecies* (e.g. *Mimus orpheus* instead of *Mimus polyglottos orpheus*), look up the full three-word name of the subspecies and enter that into the appropriate scientific name column.
+  - If the article uses characters from scripts outside of the English alphabet (e.g. æ, Ø, or Þ), copy paste into the species column exactly as written. When exporting to CSV, double-check that the character looks the same.
   - If the article does not mention a specific species but does reference a group (e.g. "corvids", "gulls", etc.), then enter taxa2 as an unidentified species. For scientific name, use the smallest taxonomic group that captures all members of that group. For example, "corvids" would be entered into <code style="color : #31cae6">taxa2_scientific</code> as "*Corvidae* sp.". Ask an experienced lab member if you are unsure how to do this.
 
 ### <code style="color : #31cae6">taxa1_common</code>, <code style="color : #31cae6">taxa2_common</code>
@@ -175,7 +175,7 @@ The columns are described below based on the order we feel makes the most sense 
   - If the article does not mention a specific species but does reference a group (e.g. "corvids", "gulls", etc.), then enter taxa2 as an unidentified species. For the common name, use "unid." + group mentioned. For example, "corvids" would be entered as common name "unid. corvid" into <code style="color : #31cae6">taxa2_common</code>. Ask an experienced lab member if you are unsure how to do this.
 
 ### <code style="color : #31cae6">taxa1_resolution</code>, <code style="color : #31cae6">taxa2_resolution</code>
-- These columns contain dropdowns with several taxonomic resolution levels (i.e. Kingdom, Family, Genus). Select the finest level resolution that taxa1 and taxa2 fall under. For the most part this will be species, but some taxa may be at broder or finer resolutions.
+- These columns contain dropdowns with several taxonomic resolution levels (i.e. Kingdom, Family, Genus). Select the finest level resolution that taxa1 and taxa2 fall under. For the most part this will be species, but some taxa may be at broader or finer resolutions.
 - If you are unsure what resolution your taxa falls under, check with an experienced lab member.
 - If you need a refresher on what these terms mean, check the <code style="color : red">metadata/resolutions.csv</code>
 
@@ -184,7 +184,6 @@ The columns are described below based on the order we feel makes the most sense 
 - Indicate, for each species, which of these groups taxa1 and taxa2 fall under. If you are unsure, discuss with an experienced lab member.
 - Be very careful that you select the correct groups here. These determine the dropdown options for future columns, so selecting the wrong group could cause later issues.
 - Each organism should fall into one of these groups, and therefore you should only select options available in the dropdown. If you enter another value, the cell will be flagged, indicating a potential mistake.
-- If you are unsure what group your taxa falls under, check with an experienced lab member.
 - If you need a refresher on what these terms mean, check the <code style="color : red">metadata/taxonomic_groups.csv</code>
 
 ### <code style="color : #f1c955">interaction</code>
@@ -258,14 +257,14 @@ The columns are described below based on the order we feel makes the most sense 
 ### <code style="color : #946bf1">country</code>
 - Provide the English name of the modern day country where the interaction was observed. 
 - This may take some further research if the interaction occurred in a country that no longer exists or was renamed. 
-  - For example, for an interaction recorded in “Zaire”, the country should be listed as the Democratic Republic of the Congo
+  - For example, for an interaction recorded in “Zaire”, the country should be listed as the Democratic Republic of the Congo.
   - For an interaction recorded in “the Soviet Union”, check the location to determine what modern country the interaction was recorded in (for some former countries, like the Soviet Union, there may be several options).
 
 ### <code style="color : #fff2c">recorder</code> 
 - Enter your name or initials in this column for each row in which you entered the interaction data.
 
 ### <code style="color : #fff2c">entry_date</code> 
-- Enter the date (mm/dd/yy) during which you filled out each row in this column.
+- Enter the date (mm/dd/yyyy) during which you filled out each row in this column.
 
 ### <code style="color : #fff2c">entry_changes</code> 
 - Do not enter anything into the entry_changes column. This will be used by reviewers when checking your sheet, if any changes are made.
@@ -293,7 +292,7 @@ The columns are described below based on the order we feel makes the most sense 
 - If you encounter a 4-letter banding abbreviation (e.g. GHOW) or other acronym or code for mentioning a taxa, copy and paste the text excerpt where the abbreviation is defined (e.g., "Great-horned Owl (GHOW)...") into the text_excerpt columns in every row where an interaction was derived from a text excerpt that includes an abbreviation.
 
 **Pairwise interactions**
-- Note that for species1, its interaction with species2 will become part of species2’s pairwise interactions. NOTE: if a duplicate entry occurs, it’s ok (we will edit in R). It takes too much time to avoid duplicates by manually searching for the taxa2 entries that already exist.
+- Note that for taxa_1, its interaction with taxa_2 will become part of taxa_2's pairwise interactions. NOTE: if a duplicate entry occurs, it’s ok (we will edit in R). It takes too much time to avoid duplicates by manually searching for the taxa_2 entries that already exist.
 
 **Co-occurrence**
 - Co-occurrence is a weak "interaction" where two species are observed in the same location at the same time, with no specific interaction between them observed. We used to record this into the sheet, but to save time we now ignore these unless a more specific interaction is described.
