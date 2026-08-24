@@ -328,11 +328,11 @@ When you've completed entering the all interactions in your Google Sheet, it nee
 
 All taxa files in the <code style="color : red">data/L0/taxa_to_check</code> folder are processed with a script that checks for invalid entries and logical errors, such as a negative year or a misspelled month. Taxa with no issues are passed into the <code style="color : red">data/L0/taxa_checked</code> folder and incorporated into the larger dataset.
 
-If the script flags the taxa sheet, it is sent to the <code style="color : red">data/L0/flagged_taxa</code> folder for checking.
+If the script flags the taxa sheet, it is sent to the <code style="color : red">data/L0/taxa_flagged</code> folder for checking.
 
 ## Step 10: Manual checking
 
-Reviewers will check all sheets that are placed in <code style="color : red">data/L0/flagged_taxa</code>. The script will add a <code style="color : red">flagged_issue</code> to indicate the problem row, and a short description of what the error is. 
+Reviewers will check all sheets that are placed in <code style="color : red">data/L0/taxa_flagged</code>. The script will add a <code style="color : red">flagged_issue</code> to indicate the problem row, and a short description of what the error is. 
 
 Reviewers will open the CSV and adjust the issues in the sheet as necessary, leaving an annotation of the changes with their initials and the date in the `entry_changes` column. The sheet can be moved back to the <code style="color : red">data/L0/taxa_to_check</code> folder, and passed through the checking script again.
 
