@@ -11,7 +11,7 @@ Refer to the main [documentation (readme)](../readme.md) file in the parent dire
 
 ## OVERVIEW
 Data entry & checking on species interactions occurs within this 
-L0 portion of our private, in-progress data repository : [AvianMetaNetwork-Working](https://github.com/TheMetaNetworksProject/AvianMetaNetwork-Working). 
+L0 portion of our private, in-progress data repository : [MetaNetworksProject-Working](https://github.com/TheMetaNetworksProject/MetaNetworksProject-Working). 
 
 Only use GitHub or Google Sheets for data entry and editing of files.
 *Do not use Microsoft Excel* for data entry or any editing of files;
