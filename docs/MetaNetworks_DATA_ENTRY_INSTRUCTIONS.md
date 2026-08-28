@@ -192,7 +192,7 @@ The columns are described below based on the order we feel makes the most sense 
 - Entering a value not on the dropdown list will pop up with a warning in that cell, which is usually caused by a typo. It is possible you will need to enter a value not on the list. For example, you may have "competition-" over a resource not defined in the interactions, or find a new interaction that has yet to be defined in the list. In this case, you may ignore the warning. 
 - If you need a reminder about the interaction options, check <code style="color : red">metadata/interactions.csv</code>
 
-### <code style="color : #f1c955">effect_tx1_on_tx2</code>, <code style="color : #f1c955">effect_tx2_on_tx1</code>
+### <code style="color : #f1c955">effect_on_tx1</code>, <code style="color : #f1c955">effect_on_tx2</code>
 - These columns contain dropdowns with options of -1, 0 and 1. These are the impacts that an interaction has on each species, with 1 indicating beneficial interactions, -1 indicating harmful interactions and 0 indicating neutral interactions.
 - Each interaction type has a specific set of effects, which are defined in <code style="color : red">metadata/interactions.csv</code>.
 - In these columns, you must enter either -1, 0, or 1, as entering another value will cause the sheet to error. Be careful to place the correct value in the effect columns.   
