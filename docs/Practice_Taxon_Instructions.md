@@ -31,4 +31,4 @@ Here are a few reminders and notes for this specific sheet:
 - Since this taxon is a bird, you will start in Birds of the World, and then move to a Google Scholar search.
 - The sources from Google Scholar have all already been entered into the Zotero, but you should still check them for this practice. Practice searching them in the Zotero library as you would a normal source!
 
-After working through all the sources and completing the sheet, do NOT add the file to GitHub (the taxon has been already submitted). Instead, move the sheet to the `taxa_completed` folder and open the `Practice_Taxon_Answers.md` to check your work!
+After working through all the sources and completing the sheet, do NOT add the file to GitHub (the taxon has been already submitted). Instead, move the sheet to the `taxa_complete_practice` folder and open the `Practice_Taxon_Answers.md` to check your work!
