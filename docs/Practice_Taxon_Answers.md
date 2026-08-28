@@ -1,6 +1,6 @@
 # First Practice Sheet: Answers
 
-Once you have completed the *Trogon tenellus* Google Sheet, locate the sheet title `Trogon_tenellus_LM` in the `taxa_completed` Google Drive Folder. This is the "answer key" I produced. Compare the results with the sheet you created? Do you notice any discrepancies? Feel free to bring them up!
+Once you have completed the *Trogon tenellus* Google Sheet, locate the sheet title `Trogon_tenellus_LM` in the `taxa_complete` Google Drive Folder. This is the "answer key" I produced. Compare the results with the sheet you created? Do you notice any discrepancies? Feel free to bring them up!
 
 Here are some notes about the observations I recorded! As you go through, make sure to check the source and excerpt of each observation. 
 
