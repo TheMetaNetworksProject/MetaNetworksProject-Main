@@ -99,7 +99,9 @@ globi_long <- globi_long_raw %>%
 # interactsWith is GloBI's catch-all/unspecified interaction type and isn't
 # informative for us, so it's excluded here (same as Swiss metaweb paper).
 globi_filtered <- globi_long %>%
-  filter(interaction_type != "interactsWith")
+  filter(interaction_type != "interactsWith",
+         interaction_type != "coOccursWith",
+         target_taxon_name != "Unknown")
 
 # Summarize unique records per species
 # One row per species queried, counting unique (source, interaction_type, target)
