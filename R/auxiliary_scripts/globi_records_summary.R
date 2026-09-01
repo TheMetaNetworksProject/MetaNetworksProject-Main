@@ -1,13 +1,3 @@
-# TITLE:            Species list query: pulling and summarizing GloBI interactions
-# DATE:             August 26, 2026
-# AUTHOR:           Lucas Mansfield
-# OVERVIEW:         Given a species list, pull ALL GloBI interaction records for
-#                    each species (as source taxon), drop the uninformative
-#                    "interactsWith" interaction type, and summarize the unique
-#                    records per species.
-# DATA INPUT:       A dataframe containing a row for species scientific names
-# DATA OUTPUT:      Per-species summary table (.csv)
-
 rm(list = ls())
 library(rglobi)
 library(rgbif)
@@ -22,7 +12,7 @@ library(progressr)
 # !! SPECIFY LEVEL !! ##########################################################
 level <- "IND"  # OBS = individual observations, IND = unique interactions only
 
-species <- read.csv("data/birds.csv")
+species <- read.csv()
 species_list <- species$sci_name_08_26
 species_list <- unique(species_list[!is.na(species_list) & species_list != ""])
 species_table <- data.frame(scientfic_name = species_list)
@@ -60,9 +50,8 @@ gbif_matches <- unnest(gbif_matches, cols = c(gbif_result), names_sep = "_")
 # Check alternatives for better matches
 resolve_high_matches <- function(gbif_matches) {
 
-  to_review <- gbif_matches %>% filter(gbif_result_rank == "KINGDOM" |
-                                         gbif_result_rank == "PHYLUM" |
-                                         gbif_result_rank == "CLASS")
+  to_review <- gbif_matches %>% filter((gbif_result_rank %in% c("KINGDOM", "PHYLUM", "CLASS", "ORDER", "FAMILY", "GENUS")) &
+                                         gbif_result_matchType %in% c("HIGHERRANK", "NONE"))
 
   if (nrow(to_review) == 0) {
     message("No high-rank matches to review.")
@@ -72,15 +61,17 @@ resolve_high_matches <- function(gbif_matches) {
   resolved <- vector("list", nrow(to_review))
 
   for (i in seq_len(nrow(to_review))) {
-    query_name <- to_review$scientificName[i]
+    original_query <- to_review$scientfic_name[i]
+    matched_name <- to_review$gbif_result_canonicalName[i]
 
     cat("\n=====================================\n")
-    cat(sprintf("[%d/%d] Original name: %s\n", i, nrow(to_review), query_name))
+    cat(sprintf("[%d/%d] Queried name: %s\n", i, nrow(to_review), original_query))
+    cat(sprintf("        Matched to: %s (rank: %s, matchType: %s)\n", matched_name, to_review$gbif_result_rank[i], to_review$gbif_result_matchType[i]))
 
-    x <- tryCatch(name_backbone_verbose(name = query_name), error = function(e) NULL)
+    x <- tryCatch(name_backbone_verbose(name = original_query), error = function(e) NULL)
 
     if (is.null(x) || is.null(x$alternatives) || nrow(x$alternatives) == 0) {
-      cat("No alternatives found. Keeping original high-rank match.\n")
+      cat("No alternatives found. Keeping original match.\n")
       resolved[[i]] <- to_review[i, ]
       next
     }
@@ -97,7 +88,7 @@ resolve_high_matches <- function(gbif_matches) {
                   alts$matchType[j], alts$confidence[j],
                   paste(na.omit(c(alts$family[j], alts$genus[j])), collapse = " > ")))
     }
-    cat("  [0] Keep original high-rank match (no good alternative)\n")
+    cat("  [0] Keep original match (no good alternative)\n")
 
     choice <- NA
     while (is.na(choice) || !(choice %in% 0:10)) {
@@ -109,10 +100,10 @@ resolve_high_matches <- function(gbif_matches) {
     } else {
       sel <- alts[choice, ]
       updated <- to_review[i, ]
-      updated$gbif_result_rank      <- sel$rank
-      updated$gbif_result_matchType <- sel$matchType
-      updated$gbif_usageKey         <- sel$usageKey
-      updated$gbif_scientificName   <- sel$scientificName
+      updated$gbif_result_rank           <- sel$rank
+      updated$gbif_result_matchType      <- sel$matchType
+      updated$gbif_result_usageKey       <- sel$usageKey
+      updated$gbif_result_scientificName <- sel$scientificName
       resolved[[i]] <- updated
     }
   }
@@ -120,9 +111,8 @@ resolve_high_matches <- function(gbif_matches) {
   resolved_df <- bind_rows(resolved)
 
   gbif_matches %>%
-    filter(gbif_result_rank != "KINGDOM" &
-             gbif_result_rank != "PHYLUM" &
-             gbif_result_rank != "CLASS") %>%
+    filter(!(gbif_result_rank %in% c("KINGDOM", "PHYLUM", "CLASS", "ORDER", "FAMILY", "GENUS") &
+               gbif_result_matchType %in% c("HIGHERRANK", "NONE"))) %>%
     bind_rows(resolved_df)
 }
 
