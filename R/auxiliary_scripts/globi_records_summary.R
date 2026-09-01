@@ -1,3 +1,13 @@
+# TITLE:            Species list query: pulling and summarizing GloBI interactions
+# DATE:             August 26, 2026
+# AUTHOR:           Lucas Mansfield
+# OVERVIEW:         Given a species list, pull ALL GloBI interaction records for
+#                   each species (as source taxon), drop the uninformative
+#                   "interactsWith" interaction type, and summarize the unique
+#                   records per species.
+# DATA INPUT:       A dataframe containing a row for species scientific names
+# DATA OUTPUT:      Per-species summary table (.csv)
+
 rm(list = ls())
 library(rglobi)
 library(rgbif)
