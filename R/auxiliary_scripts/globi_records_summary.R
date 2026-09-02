@@ -17,15 +17,20 @@ library(plyr)
 library(stringr)
 library(tidyr)
 library(purrr)
+library(readr)
 library(progressr)
 
 # !! SPECIFY LEVEL !! ##########################################################
 level <- "IND"  # OBS = individual observations, IND = unique interactions only
 
-species <- read.csv()
-species_list <- species$sci_name_08_26
+species <- read.csv("data/taxa_TALL.csv")
+species <- species %>% filter(taxonRank == "species",
+                              taxonTypeCode != "BIRD")
+species_list <- species$scientificName
 species_list <- unique(species_list[!is.na(species_list) & species_list != ""])
-species_table <- data.frame(scientfic_name = species_list)
+species_table <- data.frame(scientific_name = species_list)
+
+
 
 ## MATCH TO GBIF BACKBONE
 # Lookup function (uses possibly to catch errors with NULL)
@@ -47,7 +52,7 @@ with_progress({
 
   gbif_matches <- species_table %>%
     mutate(
-      gbif_result = map(scientfic_name, function(name) {
+      gbif_result = map(scientific_name, function(name) {
         p(message = sprintf("Querying: %s", name))
         safe_gbif_match(name)
       })
@@ -71,7 +76,7 @@ resolve_high_matches <- function(gbif_matches) {
   resolved <- vector("list", nrow(to_review))
 
   for (i in seq_len(nrow(to_review))) {
-    original_query <- to_review$scientfic_name[i]
+    original_query <- to_review$scientific_name[i]
     matched_name <- to_review$gbif_result_canonicalName[i]
 
     cat("\n=====================================\n")
@@ -131,7 +136,7 @@ gbif_matches_checked <- resolve_high_matches(gbif_matches)
 # Extract the important fields from GBIF backbone match
 gbif_parsed <- gbif_matches_checked %>%
   transmute(
-    queried_name       = scientfic_name,
+    queried_name       = scientific_name,
     gbif_key            = gbif_result_usageKey,
     match_type          = gbif_result_matchType,
     match_status        = gbif_result_status,
@@ -159,7 +164,7 @@ names_to_query <- gbif_parsed %>%
   distinct(query_name, .keep_all = FALSE) %>%
   pull(query_name)
 
-# Set up a CLI progress bar (pulling is slow, so this helps with tracking)
+# Set up a CLI progress bar
 handlers(handler_progress(
   format = "[:bar] :percent | :current/:total taxa | ETA: :eta",
   width = 60,
@@ -170,6 +175,8 @@ handlers(handler_progress(
 if (level == "IND") {
   safe_get_interactions <- possibly(
     function(nm) {
+      # Some plants are listed as variants (with taonomic authorities in their names) and don't query GloBI properly
+      nm <- str_replace(nm, "^([^\\s]+\\s+[^\\s]+).*$", "\\1")
       get_interactions_by_taxa(
         sourcetaxon = nm,
         returnobservations = FALSE,
@@ -276,4 +283,33 @@ species_summary <- gbif_parsed %>%
     interaction_types = replace_na(interaction_types, "")
   )
 
-final <- left_join(gbif_parsed, species_summary, by = "accepted_name_GBIF")
+merged <- left_join(gbif_parsed, species_summary, by = "accepted_name_GBIF")
+
+# Adding common names from GBIF!
+safe_common_name <- possibly(function(gbif_key) {
+
+  name_usage(
+    key = gbif_key,
+    data = "vernacularNames"
+  )$data %>%
+    as_tibble() %>%
+    filter(language == "eng") %>%
+    pull(vernacularName) %>%
+    first()
+
+}, otherwise = NA_character_)
+
+with_progress({
+  p <- progressor(steps = nrow(merged))
+
+  final <- merged %>%
+    mutate(
+      common_name = map_chr(gbif_key, function(name) {
+        p(message = sprintf("Querying: %s", name))
+        safe_common_name(name)
+      })
+    )
+})
+
+
+write_csv(final, "talllist.csv")
