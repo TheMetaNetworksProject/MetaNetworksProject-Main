@@ -12,35 +12,38 @@ mammal,dead,"A deceased mammal, adult or not.",NA
 plant,seed,"Embroyotic stage of a seeding plant; includes an embryo, endosperm (nutrient-rich tissue), and seed coat.",NA
 plant,seedling,"The earliest stage of plant growth after germination; includes root, stem, and its first set of leaves (cotyledons).",NA
 plant,juvenile,NA,NA
-plant,adult,NA,NA
+plant,adult,When the plant is fully mature and has the ability to reproduce.,NA
 plant,vegetative,"A plant that focuses its growth on root system, stems, and leaves; not in reproductive stage.",NA
 plant,flowering,A plant that is flowering.,NA
 plant,fruiting,A plant that is fruiting and producing seeds.,NA
 plant,dead,"A deceased plant, adult or not.",NA
-arthropod,egg,An arthropod embryo within a pre-born egg.,NA
-arthropod,larva,"A young arthropod, newly hatched from its egg.",NA
-arthropod,pupa,NA,NA
-arthropod,adult,NA,NA
-arthropod,dead,A deceased arthropod at any lifestage.,NA
+invertebrate,egg,An invertebrate embryo within a pre-born egg.,NA
+invertebrate,larva,An immature invertebrate before metamorphosis.,NA
+invertebrate,adult,A mature invertebrate after metamorphosis. These individuals are able to reproduce.,NA
+invertebrate,pupa,An invertebrate changing (through metamorphosis) from a larva/immature into an adult/mature invertebrate.,NA
+invertebrate,dead,A deceased invertebrate at any lifestage.,NA
 fish,egg,A fish embryo within a pre-born egg membrane.,NA
-fish,larva,"A young and still developing fish, newly hatched from its egg",NA
-fish,juvenile,"A young fish that is mostly developed, but has not reached sexual or physical maturity.",NA
+fish,larva,"An immature fish, newly hatched from its egg",NA
+fish,juvenile,"An immature fish that is mostly developed, but has not reached sexual or physical maturity.",NA
 fish,adult,A mature fish with the ability to reproduce.,NA
 fish,dead,A deceased fish at any lifestage.,NA
 reptile,egg,A reptile embryo within a pre-born egg.,NA
-reptile,juvenile,"A young reptile that is mostly developed, but has not reached sexual or physical maturity.",NA
+reptile,juvenile,"An immature reptile that is mostly developed, but has not reached sexual or physical maturity.",NA
 reptile,adult,A mature reptile with the ability to reproduce.,NA
 reptile,dead,"A deceased reptile, adult or not.",NA
 amphibian,egg,A reptile embryo within a pre-born egg.,NA
-amphibian,larva,"A young and still developing amphibian, newly hatched from its egg",NA
+amphibian,larva,"An immature amphibian, newly hatched from its egg",NA
 amphibian,adult,A mature amphibian with the ability to reproduce.,NA
 amphibian,dead,"A deceased amphibian, adult or not.",NA
-fungus,spore,NA,NA
-fungus,mycelium,NA,NA
-fungus,fruiting,NA,NA
+fungus,spore,An immature fungus that cannot produce offspring.,NA
+fungus,mycelium,"A connected network of thread-like hyphae, which make up the main body of a fungus. They can reproduce sexually or asexually.",NA
+fungus,fruiting,Also know as sporocar; when a fungus has the ability to reproduce sexually.,NA
 fungus,dead,"A deceased fungus, adult or not.",NA
 worm,dead,"A deceased worm, adult or not.",2026-06-25T00:00:00Z
 mollusk,egg,NA,2026-06-25T00:00:00Z
 mollusk,larvae,NA,2026-06-25T00:00:00Z
 mollusk,adult,NA,2026-06-25T00:00:00Z
 mollusk,dead,"A deceased mollusk, adult or not.",2026-06-25T00:00:00Z
+protist,dead,"A deceased protist, adult or not.",2026-08-20T00:00:00Z
+archaea,dead,"A deceased archaea, adult or not.",2026-08-20T00:00:00Z
+bacteria,dead,"A deceased bacteria, adult or not.",2026-08-20T00:00:00Z

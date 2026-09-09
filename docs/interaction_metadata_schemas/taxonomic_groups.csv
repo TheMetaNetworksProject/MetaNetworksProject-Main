@@ -1,12 +1,13 @@
 Goup,Description,Notes
 bird,"Member of the class Aves. Warm-blooded, feathered, toothless, beaked.",NA
 mammal,"Member of the class Mammalia. Warm-blooded, with fur, produce milk.",NA
-plant,Member of the kingdom Plantae. Predominantly photosynthetic.,NA
-arthropod,Member of the phylum Arthropoda. Chitin exoskeleton with segmented body.,NA
+plant,Member of the kingdom Plantae. Predominantly photosynthetic. Does not include algae.,NA
+invertebrate,"Animals that are not vertebrates (tetrapods or fish). This includes insects, crustaceans, worms, corals, jellies, etc.",2026-08-14T00:00:00Z
 fish,"All vertebrates that are not tetrapods. Gill-bearing, aquatic, with limbs but no digits.",NA
 reptile,"Tetrapod vertebrates with ectothermic metabolism. Compromise turtles, crocodilians, lizards, snakes and tuatara.",NA
 amphibian,"Member of the class Amphibia. Ectothermic and semiaquatic. Compromise frogs, toads, salamanders and caecilians.",NA
 fungus,"Member of the class Fungi. Contain chitin in cell walls. Compromise yeasts, molds and mushrooms",NA
-worm,"Member of the class Annelida. Segmented animals. Ragworms, earthworms, leeches",NA
-mollusk,"Member of the phylum Mollusca. Contain soft, unsegmented body, usually enclosed in a calcareous shell. Includes gastropods (snails, slugs, limpets, etc.), bivalves (clams, oysters, mussels, etc.), cephalopods (octopuses, nautiluses, squids, etc.)",NA
 protist,"An organism that is not an animal, land plant, or fungus. They are eukaryotic but single-celled, and are not members of any clade.",2026-08-05T00:00:00Z
+archaea,NA,2026-08-14T00:00:00Z
+bacteria,Does not include algae.,2026-08-14T00:00:00Z
+algae,"Members - Green algae (kingdom Plantae), Diatom (kingdom Chromista), Blue-green algae (kingdom Bacteria)",2026-08-25T00:00:00Z
