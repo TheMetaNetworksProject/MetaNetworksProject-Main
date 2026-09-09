@@ -10,7 +10,7 @@
 ##   schema_(N+1), schema_(N+2), ... WITHOUT touching any existing numbers.
 ## =============================================================================
 
-source("./R/auxiliary_scripts/aux_schema_common.R")
+source("./R/L0/aux_schema_common.R")
 
 schema_map <- read_schema_map()
 

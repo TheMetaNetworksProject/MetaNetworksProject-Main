@@ -11,7 +11,7 @@
 ##   aux_files_with_schema.csv per-file details
 ## =============================================================================
 
-source("./R/auxiliary_scripts/aux_schema_common.R")
+source("./R/L0/aux_schema_common.R")
 
 schema_map <- read_schema_map()
 
