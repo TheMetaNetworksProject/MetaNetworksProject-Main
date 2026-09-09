@@ -137,18 +137,21 @@ The columns are described below based on the order we feel makes the most sense 
 - *Important:* you need to copy-paste the full URL for each URL page that has the source(s) of the interaction into the <code style="color : #fff2c">source_URL</code> column.
 - Do not add multiple URLs to a single cell. Each row should reflect the unique information derived from a source and its URL, and text excerpt combination.
   - 🐦 Separate URLs are entered in separate rows if there are multiple BOW pages with information on the same interaction (e.g., “behavior” and “Introduction” pages for example). A full BOW URL looks like this so that “behavior” is visible: https://birdsoftheworld-org.proxy2.cl.msu.edu/bow/species/gofwoo/cur/behavior.
-  - 🐦 You can also cite pictures and videos featured in the articles! If possible, get the direct link by right-clicking the image/video, or clicking on the image and following the highlighted link (it will usually be from Macaulay Library or eBird). If there is no direct URL, you may use the URL for the BOW page it was found on. For the note, copy any descriptions used in BOW about the image/video, or write a brief description about it.
+  - 🐦 You can also cite pictures and videos featured in the articles! If possible, get the direct link by right-clicking the image/video, or clicking on the image and following the highlighted link (it will usually be from Macaulay Library or eBird). If there is no direct URL, you may use the URL for the BOW page it was found on. For the excerpt, copy the caption featured on the image. Only cite pictures/videos where non-focal species are identified in the caption.
   - 📗 When copying URLs from sources gathered from Google Scholar, ensure that the link you provide is the same as the one referenced in the database search page. Scrolling through a PDF on certain libraries can add additional queries to the URL, creating a mismatch when referencing the source in the future. To ensure that you are copying the URL as presented on the database, right-click on the hyperlink and select "Copy link address" before pasting into the <code style="color : #fff2c">source_URL</code> column.
   
 
 ### <code style="color : #fff2c">timing_location_excerpt</code> 
 - Enter the text excerpt containing information about the context of the interaction observation (e.g. time of year, year, location, etc.) into the <code style="color : #fff2c">timing_location_excerpt</code> column. 
 - These excerpts may consist of an entire paragraph or more. For example, the start of a paper may discuss the time of year and country, while a later paragraph might mention a more specific locality where an observation was observed. Ensure that you copy-paste the section heading of the paragraph (i.e. "Introduction" or "Life-History" or "Habitat: Breeding Habitat"), then copy-paste the text that includes the interaction. 
+  - Each nested subheading should be separated with a colon as follows: "heading: subheading: text"
 - You may have several rows with the same excerpts because there are many interactions that were observed at the same site.
+- You do not need to include quotations around the text in your excerpts.
 
 ### <code style="color : #fff2c">interaction_excerpt</code>
 - Enter the text excerpt containing information about the nature of the interaction (e.g. taxa involved, description of interaction) into the <code style="color : #fff2c">interaction_excerpt</code> column.
 - These excerpts may consist of an entire paragraph or more. For example, the start of a paper may discuss the time of year and country, while a later paragraph might mention a more specific locality where an observation was observed. Ensure that you copy-paste the section heading of the paragraph (i.e. "Behavior: Agonistic Behavior" or "Life-History" or "Feeding: Diet"), then copy-paste the text that includes the interaction. 
+  - Each nested subheading should be separated with a colon as follows: "heading: subheading: text"
 - You may have several rows with the same excerpts because there are many pairwise interactions that were recorded in the same passage of text.
 - The <code style="color : #fff2c">timing_location_excerpt</code> and <code style="color : #fff2c">interaction_excerpt</code> might also be identical if there is a passage that encompasses the context and nature of the interaction.
 
@@ -159,7 +162,7 @@ The columns are described below based on the order we feel makes the most sense 
 - Usually the scientific names of species are italicized in the paper or database, and should be entered **exactly as written** into the datasheet. 
 - **IMPORTANT**: You will likely come across interactions between taxa that are NOT your focal taxa. For example, if your focal taxon was the Great Blue Heron, you might come across a source detailing the diets of all heron species in North America. In this case, you should record all interactions in order to fully check the source. You may select either taxon to be taxa1 and taxa2.
 - You may come across one of several rare cases for a species scientific name in the text:
-  - On occasion, you may only be able to find a common name for a taxon referenced in the text (e.g., Yellow Warbler). In these cases, look up the scientific name (*Genus species*).
+  - On occasion, you may only be able to find a common name for a taxon referenced in the text (e.g., Yellow Warbler). In these cases, look up the accepted scientific name (*Genus species*) in [GBIF](https://www.gbif.org/).
   - If a specific subspecies is mentioned in reference, then include in the scientific name (*Genus species subspecies*).
   - If the article addresses a bird as *Genus subspecies* rather than *Genus species subspecies* (e.g. *Mimus orpheus* instead of *Mimus polyglottos orpheus*), look up the full three-word name of the subspecies and enter that into the appropriate scientific name column.
   - If the article uses characters from scripts outside of the English alphabet (e.g. æ, Ø, or Þ), copy paste into the species column exactly as written. When exporting to CSV, double-check that the character looks the same.
@@ -169,10 +172,11 @@ The columns are described below based on the order we feel makes the most sense 
 - Enter the primary English common name of the species involved in the interaction into these columns.
 - Recall that the taxa1 should be your focal taxon selected from <code style="color : red">jointproject_taxalist.csv</code>, and the common name should be copied from that sheet exactly. Taxa2 are interacting taxa found in the text.
 - Usually the common names of species are capitalized in the paper or database, and should be entered **exactly as written** into the datasheet.
-- - You may come across one of several rare cases for a species common name in the text:
+- You may come across one of several rare cases for a species common name in the text:
   - If multiple common names are used for a single taxon in the paper, select the first one mentioned or the main one used.
   - If the paper does not mention a common name, you may search the scientific name to figure out the common name. If the species doesn't have a common name, you may leave the cell blank.
   - If the article does not mention a specific species but does reference a group (e.g. "corvids", "gulls", etc.), then enter taxa2 as an unidentified species. For the common name, use "unid." + group mentioned. For example, "corvids" would be entered as common name "unid. corvid" into <code style="color : #31cae6">taxa2_common</code>. Ask an experienced lab member if you are unsure how to do this.
+  - If the article does not list a common name, do not worry about locating one. The scientific name is what is used for taxonomic alignment and downstream analyses, and thus the common name can be left off if excluded in the article.
 
 ### <code style="color : #31cae6">taxa1_resolution</code>, <code style="color : #31cae6">taxa2_resolution</code>
 - These columns contain dropdowns with several taxonomic resolution levels (i.e. Kingdom, Family, Genus). Select the finest level resolution that taxa1 and taxa2 fall under. For the most part this will be species, but some taxa may be at broader or finer resolutions.
@@ -296,6 +300,13 @@ The columns are described below based on the order we feel makes the most sense 
 
 **Co-occurrence**
 - Co-occurrence is a weak "interaction" where two species are observed in the same location at the same time, with no specific interaction between them observed. We used to record this into the sheet, but to save time we now ignore these unless a more specific interaction is described.
+
+**Scientific names with Author Citations**
+- In some sources, you will see scientific names (*Genus species*) followed by an abbreviation. This is especially common in plants and some microorganisms, even on GBIF.
+  - For example, the accepted scientific name for the Pignut Hickory tree is *Carya glabra* (Mill.) Sweet. In this case, the Genus is *Carya* and the specific epithet is *glabra*, while the following text indicates that the species was originally described by Philip Miller, and later reclassified by Robert Sweet. These abbreviations can be searched in the [International Plant Names Index](ipni.org).
+  - These abbreviations are great for providing credit and taxonomic authority for plant species, but not everyone includes them in all mentions of a species and thus they can cause some errors if they are included in a search term. **When searching** make sure you only include the scientific name (*Genus species*) without the author citation. 
+  - If you come across a name within a text that contains an author citation, include it in the scientific name within the sheet. The author citations do not cause issues with alignment, but do hinder search results when querying for literature.
+
 
 ## Step 7: Export/Download to CSV
 
