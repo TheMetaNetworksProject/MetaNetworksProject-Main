@@ -3,6 +3,7 @@ class,Taxonomic rank consisting of a group of related orders,NA,NA
 order,Taxonomic rank consisting of a group of related families,NA,NA
 suborder,Taxonomic rank that falls between order and family,NA,NA
 infraorder,Taxonomic rank that is a subdivision of a suborder,NA,NA
+superfamily,NA,added 8/19/2026,NA
 family,Taxonomic rank consisting of a group of related genera,NA,NA
 subfamily,Taxonomic rank consisting of a group of related genera within a family,NA,NA
 tribe,Taxonomic rank that falls between subfamily and genus,NA,NA
@@ -11,7 +12,9 @@ genus,Taxonomic rank consisting of a group of related species,NA,NA
 species,Taxonomic rank consisting of a single organism,NA,NA
 subspecies,"Taxonomic rank below species, used for populations that live in different areas and vary in size, shape, or other physical characteristics (morphology), but that can successfully interbreed.",NA,NA
 variety,"Taxonomic rank below that of species and subspecies, but above that of form",added 6/9/2026,NA
-hybird,NA,added 8/72026,"includes ""x"""
+hybrid,NA,added 8/72026,"includes ""x"""
 uncertain species,NA,added 8/72026,"includes ""cf"""
-morphospecies,NA,added 8/72026,"includes terms like ""sp. 1"", ""spec A"", or a code"
+morphospecies,NA,added 8/72026,"includes terms like ""Morphospecies"", ""Morph"", ""sp. 1"", ""spec A"", or a code; should state that these are morphospecies in text, otherwise call them undescribed"
 form,NA,added 8/72026,"includes ""f"""
+undescribed species,NA,added 8/25/2026,"includes ""nr."", ""aff."", ""sp. nov."" and terms like ""sp. 1"", ""spec A"", or a code"
+species group,NA,added 8/25/2026,"includes the word ""group"", sometimes followed by a number"
