@@ -278,3 +278,5 @@ s_7_9_8_6_4_1_5_2 <- load_schema(file_info, "schema_7") |>
   clean_na()
 
 df <- s_7_9_8_6_4_1_5_2 |> filter(interaction != "co-occur")
+df <- df |>
+  rename(effect_on_tx2 = effect_tx1_on_tx2, effect_on_tx1 = effect_tx2_on_tx1)
