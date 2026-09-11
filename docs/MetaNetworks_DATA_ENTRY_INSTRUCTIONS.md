@@ -103,13 +103,10 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
     TS=("Catherpes mexicanus" OR "Canyon wren") AND DT==("ARTICLE" OR "BOOK" OR “BOOK CHAPTER” OR "DATA PAPER" OR “PROCEEDINGS PAPER” OR “MEETING ABSTRACT” OR "EARLY ACCESS" OR "REVIEW") AND SJ==("AGRICULTURE" OR "BEHAVIORAL SCIENCES" OR "BIODIVERSITY CONSERVATION" OR "ENTOMOLOGY" OR "ENVIRONMENTAL SCIENCES ECOLOGY" OR "EVOLUTIONARY BIOLOGY" OR "FISHERIES" OR "FORESTRY" OR "INFECTIOUS DISEASES" OR "MARINE FRESHWATER BIOLOGY" OR "MICROBIOLOGY" OR "MYCOLOGY" OR "PARASITOLOGY" OR "PATHOLOGY" OR "PLANT SCIENCES" OR "TROPICAL MEDICINE" OR "VETERINARY SCIENCES" OR "VIROLOGY" OR "ZOOLOGY") AND LA==(“ENGLISH”)
 
     *Note that you do not have to add subspecies to the search string. Each name should be queried as given in the JointProject_TaxaList file.*
-
+    
   - v) Search your query using the purple search button. This may take a few seconds. The pre-generated string is designed to take advantage of WoS’s detailed filters; we keep sources in document types and subjects that are pertinent to the MetaNetworks project, and those that are in English.
-
   - vi) Once the search returns results correctly, open [Zotero](https://www.zotero.org/). Zotero is a website and desktop app for organizing sources in research projects, which we are employing to avoid double-checking sources. Locate the [MetaNetworks_SpaCELab library](https://www.zotero.org/groups/6598963/metanetworks_spacelab/library), which contains all sources which have been checked or are being checked by other lab members.
-
   - vii) After locating a potential source from WoS, quickly enter a portion of the title into the search bar in the Zotero library. If the source appears, this means another lab member has already checked it and you can safely skip that source.
-
   - viii) If the source is not located in the library, it means it is unchecked. If it appears like it could potentially contain interaction information about your target taxa, open it and add it to the Zotero library. There are several ways to do this:
     a) Option 1: File exporting
       i) Select the checkbox next to the source in the search results page. You may do this for multiple sources at once if needed.
@@ -122,11 +119,8 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
       ii) While searching through the literature, you will need to have Zotero open. This works better when the desktop app is open.
       iii) When you want to add a reference to the library, click on the plugin icon and ensure that it reads “Saving to MetaNetworks_SpaCELab”. 
       iv) Then, select the source from the list, and click OK!
-
   - ix) Once you add a source to the library, locate it in Zotero and click on the "Notes" page that appears on the popup table to the right. Add a note that reads "in progress."
-
   - x) After adding to Zotero, click on the potential source in order and navigate to the text (there is usually a “text available from publisher” button). Search in the text for the species to find where it is mentioned, and record interactions into the entry sheet.
-
   - xi) Many taxa on our list are extremely well studied, and thus will return thousands of results when queried on WoS, even with the advanced filtering. Some plant species, for example, return thousands of sources. While it is beneficial to search through all the literature we can, the rate of new interactions for a taxa decreases as the number of sources searched increases. To ensure that we don’t expend too much time on a few species, we have set a threshold for the number of sources to check for each species. If the query returns **OVER 100 RESULTS** on WoS, you **ONLY** need to screen through up to **100**, including both sources with and without interactions.
 
   - xii) Sometimes WoS is too restrictive on the literature it hosts. If your taxon returns **LESS THAN 30 RESULTS** on WoS, you will need to perform an Advanced Search on Google Scholar to check for additional sources.
