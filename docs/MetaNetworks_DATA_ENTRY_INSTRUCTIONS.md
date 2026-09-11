@@ -315,6 +315,10 @@ The columns are described below based on the order we feel makes the most sense 
 - If you ever make a mistake that causes the sheet to de-sync, select the "Repair all rows" function. This takes a while to run and should thus be used sparingly. 
 - The first time you use these functions, you might need to give AppsScript permission to run from your Google account.
 
+**Screening vs Checking**
+- Screening a source refers to the process of looking at the name, journal, and potentially abstract to see if the source would be relevant to this project. For some sources, it is easy to tell whether or not they would contain interaction information. Medical journals, for example, are unlikely to contain information about ecological interactions. These sources can be skipped without opening. When searching a species, you only need to *screen* 100 sources.
+- Checking refers to fully passing through a source to see if there is any information interaction contained within. A checked source should have had all its text read and any interactions entered into a sheet. Only *checked* sources are added to the Zotero library.
+
 **Alternate and Historical Names**
 - Many species have had a long, systematics history and collected many different scientific names over the past few centuries. We used to query historic and alternate names, but now will only use the current scientific names. Use the scientific name as indicated on the `JointProject_TaxaList` Google Sheet when querying for literature. 
 - As described above, however, copy taxa names as they appear in the text, even if the scientific name is outdated.
