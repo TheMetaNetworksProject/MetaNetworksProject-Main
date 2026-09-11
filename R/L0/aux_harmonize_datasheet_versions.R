@@ -17,32 +17,9 @@
 # Harmonize data sheet versions
 
 library(tidyverse)
-library(googlesheets4)
 
-gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets.readonly")
-
-file_info_path <- "./R/auxiliary_scripts/aux_files_with_schema.csv"
+file_info_path <- "./R/L0/aux_files_with_schema.csv"
 file_info <- read.csv(file_info_path)
-
-
-sheet_id <- "https://docs.google.com/spreadsheets/d/16CqFzM9VNISBAy9LfZeQPTMWOAuMHOjPc2NSwquErw8/edit?gid=1151304040#gid=1151304040"
-
-sheet_meta <- gs4_get(sheet_id)
-tab_names <- sheet_meta$sheets$name
-
-all_tabs <- purrr::map(
-  rlang::set_names(tab_names),
-  ~ read_sheet(sheet_id, sheet = .x)
-)
-
-walk2(
-  all_tabs,
-  names(all_tabs),
-  ~ write_csv(
-    .x,
-    file.path("./docs/interaction_metadata_schemas", paste0(.y, ".csv"))
-  )
-)
 
 # ============================================================================
 # HELPER FUNCTIONS
@@ -227,10 +204,12 @@ s_8_6_4_1_5_2 <- load_schema(file_info, "schema_8") |>
   ) |>
   clean_na()
 
-# --- Merge schema_9 with (schema_8, 6, 4, 1, 5, 2); tag as version v3; rename
+# --- Merge schema_9 and schema_10 with (schema_8, 6, 4, 1, 5, 2); tag as version v3; rename
 #     to taxa1/taxa2 naming convention; add placeholder columns; drop
 #     other_species1 (no longer needed) ---
-s_9_8_6_4_1_5_2 <- load_schema(file_info, "schema_9") |>
+s_9_8_6_4_1_5_2 <- load_schema(file_info, "schema_10") |>
+  mutate(Citation = NA) |>
+  rbind(load_schema(file_info, "schema_9")) |>
   mutate(
     version = "v3",
     # n_studies = "not_evaluated",
@@ -271,7 +250,8 @@ s_9_8_6_4_1_5_2 <- load_schema(file_info, "schema_9") |>
   dplyr::select(-other_species1) |>
   clean_na()
 
-# --- Merge schema_7 with (schema_9, 8, 6, 4, 1, 5, 2); tag as version v4;
+
+# --- Merge schema_7 with (schema_10, 9, 8, 6, 4, 1, 5, 2); tag as version v4;
 #     final step -- drop columns that are no longer part of the unified
 #     schema (BOW_evidence, n_studies, name_changes, DatabaseSearchURL,
 #     breeding_migration) ---
@@ -297,4 +277,6 @@ s_7_9_8_6_4_1_5_2 <- load_schema(file_info, "schema_7") |>
   mutate(taxa1_group = "bird", taxa2_group = "bird") |>
   clean_na()
 
-df <- s_7_9_8_6_4_1_5_2
+df <- s_7_9_8_6_4_1_5_2 |> filter(interaction != "co-occur")
+df <- df |>
+  rename(effect_on_tx2 = effect_tx1_on_tx2, effect_on_tx1 = effect_tx2_on_tx1)

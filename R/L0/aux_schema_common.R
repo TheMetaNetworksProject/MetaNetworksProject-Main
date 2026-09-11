@@ -9,8 +9,8 @@
 `%||%` <- function(x, y) if (is.null(x)) y else x
 
 ## ---- config ----------------------------------------------------------------
-root_dir <- "C:/Users/kelly/OneDrive - Michigan State University/Research/AvianMetaNetwork/AvianMetaNetwork-Working/L0/species/"
-in_review_dir <- "C:/Users/kelly/OneDrive - Michigan State University/Research/AvianMetaNetwork/AvianMetaNetwork-Working/L0/species_in_review/"
+root_dir <- "C:/Users/kelly/OneDrive - Michigan State University/Research/MetaNetworksProject/MetaNetworksProject-Working/L0/taxa_checked_raw"
+in_review_dir <- "C:/Users/kelly/OneDrive - Michigan State University/Research/MetaNetworksProject/MetaNetworksProject-Working/L0/taxa_to_check/"
 
 ignore_column_order <- TRUE
 
@@ -19,9 +19,9 @@ schema_sep <- " | " # separator used to serialise a column set into one string
 ## Output / state file paths.
 ## schema_key_path is read by BOTH scripts and is the frozen source of truth
 ## for schema numbering.
-presence_path <- "./R/auxiliary_scripts/aux_schema_cols.csv"
-schema_key_path <- "./R/auxiliary_scripts/aux_schema_metadata.csv"
-file_info_path <- "./R/auxiliary_scripts/aux_files_with_schema.csv"
+presence_path <- "./R/L0/aux_schema_cols.csv"
+schema_key_path <- "./R/L0/aux_schema_metadata.csv"
+file_info_path <- "./R/L0/aux_files_with_schema.csv"
 
 ## ---- discover CSVs ---------------------------------------------------------
 spp_files <- list.files(
