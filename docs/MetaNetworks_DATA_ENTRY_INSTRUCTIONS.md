@@ -92,26 +92,58 @@ b) **If your taxon is a non-bird animal**:
   - iv) After entering all the interactions from ADW, proceed to a primary literature search (part C of this step). **ADW-specific instructions from now on will be indicated with the whale emoji:** 🐳
 
 c) **If your taxon is NOT an animal OR if you have already checked/entered data from BOW or ADW**:
-  - i) Perform a **Google Scholar Advanced Search** to identify primary literature and other sources online. Navigate to [**Google Scholar**](https://scholar.google.com).
-  - ii) Navigate to the Settings by selecting the 3 horizontal lines at the upper left of the page. Click on **Settings**. Select **Languages** and click the option that says "Search only for pages written in these languages." Check "English."
-  - iii) Navigate to the Advanced Search by selecting the 3 horizontal lines at the upper left of the page. Click on the **Advanced Search**. Into the cell next to **Find articles with all of the words** paste all the species current and past names for both Common and Scientific names (see the BOW account section "Systematics History" to find these names), in quotes, separated by OR. *If you have questions about the alternative or former names of the species, please consult with the lab before conducting the search since the Systematics History section of accounts can be confusing*. 
-    - Note that you do not have to add subspecies to the search string. 
-    - Note  that capitalization doesn't matter and neither do hyphens (i.e., "Brown-hooded parrot" will return the same results as "Brown hooded parrot"). Also, if you leave off OR, it will be interpreted as AND, requiring all of the text strings to appear in the search result.
-    - **EXAMPLE: "Pyrilia haematotis" OR "Brown-hooded parrot"** - [this search yielded 216 results](https://scholar.google.com/scholar?as_q=&as_epq=&as_oq=%22Brown+hooded+parrot%22+%22Pyrilia+haematotis%22&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=&as_yhi=&hl=en&as_sdt=0%2C23).
-      - IMPORTANT: Do NOT forget the quotes or the "OR"
-      - *If this does not turn up any results, try searching just Common or Scientific name separately.*
+  - i) Perform a Web of Science (WoS) Advanced Search to identify primary literature and other sources online. Navigate to WoS through [MSU Libraries](https://lib.msu.edu/data/wos).
+  - ii) Navigate to the Advanced Search tool (NOT Smart Search) and select the Query Builder option. Ensure that you are searching in **All Databases and All Collections**. Locate the Query Preview box on the left side of the window.
+  - iii)  Enter the following string into the Query Preview box:
 
-  
-  - iv) Press Enter or the Search icon to the right of the search bar. This will return a set of papers and other reference literature.
-    - *IMPORTANT: If nothing results from this more involved search, check how Google Scholar is coding your search in the searchbar - sometimes it adds "AND" "OR" many times between words, which is incorrect. Click on Advanced Search to see how it is coding your search - fix any errors.*
-  - v) Once the search returns results correctly, open [Zotero](https://www.zotero.org/). Zotero is a website and desktop app for organizing sources in research projects, which we are employing to avoid double-checking sources. Locate the [`MetaNetworks_SpaCELab` library](https://www.zotero.org/groups/6598963/metanetworks_spacelab/library), which contains all sources which have been checked or are being checked by other lab members.
-  - vi) After locating a potential source from Google Scholar, quickly enter a portion of the title into the search bar in the Zotero library. If the source appears, this means another lab member has already checked it and you can safely skip that source.
-  - vii) If the source is not located in the library, it means it is unchecked. Add it to the library. To do this, make sure you have the **Zotero Connecter** web plugin installed. Click on the "Cite" button under the source on the Google Scholar results page, and then click "RefMan" which will connect with Zotero. Ensure you are "Saving to `MetaNetworks_SpaCELab`". This will add it and all the information directly to the Zotero Library!
-  - viii) Once you add a source to the library, locate it in Zotero and click on the "Notes" page that appears on the popup table to the right. Add a note that reads **"in progress"**
-  
-  - ix) After adding to Zotero, click on the potential source in order and navigate to the text (you may have to click on "All Versions" below the source to find a PDF or accessible link). Search in the text for the species to find where it is mentioned, and record interactions into the entry sheet.
+    TS=("Scientific name" OR "Common name") AND DT==("ARTICLE" OR "BOOK" OR “BOOK CHAPTER” OR "DATA PAPER" OR “PROCEEDINGS PAPER” OR “MEETING ABSTRACT” OR "EARLY ACCESS" OR "REVIEW") AND SJ==("AGRICULTURE" OR "BEHAVIORAL SCIENCES" OR "BIODIVERSITY CONSERVATION" OR "ENTOMOLOGY" OR "ENVIRONMENTAL SCIENCES ECOLOGY" OR "EVOLUTIONARY BIOLOGY" OR "FISHERIES" OR "FORESTRY" OR "INFECTIOUS DISEASES" OR "MARINE FRESHWATER BIOLOGY" OR "MICROBIOLOGY" OR "MYCOLOGY" OR "PARASITOLOGY" OR "PATHOLOGY" OR "PLANT SCIENCES" OR "TROPICAL MEDICINE" OR "VETERINARY SCIENCES" OR "VIROLOGY" OR "ZOOLOGY") AND LA==(“ENGLISH”)
 
-  - x) **Instructions specific to primary literature from now on will be indicated with the green book emoji:** 📗
+  - iv) Replace the “Scientific name” and “Common name” strings with the relevant names for your taxa, keeping the quotation marks. For example, the finished query string for the species Canyon Wren (*Catherpes mexicanus*) would be:
+
+    TS=("Catherpes mexicanus" OR "Canyon wren") AND DT==("ARTICLE" OR "BOOK" OR “BOOK CHAPTER” OR "DATA PAPER" OR “PROCEEDINGS PAPER” OR “MEETING ABSTRACT” OR "EARLY ACCESS" OR "REVIEW") AND SJ==("AGRICULTURE" OR "BEHAVIORAL SCIENCES" OR "BIODIVERSITY CONSERVATION" OR "ENTOMOLOGY" OR "ENVIRONMENTAL SCIENCES ECOLOGY" OR "EVOLUTIONARY BIOLOGY" OR "FISHERIES" OR "FORESTRY" OR "INFECTIOUS DISEASES" OR "MARINE FRESHWATER BIOLOGY" OR "MICROBIOLOGY" OR "MYCOLOGY" OR "PARASITOLOGY" OR "PATHOLOGY" OR "PLANT SCIENCES" OR "TROPICAL MEDICINE" OR "VETERINARY SCIENCES" OR "VIROLOGY" OR "ZOOLOGY") AND LA==(“ENGLISH”)
+
+    *Note that you do not have to add subspecies to the search string. Each name should be queried as given in the JointProject_TaxaList file.*
+
+  - v) Search your query using the purple search button. This may take a few seconds. The pre-generated string is designed to take advantage of WoS’s detailed filters; we keep sources in document types and subjects that are pertinent to the MetaNetworks project, and those that are in English.
+
+  - vi) Once the search returns results correctly, open [Zotero](https://www.zotero.org/). Zotero is a website and desktop app for organizing sources in research projects, which we are employing to avoid double-checking sources. Locate the [MetaNetworks_SpaCELab library](https://www.zotero.org/groups/6598963/metanetworks_spacelab/library), which contains all sources which have been checked or are being checked by other lab members.
+
+  - vii) After locating a potential source from WoS, quickly enter a portion of the title into the search bar in the Zotero library. If the source appears, this means another lab member has already checked it and you can safely skip that source.
+
+  - viii) If the source is not located in the library, it means it is unchecked. If it appears like it could potentially contain interaction information about your target taxa, open it and add it to the Zotero library. There are several ways to do this:
+    a) Option 1: File exporting
+      i) Select the checkbox next to the source in the search results page. You may do this for multiple sources at once if needed.
+      ii) Select the Export button, and choose “RIS (other reference software)” as the format, and ensure that the “Record Content” includes “Author, Title, Source, Abstract”. 
+      iii) Click the purple Export button. This will download an RIS file to your device.
+      iv) In Zotero, navigate to the MetaNetworks_SpaCELab library and click the “Import from a file (BibTex, RIS, etc.)” button. This looks like an arrow pointing to a page.
+      v) Select the RIS file downloaded to your computer, and the sources will automatically populate in the MetaNetworks_SpaCELab library!
+    b) Option 2: Zotero Connector
+      i) Install the [Zotero Connector plugin](https://www.zotero.org/download/#) for your browser of choice.
+      ii) While searching through the literature, you will need to have Zotero open. This works better when the desktop app is open.
+      iii) When you want to add a reference to the library, click on the plugin icon and ensure that it reads “Saving to MetaNetworks_SpaCELab”. 
+      iv) Then, select the source from the list, and click OK!
+
+  - ix) Once you add a source to the library, locate it in Zotero and click on the "Notes" page that appears on the popup table to the right. Add a note that reads "in progress."
+
+  - x) After adding to Zotero, click on the potential source in order and navigate to the text (there is usually a “text available from publisher” button). Search in the text for the species to find where it is mentioned, and record interactions into the entry sheet.
+
+  - xi) Many taxa on our list are extremely well studied, and thus will return thousands of results when queried on WoS, even with the advanced filtering. Some plant species, for example, return thousands of sources. While it is beneficial to search through all the literature we can, the rate of new interactions for a taxa decreases as the number of sources searched increases. To ensure that we don’t expend too much time on a few species, we have set a threshold for the number of sources to check for each species. If the query returns **OVER 100 RESULTS** on WoS, you **ONLY** need to screen through up to **100**, including both sources with and without interactions.
+
+  - xii) Sometimes WoS is too restrictive on the literature it hosts. If your taxon returns **LESS THAN 30 RESULTS** on WoS, you will need to perform an Advanced Search on Google Scholar to check for additional sources.
+    - a) Navigate to [Google Scholar](https://scholar.google.com/).
+    - b) Enter the Settings by selecting the 3 horizontal lines at the upper left of the page. Click on Settings. Select Languages and click the option that says "Search only for pages written in these languages." Check "English."
+    - c) Locate the Advanced Search by selecting the 3 horizontal lines at the upper left of the page. Click on the Advanced Search. Into the cell next to Find articles with all of the words paste the Common and Scientific names in quotes, separated by OR.
+    - d) Press Enter or the Search icon to the right of the search bar. This will return a set of papers and other reference literature.
+    - e) Once the search returns results correctly, open Zotero. Locate the MetaNetworks_SpaCELab library.
+    - f) After locating a potential source from Google Scholar, quickly enter a portion of the title into the search bar in the Zotero library. If the source appears, this means another lab member has already checked it and you can safely skip that source.
+    - g) If it appears like it could potentially contain interaction information about your target taxa, open it and add it to the library. To do this, make sure you have the Zotero Connecter web plugin installed. Click on the "Cite" button under the source on the Google Scholar results page, and then click "RefMan" which will connect with Zotero. Ensure you are "Saving to MetaNetworks_SpaCELab". This will add it and all the information directly to the Zotero Library!
+      - i) Alternatively, from the Cite page you can download a BibTex file and import it into Zotero as described in the WoS workflow above.
+    - h) Once you add a source to the library, locate it in Zotero and click on the "Notes" page that appears on the popup table to the right. Add a note that reads "in progress"
+    - i) After adding to Zotero, click on the potential source in order and navigate to the text (you may have to click on "All Versions" below the source to find a PDF or accessible link). Search in the text for the species to find where it is mentioned, and record interactions into the entry sheet.
+    - j) In the odd scenario where WoS returns a few sources and Google Scholar returns hundreds, **ONLY** search through up to **100 SOURCES** between WoS and Google Scholar **combined**.
+
+
+  - xiii) **Instructions specific to primary literature from now on will be indicated with the green book emoji:** 📗
 
 ## Step 6: Data entry in the Species sheet
 
@@ -138,7 +170,7 @@ The columns are described below based on the order we feel makes the most sense 
 - Do not add multiple URLs to a single cell. Each row should reflect the unique information derived from a source and its URL, and text excerpt combination.
   - 🐦 Separate URLs are entered in separate rows if there are multiple BOW pages with information on the same interaction (e.g., “behavior” and “Introduction” pages for example). A full BOW URL looks like this so that “behavior” is visible: https://birdsoftheworld-org.proxy2.cl.msu.edu/bow/species/gofwoo/cur/behavior.
   - 🐦 You can also cite pictures and videos featured in the articles! If possible, get the direct link by right-clicking the image/video, or clicking on the image and following the highlighted link (it will usually be from Macaulay Library or eBird). If there is no direct URL, you may use the URL for the BOW page it was found on. For the excerpt, copy the caption featured on the image. Only cite pictures/videos where non-focal species are identified in the caption.
-  - 📗 When copying URLs from sources gathered from Google Scholar, ensure that the link you provide is the same as the one referenced in the database search page. Scrolling through a PDF on certain libraries can add additional queries to the URL, creating a mismatch when referencing the source in the future. To ensure that you are copying the URL as presented on the database, right-click on the hyperlink and select "Copy link address" before pasting into the <code style="color : #fff2c">source_URL</code> column.
+  - 📗 When copying URLs from sources gathered from Google Scholar or WoS, ensure that the link you provide is the same as the one referenced in the database search page. Scrolling through a PDF on certain libraries can add additional queries to the URL, creating a mismatch when referencing the source in the future. To ensure that you are copying the URL as presented on the database, right-click on the hyperlink and select "Copy link address" before pasting into the <code style="color : #fff2c">source_URL</code> column.
   
 
 ### <code style="color : #fff2c">timing_location_excerpt</code> 
@@ -289,23 +321,32 @@ The columns are described below based on the order we feel makes the most sense 
 - If you ever make a mistake that causes the sheet to de-sync, select the "Repair all rows" function. This takes a while to run and should thus be used sparingly. 
 - The first time you use these functions, you might need to give AppsScript permission to run from your Google account.
 
-**Multi-species interactions**
-- If you find a description that lists > 2 species involved in an interaction (e.g., mixed flock, aggregate foraging, competing over same resource), then enter in all pairwise interactions into the same google sheet.
+**Alternate and Historical Names**
+- Many species have had a long, systematics history and collected many different scientific names over the past few centuries. We used to query historic and alternate names, but now will only use the current scientific names. Use the scientific name as indicated on the `JointProject_TaxaList` Google Sheet when querying for literature. 
+- As described above, however, copy taxa names as they appear in the text, even if the scientific name is outdated.
+- Common names are less standardized and some species have dozens in English alone. Use the common name given on the `JointProject_TaxaList` Google Sheet, but if you feel as though some literature is lost by the exclusion of a different name, bring this up with a team lead.
+
+**Taxonomic Ceiling**
+- Some interactions are described very broadly, representing taxa as high-level groups (i.e. insects, plants, animals).
+- We record interactions for taxa higher than species level, but the highest resolution we record for is Class. Above Class level, information becomes less ecologically useful and applicable to our projects.
 
 **Abbreviations and Codes**
 - If you encounter a 4-letter banding abbreviation (e.g. GHOW) or other acronym or code for mentioning a taxa, copy and paste the text excerpt where the abbreviation is defined (e.g., "Great-horned Owl (GHOW)...") into the text_excerpt columns in every row where an interaction was derived from a text excerpt that includes an abbreviation.
-
-**Pairwise interactions**
-- Note that for taxa_1, its interaction with taxa_2 will become part of taxa_2's pairwise interactions. NOTE: if a duplicate entry occurs, it’s ok (we will edit in R). It takes too much time to avoid duplicates by manually searching for the taxa_2 entries that already exist.
-
-**Co-occurrence**
-- Co-occurrence is a weak "interaction" where two species are observed in the same location at the same time, with no specific interaction between them observed. We used to record this into the sheet, but to save time we now ignore these unless a more specific interaction is described.
 
 **Scientific names with Author Citations**
 - In some sources, you will see scientific names (*Genus species*) followed by an abbreviation. This is especially common in plants and some microorganisms, even on GBIF.
   - For example, the accepted scientific name for the Pignut Hickory tree is *Carya glabra* (Mill.) Sweet. In this case, the Genus is *Carya* and the specific epithet is *glabra*, while the following text indicates that the species was originally described by Philip Miller, and later reclassified by Robert Sweet. These abbreviations can be searched in the [International Plant Names Index](ipni.org).
   - These abbreviations are great for providing credit and taxonomic authority for plant species, but not everyone includes them in all mentions of a species and thus they can cause some errors if they are included in a search term. **When searching** make sure you only include the scientific name (*Genus species*) without the author citation. 
   - If you come across a name within a text that contains an author citation, include it in the scientific name within the sheet. The author citations do not cause issues with alignment, but do hinder search results when querying for literature.
+
+**Multi-species interactions**
+- If you find a description that lists > 2 species involved in an interaction (e.g., mixed flock, aggregate foraging, competing over same resource), then enter in all pairwise interactions into the same google sheet.
+
+**Pairwise interactions**
+- Note that for taxa_1, its interaction with taxa_2 will become part of taxa_2's pairwise interactions. NOTE: if a duplicate entry occurs, it’s ok (we will edit in R). It takes too much time to avoid duplicates by manually searching for the taxa_2 entries that already exist.
+
+**Co-occurrence**
+- Co-occurrence is a weak "interaction" where two species are observed in the same location at the same time, with no specific interaction between them observed. We used to record this into the sheet, but to save time we now ignore these unless a more specific interaction is described.
 
 
 ## Step 7: Export/Download to CSV
