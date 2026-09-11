@@ -1,5 +1,5 @@
-# <code style="color : red">The MetaNetworks Project</code>: 
-## Instructions for Data Entry in <code style="color : red">The MetaNetworks Project</code> in L0 subdirectory
+# <code>The MetaNetworks Project</code>: 
+## Instructions for Data Entry in <code>The MetaNetworks Project</code> in L0 subdirectory
 
 From the [Spatial and Community Ecology Lab (SpaCE Lab)](https://www.communityecologylab.com)
 
@@ -17,30 +17,30 @@ Only use GitHub or Google Sheets for data entry and editing of files.
 *Do not use Microsoft Excel* for data entry or any editing of files;
 it has text encoding that differs from GitHub and Google Sheets.
 
-### The <code style="color : red">MetaNetwork repository data/L0</code> folder contains the following files:
+### The <code>MetaNetwork repository data/L0</code> folder contains the following files:
 
-### <code style="color : red">data/L0/metadata</code>
+### <code>data/L0/metadata</code>
 Subfolder containing metadata for several column options, including definitions for those options.
 
-### <code style="color : red">metadata/interactions.csv</code>
+### <code>metadata/interactions.csv</code>
 Metadata and definitions for interaction types.
 
-### <code style="color : red">metadata/resolutions.csv</code>
+### <code>metadata/resolutions.csv</code>
 Metadata and definitions for taxonomic resolutions.
 
-### <code style="color : red">metadata/taxonomic_groups.csv</code>
+### <code>metadata/taxonomic_groups.csv</code>
 Metadata and definitions for taxonomic groups.
 
-### <code style="color : red">metadata/interaction_confidence.csv</code>
+### <code>metadata/interaction_confidence.csv</code>
 Metadata and definitions for interaction confidence keywords.
 
-### <code style="color : red">metadata/life_stages.csv</code>
+### <code>metadata/life_stages.csv</code>
 Metadata and definitions for taxon life stages.
 
-### <code style="color : red">metadata/life_histories.csv</code>
+### <code>metadata/life_histories.csv</code>
 Metadata and definitions for life history keywords.
 
-### <code style="color : red">jointproject_taxalist.csv</code>
+### <code>jointproject_taxalist.csv</code>
 Taxa look-up table and assignments for data entry. Contains the updates and assignments of taxa entry progress. (Note: this is contained in a Google Sheet within the private project Google Drive and is periodically updated here). 
 
 ## Step 1: Get started in GitHub
@@ -54,7 +54,7 @@ The first time you use GitHub, do the following:
 - Clone this entire repository by clicking on the green "Code" button and selecting "Open with GitHub Desktop". Save the location of the repository on your computer (not inside a Google Drive or Dropbox or One Drive folder).
 
 ## Step 2: Pull the most recent version of the Database
-In GitHub Desktop, select <code style="color : red">MetaNetwork</code>. Click "Fetch origin" to pull the most recent version of the database, which will save it to your GitHub location on your computer (established in Step 1). 
+In GitHub Desktop, select <code>MetaNetwork</code>. Click "Fetch origin" to pull the most recent version of the database, which will save it to your GitHub location on your computer (established in Step 1). 
 
 ## Step 3: Select a species to work on
 Navigate to the Google Drive folder [`SpaCE_Lab_EcologicalNetworks/metanetwork_L0_entry`](https://drive.google.com/drive/u/2/folders/1XFwxLrBDAtoOi_cWz62J8XwBWxFLmQL0?dmr=1&ec=wgc-drive-hero-goto) and open the `JointProject_TaxaList` Google Sheet.
@@ -103,7 +103,7 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
     TS=("Catherpes mexicanus" OR "Canyon wren") AND DT==("ARTICLE" OR "BOOK" OR “BOOK CHAPTER” OR "DATA PAPER" OR “PROCEEDINGS PAPER” OR “MEETING ABSTRACT” OR "EARLY ACCESS" OR "REVIEW") AND SJ==("AGRICULTURE" OR "BEHAVIORAL SCIENCES" OR "BIODIVERSITY CONSERVATION" OR "ENTOMOLOGY" OR "ENVIRONMENTAL SCIENCES ECOLOGY" OR "EVOLUTIONARY BIOLOGY" OR "FISHERIES" OR "FORESTRY" OR "INFECTIOUS DISEASES" OR "MARINE FRESHWATER BIOLOGY" OR "MICROBIOLOGY" OR "MYCOLOGY" OR "PARASITOLOGY" OR "PATHOLOGY" OR "PLANT SCIENCES" OR "TROPICAL MEDICINE" OR "VETERINARY SCIENCES" OR "VIROLOGY" OR "ZOOLOGY") AND LA==(“ENGLISH”)
 
     *Note that you do not have to add subspecies to the search string. Each name should be queried as given in the JointProject_TaxaList file.*
-    
+
   - v) Search your query using the purple search button. This may take a few seconds. The pre-generated string is designed to take advantage of WoS’s detailed filters; we keep sources in document types and subjects that are pertinent to the MetaNetworks project, and those that are in English.
   - vi) Once the search returns results correctly, open [Zotero](https://www.zotero.org/). Zotero is a website and desktop app for organizing sources in research projects, which we are employing to avoid double-checking sources. Locate the [MetaNetworks_SpaCELab library](https://www.zotero.org/groups/6598963/metanetworks_spacelab/library), which contains all sources which have been checked or are being checked by other lab members.
   - vii) After locating a potential source from WoS, quickly enter a portion of the title into the search bar in the Zotero library. If the source appears, this means another lab member has already checked it and you can safely skip that source.
@@ -184,7 +184,7 @@ The columns are described below based on the order we feel makes the most sense 
 ### <code style="color : #31cae6">taxa1_scientific</code>, <code style="color : #31cae6">taxa2_scientific</code>
 
 - Enter the binomial scientific names (*Genus species*) of the species involved in the interaction into these columns.
-- Recall that the taxa1 should be your focal taxon selected from <code style="color : red">jointproject_taxalist.csv</code>. Taxa2 are interacting taxa found in the text.
+- Recall that the taxa1 should be your focal taxon selected from <code>jointproject_taxalist.csv</code>. Taxa2 are interacting taxa found in the text.
 - Usually the scientific names of species are italicized in the paper or database, and should be entered **exactly as written** into the datasheet. 
 - **IMPORTANT**: You will likely come across interactions between taxa that are NOT your focal taxa. For example, if your focal taxon was the Great Blue Heron, you might come across a source detailing the diets of all heron species in North America. In this case, you should record all interactions in order to fully check the source. You may select either taxon to be taxa1 and taxa2.
 - You may come across one of several rare cases for a species scientific name in the text:
@@ -196,7 +196,7 @@ The columns are described below based on the order we feel makes the most sense 
 
 ### <code style="color : #31cae6">taxa1_common</code>, <code style="color : #31cae6">taxa2_common</code>
 - Enter the primary English common name of the species involved in the interaction into these columns.
-- Recall that the taxa1 should be your focal taxon selected from <code style="color : red">jointproject_taxalist.csv</code>, and the common name should be copied from that sheet exactly. Taxa2 are interacting taxa found in the text.
+- Recall that the taxa1 should be your focal taxon selected from <code>jointproject_taxalist.csv</code>, and the common name should be copied from that sheet exactly. Taxa2 are interacting taxa found in the text.
 - Usually the common names of species are capitalized in the paper or database, and should be entered **exactly as written** into the datasheet.
 - You may come across one of several rare cases for a species common name in the text:
   - If multiple common names are used for a single taxon in the paper, select the first one mentioned or the main one used.
@@ -207,24 +207,24 @@ The columns are described below based on the order we feel makes the most sense 
 ### <code style="color : #31cae6">taxa1_resolution</code>, <code style="color : #31cae6">taxa2_resolution</code>
 - These columns contain dropdowns with several taxonomic resolution levels (i.e. Kingdom, Family, Genus). Select the finest level resolution that taxa1 and taxa2 fall under. For the most part this will be species, but some taxa may be at broader or finer resolutions.
 - If you are unsure what resolution your taxa falls under, check with an experienced lab member.
-- If you need a refresher on what these terms mean, check the <code style="color : red">metadata/resolutions.csv</code>
+- If you need a refresher on what these terms mean, check the <code>metadata/resolutions.csv</code>
 
 ### <code style="color : #31cae6">taxa1_group</code>, <code style="color : #31cae6">taxa2_group</code>
 - These columns contain dropdowns with the names of colloquial "groups" of organisms. For the most part, these are at kindgom level (*plant*, *fungus*, *archaea*, *protist*, *bacteria*), but the animals are broken down further into *invertebrate*, *reptile*, *amphibian*, *fish*, *bird* and *mammal*.
 - Indicate, for each species, which of these groups taxa1 and taxa2 fall under. If you are unsure, discuss with an experienced lab member.
 - Be very careful that you select the correct groups here. These determine the dropdown options for future columns, so selecting the wrong group could cause later issues.
 - Each organism should fall into one of these groups, and therefore you should only select options available in the dropdown. If you enter another value, the cell will be flagged, indicating a potential mistake.
-- If you need a refresher on what these terms mean, check the <code style="color : red">metadata/taxonomic_groups.csv</code>
+- If you need a refresher on what these terms mean, check the <code>metadata/taxonomic_groups.csv</code>
 
 ### <code style="color : #f1c955">interaction</code>
 - This column contains a dropdown with a list of potential interaction types based on the entries in the group columns. If nothing appears in this column, or the interactions look incorrect, check your entries in <code style="color : #31cae6">taxa1_group</code> and <code style="color : #31cae6">taxa2_group</code>.
 - Enter in the appropriate interaction type, based on information from the text.
 - Entering a value not on the dropdown list will pop up with a warning in that cell, which is usually caused by a typo. It is possible you will need to enter a value not on the list. For example, you may have "competition-" over a resource not defined in the interactions, or find a new interaction that has yet to be defined in the list. In this case, you may ignore the warning. 
-- If you need a reminder about the interaction options, check <code style="color : red">metadata/interactions.csv</code>
+- If you need a reminder about the interaction options, check <code>metadata/interactions.csv</code>
 
 ### <code style="color : #f1c955">effect_on_tx1</code>, <code style="color : #f1c955">effect_on_tx2</code>
 - These columns contain dropdowns with options of -1, 0 and 1. These are the impacts that an interaction has on each species, with 1 indicating beneficial interactions, -1 indicating harmful interactions and 0 indicating neutral interactions.
-- Each interaction type has a specific set of effects, which are defined in <code style="color : red">metadata/interactions.csv</code>.
+- Each interaction type has a specific set of effects, which are defined in <code>metadata/interactions.csv</code>.
 - In these columns, you must enter either -1, 0, or 1, as entering another value will cause the sheet to error. Be careful to place the correct value in the effect columns.   
 
 ### <code style="color : #f1c955">interaction_confidence</code>
@@ -238,7 +238,7 @@ The columns are described below based on the order we feel makes the most sense 
 - Enter the lifestage appropriate to the interaction, per taxa. 
 - It may differ between the two taxa or be the same. For example, with Brood Parasites, the interactions involved include BOTH adult and nestlings. The options for this dropdown will vary based on the taxon’s group. 
 - If nothing appears in these columns, or the life stages look incorrect, check your entries in <code style="color : #31cae6">taxa1_group</code> and <code style="color : #31cae6">taxa2_group</code>.
-- Be sure to check <code style="color : red">metadata/life_stages.csv</code> for definitions.
+- Be sure to check <code>metadata/life_stages.csv</code> for definitions.
 
 
 ### <code style="color : #f1c955">taxa1_life_history_season</code>,  <code style="color : #f1c955">taxa2_life_history_season</code>
@@ -246,7 +246,7 @@ The columns are described below based on the order we feel makes the most sense 
 - Enter the life history timing of the interaction for each taxa (year-round, migration, breeding, non-breeding). For example, if the interaction occurs during the non-breeding season (typically winter), indicate "non-breeding". 
   - 🐦 If the article mentions a month, you can check if it occurs during taxa1 breeding season using the phenology diagram (usually on the Introduction or Breeding page), or reading the Breeding page (the middle ring in the diagram in the breeding period). 
 - These options are available from a dropdown, and if the interaction occurs throughout multiple seasons, select multiple. If it occurs year-round, only select that option. 
-- Be sure to check <code style="color : red">metadata/life_histories.csv</code> for definitions.
+- Be sure to check <code>metadata/life_histories.csv</code> for definitions.
 
 ### <code style="color : #946bf1">time_of_year</code>
 - Enter the time of year that the interaction occurs in. 
@@ -357,7 +357,7 @@ When you've completed entering the all interactions in your Google Sheet, it nee
 
 ## Step 8: Upload CSV to GitHub 
 
-1) Open the <code style="color : red">repository</code> and navigate to the <code style="color : red">data/L0/taxa_to_check</code> folder. Click the **[Add file]** button. That button has two choices, select "Upload files".   
+1) Open the <code>repository</code> and navigate to the <code>data/L0/taxa_to_check</code> folder. Click the **[Add file]** button. That button has two choices, select "Upload files".   
 
 2) You may drag the CSV file, or click the "choose your files" option to select it. 
 
@@ -372,13 +372,13 @@ When you've completed entering the all interactions in your Google Sheet, it nee
 
 ## Step 9: Entry checking
 
-All taxa files in the <code style="color : red">data/L0/taxa_to_check</code> folder are processed with a script that checks for invalid entries and logical errors, such as a negative year or a misspelled month. Taxa with no issues are passed into the <code style="color : red">data/L0/taxa_checked</code> folder and incorporated into the larger dataset.
+All taxa files in the <code>data/L0/taxa_to_check</code> folder are processed with a script that checks for invalid entries and logical errors, such as a negative year or a misspelled month. Taxa with no issues are passed into the <code>data/L0/taxa_checked</code> folder and incorporated into the larger dataset.
 
-If the script flags the taxa sheet, it is sent to the <code style="color : red">data/L0/taxa_flagged</code> folder for checking.
+If the script flags the taxa sheet, it is sent to the <code>data/L0/taxa_flagged</code> folder for checking.
 
 ## Step 10: Manual checking
 
-Reviewers will check all sheets that are placed in <code style="color : red">data/L0/taxa_flagged</code>. The script will add a <code style="color : red">flagged_issue</code> to indicate the problem row, and a short description of what the error is. 
+Reviewers will check all sheets that are placed in <code>data/L0/taxa_flagged</code>. The script will add a <code>flagged_issue</code> to indicate the problem row, and a short description of what the error is. 
 
-Reviewers will open the CSV and adjust the issues in the sheet as necessary, leaving an annotation of the changes with their initials and the date in the `entry_changes` column. The sheet can be moved back to the <code style="color : red">data/L0/taxa_to_check</code> folder, and passed through the checking script again.
+Reviewers will open the CSV and adjust the issues in the sheet as necessary, leaving an annotation of the changes with their initials and the date in the `entry_changes` column. The sheet can be moved back to the <code>data/L0/taxa_to_check</code> folder, and passed through the checking script again.
 
