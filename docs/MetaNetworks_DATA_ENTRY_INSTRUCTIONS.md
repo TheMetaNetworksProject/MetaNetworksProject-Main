@@ -346,6 +346,9 @@ The columns are described below based on the order we feel makes the most sense 
 **Co-occurrence**
 - Co-occurrence is a weak "interaction" where two species are observed in the same location at the same time, with no specific interaction between them observed. We used to record this into the sheet, but to save time we now ignore these unless a more specific interaction is described.
 
+**Moving sheets**
+- After sheets are completed in the `taxa_in_progress` folder, they should be moved to the `taxa_complete` folder. This can be a bit clunky on Google Drive. The cleanest way is to "star" the `taxa_complete` folder. Then, right click on the sheet you want to move, select "Organize" and then "Move." Within that menu, select starred locations and choose the `taxa_complete` folder.
+
 
 ## Step 7: Export/Download to CSV
 
