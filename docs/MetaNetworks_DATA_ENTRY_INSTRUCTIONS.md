@@ -157,7 +157,11 @@ The columns are described below based on the order we feel makes the most sense 
 - Add the citation of your source to the <code style="color : #fff2c">source_citation</code> column. 
   - 🐦 For BOW, this is found at the bottom of each BOW page (simply copy-paste it); it's the same citation for the entire account.
   - 🐳 For Animal Diversity Web, the citation is located in a thin bar along the bottom of the page that starts with "To cite this page...". Do not include the line with "Last updated:"
-  - 📗 For primary literature (i.e. Google Scholar), use the MLA style citation. You can find this by clicking "Cite" under the source on the Google Scholar Results page.
+  - 📗 For primary literature (i.e. WoS or Google Scholar), use the MLA style citation. There are a few ways you can find this.
+    - On Google Scholar, simply click the "cite" button under the source and copy the MLA citation.
+    - WoS doesn't appear to have an easy way to pull citations to text. One method is to copy the DOI (Digital Object Identifier) which is available for most articles, and paste it into the [DOI citation tool](https://citation.doi.org/).
+    - Alternatively, you can pull the citation from Zotero after you add it to the library. Locate the source on Zotero and select the "Create Bibliography" option. On the browser version, this is a symbol on the top toolbar that looks like books on a shelf. In the desktop version, this is accessed by right-clicking on the source. 
+ - When possible, ensure the DOI is contained within the citation.
 
 ### <code style="color : #fff2c">source_URL</code> 
 - *Important:* you need to copy-paste the full URL for each URL page that has the source(s) of the interaction into the <code style="color : #fff2c">source_URL</code> column.
