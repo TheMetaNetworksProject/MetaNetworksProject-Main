@@ -143,7 +143,7 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
 
 See **_general_intxn_EXAMPLE** in the **taxa_in_progress** folder in Google Drive for an example entry with some commentary about the entry decisions.
 
-Enter interactions for the species you selected by designating the selected species in "taxa1_scientific" and "taxa1_common" in your file, and the species it interacts with in "taxa2_scientific" and "taxa2_common". Refer to the metadata files for rules about how to enter each column, and the information below:
+Enter interactions for any taxa you come across by designating a single taxa in "taxa1_scientific" and "taxa1_common" in your file, and the taxa it interacts with in "taxa2_scientific" and "taxa2_common". Note that this includes BOTH interactions involving the taxa you selected AND interactions that involve two or more other taxa. Refer to the metadata files for rules about how to enter each column, and the information below:
 
 The entry sheet columns are color-coded based on the general type of information they carry. 
 - <code style="color : #31cae6">Light blue columns contain taxonomic information.</code>
