@@ -308,6 +308,12 @@ The columns are described below based on the order we feel makes the most sense 
 
 ### Extra Notes
 
+**Long Tables**
+- Many sources have extremely long, pairwise tables of interactions.
+- If you come across one of these, you do not need to enter it yourself (that would take a while!)
+- Instead, collect all the interactions from the rest of the text and make a note on the source in the Zotero library indicating there is an un-entered table.
+   - For example "Table 1 needs to be entered"
+
 **Data Entry Tools**
 - As mentioned above, the entry sheet uses several auxiliary tabs to manage the *dynamic dependent dropdowning* that enables the options in each column and prevents errors. This system works well if the the rows stay static, but adding or deleting rows can cause issues with the syncing.
 - To deal with this, we built a set of data entry tools into the Google Sheet, which can be accessed from the **Data Entry** menu at the top of the sheet.
