@@ -14,7 +14,7 @@ Data entry & checking on species interactions occurs within this
 L0 portion of our private, in-progress data repository : [MetaNetworksProject-Working](https://github.com/TheMetaNetworksProject/MetaNetworksProject-Working). 
 
 Only use GitHub or Google Sheets for data entry and editing of files.
-*Do not use Microsoft Excel* for data entry or any editing of files;
+*Do not use Microsoft Excel* for data entry or any editing of files
 it has text encoding that differs from GitHub and Google Sheets.
 
 ### The <code>MetaNetwork repository data/L0</code> folder contains the following files:
@@ -143,7 +143,7 @@ c) **If your taxon is NOT an animal OR if you have already checked/entered data 
 
 See **_general_intxn_EXAMPLE** in the **taxa_in_progress** folder in Google Drive for an example entry with some commentary about the entry decisions.
 
-Enter interactions for the species you selected by designating the selected species in "taxa1_scientific" and "taxa1_common" in your file, and the species it interacts with in "taxa2_scientific" and "taxa2_common". Refer to the metadata files for rules about how to enter each column, and the information below:
+Enter interactions for any taxa you come across by designating a single taxa in "taxa1_scientific" and "taxa1_common" in your file, and the taxa it interacts with in "taxa2_scientific" and "taxa2_common". Note that this includes BOTH interactions involving the taxa you selected AND interactions that involve two or more other taxa. Refer to the metadata files for rules about how to enter each column, and the information below:
 
 The entry sheet columns are color-coded based on the general type of information they carry. 
 - <code style="color : #31cae6">Light blue columns contain taxonomic information.</code>
@@ -188,7 +188,6 @@ The columns are described below based on the order we feel makes the most sense 
 ### <code style="color : #31cae6">taxa1_scientific</code>, <code style="color : #31cae6">taxa2_scientific</code>
 
 - Enter the binomial scientific names (*Genus species*) of the species involved in the interaction into these columns.
-- Recall that the taxa1 should be your focal taxon selected from <code>jointproject_taxalist.csv</code>. Taxa2 are interacting taxa found in the text.
 - Usually the scientific names of species are italicized in the paper or database, and should be entered **exactly as written** into the datasheet. 
 - **IMPORTANT**: You will likely come across interactions between taxa that are NOT your focal taxa. For example, if your focal taxon was the Great Blue Heron, you might come across a source detailing the diets of all heron species in North America. In this case, you should record all interactions in order to fully check the source. You may select either taxon to be taxa1 and taxa2.
 - You may come across one of several rare cases for a species scientific name in the text:
@@ -200,7 +199,6 @@ The columns are described below based on the order we feel makes the most sense 
 
 ### <code style="color : #31cae6">taxa1_common</code>, <code style="color : #31cae6">taxa2_common</code>
 - Enter the primary English common name of the species involved in the interaction into these columns.
-- Recall that the taxa1 should be your focal taxon selected from <code>jointproject_taxalist.csv</code>, and the common name should be copied from that sheet exactly. Taxa2 are interacting taxa found in the text.
 - Usually the common names of species are capitalized in the paper or database, and should be entered **exactly as written** into the datasheet.
 - You may come across one of several rare cases for a species common name in the text:
   - If multiple common names are used for a single taxon in the paper, select the first one mentioned or the main one used.
@@ -243,7 +241,6 @@ The columns are described below based on the order we feel makes the most sense 
 - It may differ between the two taxa or be the same. For example, with Brood Parasites, the interactions involved include BOTH adult and nestlings. The options for this dropdown will vary based on the taxon’s group. 
 - If nothing appears in these columns, or the life stages look incorrect, check your entries in <code style="color : #31cae6">taxa1_group</code> and <code style="color : #31cae6">taxa2_group</code>.
 - Be sure to check <code>metadata/life_stages.csv</code> for definitions.
-
 
 ### <code style="color : #f1c955">taxa1_life_history_season</code>,  <code style="color : #f1c955">taxa2_life_history_season</code>
 - These columns contain dropdowns with options for life history seasons that the interaction takes place during.
@@ -311,6 +308,12 @@ The columns are described below based on the order we feel makes the most sense 
 
 ### Extra Notes
 
+**Long Tables**
+- Many sources have extremely long, pairwise tables of interactions.
+- If you come across one of these, you do not need to enter it yourself (that would take a while!)
+- Instead, collect all the interactions from the rest of the text and make a note on the source in the Zotero library indicating there is an un-entered table.
+   - For example "Table 1 needs to be entered"
+
 **Data Entry Tools**
 - As mentioned above, the entry sheet uses several auxiliary tabs to manage the *dynamic dependent dropdowning* that enables the options in each column and prevents errors. This system works well if the the rows stay static, but adding or deleting rows can cause issues with the syncing.
 - To deal with this, we built a set of data entry tools into the Google Sheet, which can be accessed from the **Data Entry** menu at the top of the sheet.
@@ -337,7 +340,7 @@ The columns are described below based on the order we feel makes the most sense 
 
 **Scientific names with Author Citations**
 - In some sources, you will see scientific names (*Genus species*) followed by an abbreviation. This is especially common in plants and some microorganisms, even on GBIF.
-  - For example, the accepted scientific name for the Pignut Hickory tree is *Carya glabra* (Mill.) Sweet. In this case, the Genus is *Carya* and the specific epithet is *glabra*, while the following text indicates that the species was originally described by Philip Miller, and later reclassified by Robert Sweet. These abbreviations can be searched in the [International Plant Names Index](ipni.org).
+  - For example, the accepted scientific name for the Pignut Hickory tree is *Carya glabra* (Mill.) Sweet. In this case, the Genus is *Carya* and the specific epithet is *glabra*, while the following text indicates that the species was originally described by Philip Miller, and later reclassified by Robert Sweet. These abbreviations can be searched in the [International Plant Names Index](https://ipni.org).
   - These abbreviations are great for providing credit and taxonomic authority for plant species, but not everyone includes them in all mentions of a species and thus they can cause some errors if they are included in a search term. **When searching** make sure you only include the scientific name (*Genus species*) without the author citation. 
   - If you come across a name within a text that contains an author citation, include it in the scientific name within the sheet. The author citations do not cause issues with alignment, but do hinder search results when querying for literature.
 
