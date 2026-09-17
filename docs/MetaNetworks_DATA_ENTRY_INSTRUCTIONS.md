@@ -199,7 +199,6 @@ The columns are described below based on the order we feel makes the most sense 
 
 ### <code style="color : #31cae6">taxa1_common</code>, <code style="color : #31cae6">taxa2_common</code>
 - Enter the primary English common name of the species involved in the interaction into these columns.
-- Recall that the taxa1 should be your focal taxon selected from <code>jointproject_taxalist.csv</code>, and the common name should be copied from that sheet exactly. Taxa2 are interacting taxa found in the text.
 - Usually the common names of species are capitalized in the paper or database, and should be entered **exactly as written** into the datasheet.
 - You may come across one of several rare cases for a species common name in the text:
   - If multiple common names are used for a single taxon in the paper, select the first one mentioned or the main one used.
@@ -242,7 +241,6 @@ The columns are described below based on the order we feel makes the most sense 
 - It may differ between the two taxa or be the same. For example, with Brood Parasites, the interactions involved include BOTH adult and nestlings. The options for this dropdown will vary based on the taxon’s group. 
 - If nothing appears in these columns, or the life stages look incorrect, check your entries in <code style="color : #31cae6">taxa1_group</code> and <code style="color : #31cae6">taxa2_group</code>.
 - Be sure to check <code>metadata/life_stages.csv</code> for definitions.
-
 
 ### <code style="color : #f1c955">taxa1_life_history_season</code>,  <code style="color : #f1c955">taxa2_life_history_season</code>
 - These columns contain dropdowns with options for life history seasons that the interaction takes place during.
