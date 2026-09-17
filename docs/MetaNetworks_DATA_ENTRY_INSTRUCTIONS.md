@@ -14,7 +14,7 @@ Data entry & checking on species interactions occurs within this
 L0 portion of our private, in-progress data repository : [MetaNetworksProject-Working](https://github.com/TheMetaNetworksProject/MetaNetworksProject-Working). 
 
 Only use GitHub or Google Sheets for data entry and editing of files.
-*Do not use Microsoft Excel* for data entry or any editing of files;
+*Do not use Microsoft Excel* for data entry or any editing of files;git@gitlab.msu.edu:mansfi79/public-documentation.git
 it has text encoding that differs from GitHub and Google Sheets.
 
 ### The <code>MetaNetwork repository data/L0</code> folder contains the following files:
@@ -188,7 +188,6 @@ The columns are described below based on the order we feel makes the most sense 
 ### <code style="color : #31cae6">taxa1_scientific</code>, <code style="color : #31cae6">taxa2_scientific</code>
 
 - Enter the binomial scientific names (*Genus species*) of the species involved in the interaction into these columns.
-- Recall that the taxa1 should be your focal taxon selected from <code>jointproject_taxalist.csv</code>. Taxa2 are interacting taxa found in the text.
 - Usually the scientific names of species are italicized in the paper or database, and should be entered **exactly as written** into the datasheet. 
 - **IMPORTANT**: You will likely come across interactions between taxa that are NOT your focal taxa. For example, if your focal taxon was the Great Blue Heron, you might come across a source detailing the diets of all heron species in North America. In this case, you should record all interactions in order to fully check the source. You may select either taxon to be taxa1 and taxa2.
 - You may come across one of several rare cases for a species scientific name in the text:
