@@ -14,7 +14,7 @@ Data entry & checking on species interactions occurs within this
 L0 portion of our private, in-progress data repository : [MetaNetworksProject-Working](https://github.com/TheMetaNetworksProject/MetaNetworksProject-Working). 
 
 Only use GitHub or Google Sheets for data entry and editing of files.
-*Do not use Microsoft Excel* for data entry or any editing of files;git@gitlab.msu.edu:mansfi79/public-documentation.git
+*Do not use Microsoft Excel* for data entry or any editing of files
 it has text encoding that differs from GitHub and Google Sheets.
 
 ### The <code>MetaNetwork repository data/L0</code> folder contains the following files:
