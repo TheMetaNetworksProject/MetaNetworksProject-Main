@@ -340,7 +340,7 @@ The columns are described below based on the order we feel makes the most sense 
 
 **Scientific names with Author Citations**
 - In some sources, you will see scientific names (*Genus species*) followed by an abbreviation. This is especially common in plants and some microorganisms, even on GBIF.
-  - For example, the accepted scientific name for the Pignut Hickory tree is *Carya glabra* (Mill.) Sweet. In this case, the Genus is *Carya* and the specific epithet is *glabra*, while the following text indicates that the species was originally described by Philip Miller, and later reclassified by Robert Sweet. These abbreviations can be searched in the [International Plant Names Index](https://www.ipni.org).
+  - For example, the accepted scientific name for the Pignut Hickory tree is *Carya glabra* (Mill.) Sweet. In this case, the Genus is *Carya* and the specific epithet is *glabra*, while the following text indicates that the species was originally described by Philip Miller, and later reclassified by Robert Sweet. These abbreviations can be searched in the [International Plant Names Index](https://ipni.org).
   - These abbreviations are great for providing credit and taxonomic authority for plant species, but not everyone includes them in all mentions of a species and thus they can cause some errors if they are included in a search term. **When searching** make sure you only include the scientific name (*Genus species*) without the author citation. 
   - If you come across a name within a text that contains an author citation, include it in the scientific name within the sheet. The author citations do not cause issues with alignment, but do hinder search results when querying for literature.
 
