@@ -52,6 +52,46 @@ get_cols <- function(f) {
   x
 }
 
+# Whether a CSV has at least one row with at least one non-blank, non-NA
+# value in any column. FALSE covers both a header-only file (zero data rows)
+# and a file where every cell is NA, "", or the literal string "NA" once
+# trimmed -- added 11 Sept 2026 after several data sheets turned out to be
+# blank in one of those two ways and were causing logical/character type
+# mismatches downstream in the harmonization script.
+#
+# Returns NA (not TRUE/FALSE) if the file can't be read at all -- the same
+# kind of corrupted/mis-saved file get_cols() above already flags with a
+# schema of NA (e.g. an Apple Numbers file saved with a .csv extension) --
+# so an unreadable file is marked "unknown" here, not silently treated as
+# blank. The harmonization script keeps NA rows rather than dropping them,
+# so a file like that still fails loudly instead of disappearing.
+#
+# Reads the whole file (unlike get_cols()'s nrows = 0 schema-only read),
+# since content presence can only be checked against the actual data rows --
+# this means every file gets read twice across get_cols() and this function.
+# Fine for an occasional audit run; worth merging into one read if this
+# script's runtime over the full file set becomes a problem.
+file_has_content <- function(f) {
+  d <- tryCatch(
+    read.csv(f, colClasses = "character", check.names = FALSE),
+    error = function(e) NULL
+  )
+  if (is.null(d)) {
+    return(NA)
+  }
+  if (nrow(d) == 0) {
+    return(FALSE)
+  }
+  any(vapply(
+    d,
+    function(col) {
+      col <- trimws(col)
+      any(!is.na(col) & col != "" & col != "NA")
+    },
+    logical(1)
+  ))
+}
+
 ## ---- git: latest commit date per file (both dirs, assumed one repo) --------
 repo_root <- system2(
   "git",
@@ -71,33 +111,55 @@ to_rel <- function(d) {
 root_rel <- to_rel(root_dir)
 review_rel <- to_rel(in_review_dir)
 
-# one git log over both pathspecs; @@@ lines carry the commit date, the lines
-# in between are the files changed in that commit (restricted to our pathspecs)
-git_out <- system2(
-  "git",
-  c(
-    "-C",
-    shQuote(repo_root),
-    "log",
-    "--name-only",
-    "--format=@@@%cI",
-    "--",
-    root_rel,
-    review_rel
-  ),
-  stdout = TRUE
-)
+## ---- git: latest *content* commit date per file, following renames --------
+# git log's default path filtering only matches the current path string, so
+# after a folder rename it can't see history under the old name at all.
+# --follow crosses renames, but only for one file at a time, and it still
+# reports the rename commit itself as "latest" (a git mv genuinely does
+# touch the file). So we also skip pure-rename commits (status R100 = same
+# path content, 100% similar) and keep walking back until we hit a commit
+# that actually changed content.
 
-latest_commit_map <- list()
-current_date <- NA_character_
-for (line in git_out) {
-  if (startsWith(line, "@@@")) {
-    current_date <- sub("^@@@", "", line)
-  } else if (nzchar(line) && !line %in% names(latest_commit_map)) {
-    # first time we see a file = its most recent commit (git log is newest-first)
-    latest_commit_map[[line]] <- current_date
+get_latest_content_commit <- function(f) {
+  rel <- to_rel(f)
+  out <- system2(
+    "git",
+    c(
+      "-C",
+      shQuote(repo_root),
+      "log",
+      "--follow",
+      "-M",
+      "--name-status",
+      "--format=@@@%cI",
+      "--",
+      shQuote(rel)
+    ),
+    stdout = TRUE
+  )
+
+  current_date <- NA_character_
+  for (line in out) {
+    if (startsWith(line, "@@@")) {
+      current_date <- sub("^@@@", "", line)
+      next
+    }
+    if (!nzchar(line)) {
+      next
+    }
+    status <- strsplit(line, "\t")[[1]][1]
+    if (grepl("^R100$", status)) {
+      next
+    }
+    return(current_date)
   }
+  NA_character_
 }
+
+latest_commit_map <- setNames(
+  vapply(csv_files, get_latest_content_commit, character(1)),
+  vapply(csv_files, to_rel, character(1))
+)
 
 ## ---- per-file schema + commit info -----------------------------------------
 file_info <- do.call(
@@ -108,6 +170,7 @@ file_info <- do.call(
       file = csv_files[i],
       schema = if (all(is.na(cols))) NA else paste(cols, collapse = schema_sep),
       ncols = if (all(is.na(cols))) NA else length(cols),
+      has_content = file_has_content(csv_files[i]),
       latest_commit = latest_commit_map[[to_rel(csv_files[i])]] %||%
         NA_character_,
       stringsAsFactors = FALSE
