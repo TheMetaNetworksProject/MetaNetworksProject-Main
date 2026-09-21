@@ -69,6 +69,6 @@ rsconnect/
 *.db
 
 
-
+*.xlsx
 
 /.quarto/
