@@ -4,16 +4,21 @@
 # COLLABORATORS:
 # DATA INPUT:       (1) crosswalk data.frame produced by taxa_build_gbif_crosswalk()
 #                       in harmonize_names_to_gbif.R -- one row per unique
-#                       MetaNetworks raw_name, already matched to GBIF.
+#                       MetaNetworks raw_name, already matched to GBIF AND
+#                       already through that script's own manual-review cycle
+#                       (taxa_export_gbif_review_template() /
+#                       taxa_apply_gbif_manual_matches() -- both now live
+#                       there, not here).
 #                   (2) a standardized checklist object from a checklist_load_*()
 #                       adapter below (default: AviList v2025 via avilistr).
-#                   (3) optional manual-correction CSVs (created by this script,
-#                       edited by hand, re-read on the next run).
+#                   (3) an optional aux_checklist_manual_matches.csv correction
+#                       CSV (created by this script, edited by hand, re-read
+#                       on the next run).
 # DATA OUTPUT:      one crosswalk data.frame: MetaNetworks name x GBIF match x
 #                   <checklist> match, with a method column per hop and a
-#                   resolved taxonomic hierarchy. aux_gbif_manual_matches.csv
-#                   and aux_checklist_manual_matches.csv (review templates /
-#                   correction registries, written to disk).
+#                   resolved taxonomic hierarchy. aux_checklist_manual_matches.csv
+#                   (review template / correction registry for the checklist
+#                   hop, written to disk).
 # DATE:             initiated: 17 September 2026
 # OVERVIEW:         Extends the existing MetaNetworks -> GBIF crosswalk with a
 #                   second pass against a more current species checklist
@@ -24,10 +29,14 @@
 #                   Generic over checklist source via a small adapter contract
 #                   (see section 1) so the same matching/manual-correction logic
 #                   works for AviList, a future plant checklist, etc.
-# REQUIRES:         harmonize_names_to_gbif.R must have already produced
-#                   `crosswalk` (via taxa_build_gbif_crosswalk()), including its
-#                   `query_name` column. rgbif, dplyr, stringr. avilistr only if
-#                   using the default AviList adapter.
+# REQUIRES:         harmonize_names_to_gbif.R must have already produced a
+#                   fully reviewed `crosswalk` -- built via
+#                   taxa_build_gbif_crosswalk(), flagged via
+#                   taxa_export_gbif_review_template(), and corrected via
+#                   taxa_apply_gbif_manual_matches() (all three now live in
+#                   that script) -- including its `query_name` column. dplyr,
+#                   stringr. avilistr only if using the default AviList
+#                   adapter.
 # NOTES:            avilistr's exact column names (Scientific_name, Taxon_rank,
 #                   Order, Family) were taken from the package's published docs
 #                   and NOT verified by running it -- check checklist_load_avilist()
@@ -62,8 +71,19 @@
 #                   on the full name list, and treat any error as a starting
 #                   point for a fix rather than evidence the whole approach is
 #                   wrong.
+#                   UPDATE (21 September 2026): the GBIF-hop manual-match
+#                   tooling (taxa_lookup_gbif_usage(),
+#                   taxa_export_gbif_review_template(),
+#                   taxa_apply_gbif_manual_matches()) moved to
+#                   harmonize_names_to_gbif.R -- it's pure GBIF-crosswalk
+#                   logic with nothing checklist-specific about it, and
+#                   living there means the whole GBIF hop (build -> review ->
+#                   correct) finishes before this script ever runs, rather
+#                   than being interleaved with the checklist hop. Only the
+#                   checklist-hop registry (section 4 below) still lives here.
+#                   library(rgbif) was dropped from this file for the same
+#                   reason -- nothing left in this script calls it directly.
 
-library(rgbif)
 library(avilistr)
 
 # =============================================================================
@@ -102,25 +122,31 @@ library(avilistr)
 #   project's audit-driven-correction pattern (flag from real output, fix by
 #   hand, don't try to anticipate every case).
 #
-# MANUAL CORRECTIONS: two frozen-registry CSVs, one per hop (GBIF, checklist),
-#   built FROM pipeline output rather than anticipated -- same pattern as
-#   aux_scientific_name_corrections.csv / aux_schema_metadata.csv elsewhere in
-#   this project.
-#     taxa_export_*_review_template()  appends newly-flagged names to the CSV
-#                                       (never overwrites an existing row, so
-#                                       hand-entered matches are never clobbered)
-#     taxa_apply_*_manual_matches()    reads the CSV back in, overrides match
-#                                       results for rows it covers, and
+# MANUAL CORRECTIONS: a frozen-registry CSV for the checklist hop
+#   (aux_checklist_manual_matches.csv), built FROM pipeline output rather than
+#   anticipated -- same pattern as aux_scientific_name_corrections.csv /
+#   aux_schema_metadata.csv elsewhere in this project, and the same pattern
+#   the GBIF hop's own registry (aux_gbif_manual_matches.csv) uses in
+#   harmonize_names_to_gbif.R, where that hop's tooling now lives.
+#     taxa_export_checklist_review_template()  appends newly-flagged names to
+#                                       the CSV (never overwrites an existing
+#                                       row, so hand-entered matches are never
+#                                       clobbered)
+#     taxa_apply_checklist_manual_matches()    reads the CSV back in, overrides
+#                                       match results for rows it covers, and
 #                                       backfills their hierarchy automatically
 #                                       (you supply an ID, not a classification)
-#   Workflow: run the pipeline -> export review templates -> fill in the CSVs
-#   by hand (a manual id of "NO_MATCH" marks "reviewed, confirmed there isn't
-#   one" so it stops being re-flagged) -> re-run the pipeline. Both CSVs join
-#   on `raw_name`, the one identifier that's stable across the whole pipeline
-#   (unlike the intermediate query name, which can be either the raw name or a
-#   GBIF-resolved name depending on which hop mattered). The checklist CSV also
-#   carries a `checklist_source` column so one file can serve several
-#   checklists over time without their corrections colliding.
+#   Workflow: gbif_crosswalk arrives here already reviewed and corrected (its
+#   own build -> export -> hand-fill -> apply cycle already ran in
+#   harmonize_names_to_gbif.R) -> build checklist_crosswalk -> export the
+#   checklist review template -> fill in the CSV by hand (a manual id of
+#   "NO_MATCH" marks "reviewed, confirmed there isn't one" so it stops being
+#   re-flagged) -> apply corrections. The CSV joins on `raw_name`, the one
+#   identifier that's stable across the whole pipeline (unlike the
+#   intermediate query name, which can be either the raw name or a
+#   GBIF-resolved name depending on which hop mattered), and carries a
+#   `checklist_source` column so one file can serve several checklists over
+#   time without their corrections colliding.
 #
 # =============================================================================
 
@@ -325,68 +351,9 @@ checklist_match_exact <- function(query_names, checklist) {
   result
 }
 
-# ---- 3. Fetch GBIF usage records directly --------------------------------
-# Used by taxa_apply_gbif_manual_matches() to turn a manually-entered
-# usageKey into a canonical name + full hierarchy -- a manual match only ever
-# comes with an ID, and (unlike an automated match) there's no
-# name_backbone_checklist() response row to read a hierarchy from, so this is
-# the one place in the script that still needs a live GBIF call per name.
-# Always returns the same columns (NA-filled where GBIF doesn't have a value)
-# so callers never have to guard for a missing column.
-taxa_lookup_gbif_usage <- function(usage_keys) {
-  hierarchy_cols <- c(
-    "kingdom",
-    "phylum",
-    "class",
-    "order",
-    "family",
-    "genus",
-    "species"
-  )
-  usage_keys <- unique(usage_keys[!is.na(usage_keys)])
-
-  empty <- data.frame(
-    usageKey = integer(0),
-    canonicalName = character(0),
-    stringsAsFactors = FALSE
-  )
-  for (col in hierarchy_cols) {
-    empty[[col]] <- character(0)
-  }
-  if (length(usage_keys) == 0) {
-    return(empty)
-  }
-
-  records <- lapply(usage_keys, function(key) {
-    usage <- tryCatch(rgbif::name_usage(key = key)$data, error = function(e) {
-      NULL
-    })
-    row <- data.frame(
-      usageKey = key,
-      canonicalName = NA_character_,
-      stringsAsFactors = FALSE
-    )
-    for (col in hierarchy_cols) {
-      row[[col]] <- NA_character_
-    }
-
-    if (!is.null(usage) && nrow(usage) > 0) {
-      if ("canonicalName" %in% names(usage)) {
-        row$canonicalName <- usage$canonicalName[1]
-      }
-      for (col in hierarchy_cols) {
-        if (col %in% names(usage)) row[[col]] <- usage[[col]][1]
-      }
-    }
-    row
-  })
-
-  dplyr::bind_rows(records)
-}
-
-# ---- 4. Orchestrator: GBIF crosswalk -> <checklist> crosswalk --------------
+# ---- 3. Orchestrator: GBIF crosswalk -> <checklist> crosswalk --------------
 taxa_build_checklist_crosswalk <- function(
-  gbif_crosswalk, # output of taxa_build_gbif_crosswalk()
+  gbif_crosswalk, # output of taxa_build_gbif_crosswalk(), already reviewed
   checklist, # a checklist_load_*() result
   checklist_source # short label, e.g. "avilist_2025" -- stamped into output
   # and used to key the manual-corrections CSV
@@ -396,7 +363,7 @@ taxa_build_checklist_crosswalk <- function(
       names(gbif_crosswalk)
   ))
 
-  # ---- 4a. the GBIF-resolved name to match the checklist against -----------
+  # ---- 3a. the GBIF-resolved name to match the checklist against -----------
   # Confirmed against GBIF's live match API (2026-09-17) at two rank levels:
   #   - species-rank synonym "Dendroica coronata" -> `species` comes back
   #     "Setophaga coronata" (the ACCEPTED name; speciesKey == acceptedUsageKey)
@@ -440,14 +407,14 @@ taxa_build_checklist_crosswalk <- function(
   # be "unmatched" against the checklist and land in the review CSV, which is
   # the right outcome for a name GBIF itself couldn't place.
 
-  # ---- 4b. which rows are even eligible for checklist matching -------------
+  # ---- 3b. which rows are even eligible for checklist matching -------------
   # Genus/family/order-level names ARE matchable now that the checklist
   # carries synthesized higher-rank entries (see checklist_add_higher_ranks())
   # -- only cf./aff./morphospecies codes are structurally never going to match
   # anything, so only "excluded" is kept out of "unmatched" review.
   eligible <- !(gbif_crosswalk$name_category %in% "excluded")
 
-  # ---- 4c. tier 1: direct match on the cleaned MetaNetworks name -----------
+  # ---- 3c. tier 1: direct match on the cleaned MetaNetworks name -----------
   # Uses query_name, not raw_name: query_name is the same cleaned-up string
   # taxa_build_gbif_crosswalk() itself sent to GBIF (whitespace-squished, and
   # for higher_rank_expected rows, with a trailing "sp."/"unid." stripped) --
@@ -456,7 +423,7 @@ taxa_build_checklist_crosswalk <- function(
   direct <- checklist_match_exact(gbif_crosswalk$query_name, checklist)
   names(direct) <- paste0("direct_", names(direct))
 
-  # ---- 4d. tier 2: match on the GBIF-resolved name, only where tier 1 missed
+  # ---- 3d. tier 2: match on the GBIF-resolved name, only where tier 1 missed
   via_gbif <- checklist_match_exact(gbif_resolved_name, checklist)
   names(via_gbif) <- paste0("via_gbif_", names(via_gbif))
 
@@ -521,159 +488,15 @@ taxa_build_checklist_crosswalk <- function(
   crosswalk
 }
 
-# ---- 5. Manual corrections: GBIF hop ---------------------------------------
-# "needs review" = anything taxa_build_gbif_crosswalk() didn't already accept
-# outright (matched / matched_fuzzy_high_confidence) and isn't already covered
-# by a prior manual entry in the CSV.
-taxa_export_gbif_review_template <- function(gbif_crosswalk, path) {
-  flagged <- gbif_crosswalk |>
-    dplyr::filter(
-      !match_status %in% c("matched", "matched_fuzzy_high_confidence", "manual")
-    ) |>
-    dplyr::distinct(raw_name, clean_name, name_category, match_status)
-
-  existing <- if (file.exists(path)) {
-    utils::read.csv(path, stringsAsFactors = FALSE, colClasses = "character")
-  } else {
-    data.frame(
-      raw_name = character(0),
-      clean_name = character(0),
-      name_category = character(0),
-      match_status = character(0),
-      manual_gbif_usageKey = character(0),
-      manual_gbif_canonicalName = character(0),
-      notes = character(0),
-      date_added = character(0),
-      stringsAsFactors = FALSE
-    )
-  }
-
-  new_rows <- dplyr::anti_join(flagged, existing, by = "raw_name")
-  if (nrow(new_rows) == 0) {
-    message("taxa_export_gbif_review_template(): no new names to flag.")
-    return(invisible(existing))
-  }
-
-  new_rows$manual_gbif_usageKey <- NA_character_
-  new_rows$manual_gbif_canonicalName <- NA_character_
-  new_rows$notes <- NA_character_
-  new_rows$date_added <- as.character(Sys.Date())
-
-  updated <- dplyr::bind_rows(existing, new_rows)
-  utils::write.csv(updated, path, row.names = FALSE, na = "")
-  message(
-    "taxa_export_gbif_review_template(): added ",
-    nrow(new_rows),
-    " name(s) to ",
-    path,
-    " -- fill in manual_gbif_usageKey (or \"NO_MATCH\") by hand."
-  )
-  invisible(updated)
-}
-
-# manual_gbif_usageKey == "NO_MATCH" is a sentinel: "a human looked, there
-# isn't one" -- distinct from NA/blank ("not reviewed yet"), so confirmed
-# non-matches stop being re-flagged by taxa_export_gbif_review_template().
-taxa_apply_gbif_manual_matches <- function(gbif_crosswalk, path) {
-  if (!file.exists(path)) {
-    message(
-      "taxa_apply_gbif_manual_matches(): ",
-      path,
-      " does not exist yet -- nothing applied."
-    )
-    return(gbif_crosswalk)
-  }
-
-  corrections <- utils::read.csv(
-    path,
-    stringsAsFactors = FALSE,
-    colClasses = "character"
-  ) |>
-    dplyr::filter(!is.na(manual_gbif_usageKey) & manual_gbif_usageKey != "")
-  if (nrow(corrections) == 0) {
-    return(gbif_crosswalk)
-  }
-
-  is_real_match <- corrections$manual_gbif_usageKey != "NO_MATCH"
-  hierarchy <- taxa_lookup_gbif_usage(as.integer(corrections$manual_gbif_usageKey[
-    is_real_match
-  ]))
-  hierarchy$usageKey <- as.character(hierarchy$usageKey)
-
-  corrections <- corrections |>
-    dplyr::left_join(hierarchy, by = c("manual_gbif_usageKey" = "usageKey"))
-
-  gbif_crosswalk |>
-    dplyr::left_join(
-      corrections |>
-        dplyr::select(
-          raw_name,
-          manual_gbif_usageKey,
-          manual_gbif_canonicalName,
-          kingdom,
-          phylum,
-          class,
-          order,
-          family,
-          genus,
-          species
-        ),
-      by = "raw_name",
-      suffix = c("", "_manual")
-    ) |>
-    dplyr::mutate(
-      manual_gbif_usageKey_int = suppressWarnings(as.integer(
-        manual_gbif_usageKey
-      )),
-      is_no_match = manual_gbif_usageKey == "NO_MATCH",
-      is_manual_match = !is.na(manual_gbif_usageKey) & !is_no_match,
-      final_usageKey = dplyr::if_else(
-        is_manual_match,
-        manual_gbif_usageKey_int,
-        final_usageKey
-      ),
-      canonicalName = dplyr::if_else(
-        is_manual_match,
-        manual_gbif_canonicalName,
-        canonicalName
-      ),
-      kingdom = dplyr::if_else(is_manual_match, kingdom_manual, kingdom),
-      phylum = dplyr::if_else(is_manual_match, phylum_manual, phylum),
-      class = dplyr::if_else(is_manual_match, class_manual, class),
-      order = dplyr::if_else(is_manual_match, order_manual, order),
-      family = dplyr::if_else(is_manual_match, family_manual, family),
-      genus = dplyr::if_else(is_manual_match, genus_manual, genus),
-      species = dplyr::if_else(is_manual_match, species_manual, species),
-      match_status = dplyr::case_when(
-        is_no_match ~ "confirmed_no_match",
-        is_manual_match ~ "manual",
-        TRUE ~ match_status
-      )
-    ) |>
-    dplyr::select(
-      -manual_gbif_usageKey,
-      -manual_gbif_canonicalName,
-      -manual_gbif_usageKey_int,
-      -is_no_match,
-      -is_manual_match,
-      -kingdom_manual,
-      -phylum_manual,
-      -class_manual,
-      -order_manual,
-      -family_manual,
-      -genus_manual,
-      -species_manual
-    )
-}
-
-# ---- 6. Manual corrections: checklist hop ----------------------------------
-# Same frozen-registry pattern as section 5, keyed additionally by
-# checklist_source so one CSV can serve several checklists over time. Uses
-# base-R subsetting (not dplyr::filter) for the checklist_source comparisons
-# below on purpose: the function argument and the data column share the name
-# "checklist_source", and dplyr's data-masking would otherwise silently
-# resolve `checklist_source == checklist_source` against the DATA COLUMN on
-# both sides (an always-true tautology) once that column exists in the data.
+# ---- 4. Manual corrections: checklist hop -----------------------------------
+# Same frozen-registry pattern as the GBIF hop's registry in
+# harmonize_names_to_gbif.R, keyed additionally by checklist_source so one
+# CSV can serve several checklists over time. Uses base-R subsetting (not
+# dplyr::filter) for the checklist_source comparisons below on purpose: the
+# function argument and the data column share the name "checklist_source",
+# and dplyr's data-masking would otherwise silently resolve
+# `checklist_source == checklist_source` against the DATA COLUMN on both
+# sides (an always-true tautology) once that column exists in the data.
 taxa_export_checklist_review_template <- function(
   checklist_crosswalk,
   checklist_source,
@@ -841,7 +664,13 @@ taxa_apply_checklist_manual_matches <- function(
 # =============================================================================
 # EXAMPLE USAGE
 # =============================================================================
-# gbif_crosswalk <- taxa_build_gbif_crosswalk(...)   # from harmonize_names_to_gbif.R
+# gbif_crosswalk arrives here already built AND reviewed -- its
+# build -> export -> hand-fill -> apply cycle (taxa_build_gbif_crosswalk() ->
+# taxa_export_gbif_review_template() -> aux_gbif_manual_matches.csv ->
+# taxa_apply_gbif_manual_matches()) all happens in harmonize_names_to_gbif.R
+# now. Nothing here should be rebuilding or re-correcting the GBIF hop.
+#
+# gbif_crosswalk <- ...   # from harmonize_names_to_gbif.R, already reviewed
 #
 avilist <- checklist_load_avilist()
 
@@ -852,23 +681,14 @@ checklist_crosswalk <- taxa_build_checklist_crosswalk(
 )
 
 # flag anything that still needs a human:
-taxa_export_gbif_review_template(gbif_crosswalk, "aux_gbif_manual_matches.csv")
 taxa_export_checklist_review_template(
   checklist_crosswalk,
   "avilist_2025",
   "aux_checklist_manual_matches.csv"
 )
 
-# ... fill in the two CSVs by hand, then re-run with corrections applied:
-gbif_crosswalk <- taxa_apply_gbif_manual_matches(
-  gbif_crosswalk,
-  "aux_gbif_manual_matches.csv"
-)
-checklist_crosswalk <- taxa_build_checklist_crosswalk(
-  gbif_crosswalk,
-  avilist,
-  "avilist_2025"
-)
+# ... fill in aux_checklist_manual_matches.csv by hand, then re-run with
+# corrections applied:
 checklist_crosswalk <- taxa_apply_checklist_manual_matches(
   checklist_crosswalk,
   avilist,

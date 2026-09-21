@@ -1,17 +1,17 @@
 ## =============================================================================
-## aux_schema_audit.R
-## Read-only audit. Uses the FROZEN schema numbering in aux_schema_metadata.csv.
+## 1_schema_audit.R
+## Read-only audit. Uses the FROZEN schema numbering in 1_schema_metadata.csv.
 ## It never assigns new numbers: if any CSV has a column combination that is not
 ## already in the key, it stops with an error listing them and tells you to run
-## aux_schema_register.R first.
+## 1b_schema_register.R first.
 ##
 ## Outputs (only written once every current schema is registered):
-##   aux_schema_cols.csv       presence/absence matrix
-##   aux_schema_metadata.csv   schema key (numbering frozen, metadata refreshed)
-##   aux_files_with_schema.csv per-file details
+##   1_schema_cols.csv       presence/absence matrix
+##   1_schema_metadata.csv   schema key (numbering frozen, metadata refreshed)
+##   1_files_with_schema.csv per-file details
 ## =============================================================================
 
-source("./R/L0/aux_schema_common.R")
+source("./R/L0/_schema_common.R")
 
 schema_map <- read_schema_map()
 
@@ -20,7 +20,7 @@ if (is.null(schema_map)) {
     "No schema key found at '",
     schema_key_path,
     "'.\n",
-    "Run aux_schema_register.R once to create it before auditing.",
+    "Run 1b_schema_register.R once to create it before auditing.",
     call. = FALSE
   )
 }
@@ -52,7 +52,7 @@ if (length(unknown)) {
     length(unknown),
     " unregistered schema(s) found. The schema key is frozen, ",
     "so the audit will not assign numbers.\n",
-    "Run aux_schema_register.R to register them, then re-run this audit.\n\n",
+    "Run 1_schema_register.R to register them, then re-run this audit.\n\n",
     "Unregistered schemas:\n",
     paste(detail, collapse = "\n"),
     call. = FALSE

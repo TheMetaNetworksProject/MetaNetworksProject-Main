@@ -1,5 +1,5 @@
 ## =============================================================================
-## aux_schema_register.R
+## 1b_schema_register.R
 ## The ONLY script that assigns schema numbers. Run it:
 ##   - once at the start to create the key, and
 ##   - whenever the audit reports unregistered schemas.
@@ -10,7 +10,7 @@
 ##   schema_(N+1), schema_(N+2), ... WITHOUT touching any existing numbers.
 ## =============================================================================
 
-source("./R/L0/aux_schema_common.R")
+source("./R/L0/_schema_common.R")
 
 schema_map <- read_schema_map()
 

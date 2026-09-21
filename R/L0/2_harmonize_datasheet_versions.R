@@ -53,7 +53,7 @@
 #                    used the canonical sourceA_URL/B/C/D naming -- they actually use the same
 #                    sourceAupdatedURL/OLDsourceA-B layout as schema_6, which threw a "missing
 #                    expected column(s)" error out of reshape_sources(). schema_3 was also missing
-#                    from schema_registry entirely. Both were fixed against Kelly's aux_schema_cols.csv
+#                    from schema_registry entirely. Both were fixed against Kelly's 1_schema_cols.csv
 #                    column-presence audit (see schema_registry comments below for specifics). This
 #                    fix was AI-assisted from that audit and has not yet been re-verified against the
 #                    raw CSVs -- see VERIFICATION at the bottom of this file.
@@ -244,7 +244,7 @@
 
 library(tidyverse)
 
-file_info_path <- "./R/L0/aux_files_with_schema.csv"
+file_info_path <- "./R/L0/1_files_with_schema.csv"
 file_info <- read.csv(file_info_path)
 
 # Skip files with no real content -- a header-only sheet, or one where every

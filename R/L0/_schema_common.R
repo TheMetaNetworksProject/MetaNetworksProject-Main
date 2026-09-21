@@ -1,8 +1,8 @@
 ## =============================================================================
-## aux_schema_common.R
+## _schema_common.R
 ## Shared setup for the schema-audit tooling. Sourced by:
-##   - aux_schema_audit.R      (read-only: NEVER assigns schema numbers)
-##   - aux_schema_register.R   (the ONLY script that assigns/appends numbers)
+##   - 1_schema_audit.R      (read-only: NEVER assigns schema numbers)
+##   - 1b_schema_register.R   (the ONLY script that assigns/appends numbers)
 ## Nothing in here writes files; it just prepares data and defines helpers.
 ## =============================================================================
 
@@ -19,9 +19,9 @@ schema_sep <- " | " # separator used to serialise a column set into one string
 ## Output / state file paths.
 ## schema_key_path is read by BOTH scripts and is the frozen source of truth
 ## for schema numbering.
-presence_path <- "./R/L0/aux_schema_cols.csv"
-schema_key_path <- "./R/L0/aux_schema_metadata.csv"
-file_info_path <- "./R/L0/aux_files_with_schema.csv"
+presence_path <- "./R/L0/1_schema_cols.csv"
+schema_key_path <- "./R/L0/1_schema_metadata.csv"
+file_info_path <- "./R/L0/1_files_with_schema.csv"
 
 ## ---- discover CSVs ---------------------------------------------------------
 spp_files <- list.files(
