@@ -331,7 +331,8 @@ The columns are described below based on the order we feel makes the most sense 
 
 **Taxonomic Ceiling**
 - Some interactions are described very broadly, representing taxa as high-level groups (i.e. insects, plants, animals).
-- We record interactions for taxa higher than species level, but the highest resolution we record for is Class. Above Class level, information becomes less ecologically useful and applicable to our projects.
+- FOR PLANTS, ANIMALS AND FUNGI, we record interactions for taxa higher than species level, but the highest resolution we record for is Class. Above Class level, information becomes less ecologically useful and applicable to our projects.
+- FOR BACTERIA AND ALGAE, we record at higher level (i.e. Kingdom) when relevant. Many records of bacteria and algae don't specify further taxonomic levels.
 
 **Abbreviations and Codes**
 - If you encounter a 4-letter banding abbreviation (e.g. GHOW) or other acronym or code for mentioning a taxa, copy and paste the text excerpt where the abbreviation is defined (e.g., "Great-horned Owl (GHOW)...") into the text_excerpt columns in every row where an interaction was derived from a text excerpt that includes an abbreviation.
