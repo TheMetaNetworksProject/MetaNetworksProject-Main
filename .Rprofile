@@ -1,2 +1,5 @@
 source("renv/activate.R")
-project_folder<-here::here()
+
+if (requireNamespace("here", quietly = TRUE)) {
+  project_folder <- here::here()
+}
