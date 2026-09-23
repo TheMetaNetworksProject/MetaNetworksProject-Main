@@ -1,0 +1,238 @@
+raw_name,clean_name,name_category,match_status,manual_gbif_usageKey,manual_gbif_canonicalName,notes,Original.sheet,date_added
+Anas crecca carolinensis,Anas crecca carolinensis,full_name,needs_review_rank_mismatch,VJFB6,Anas crecca carolinensis,?,Anas_fulvigula_IH_EP.csv,9/17/2026
+Motacilla tschutschensis tschutschensis,Motacilla tschutschensis tschutschensis,full_name,needs_review_rank_mismatch,7KD6X,Motacilla tschutschensis tschutschensis,?,Motacilla_tschutschensis_IH_EP.csv,9/17/2026
+A. americana,A. americana,full_name,needs_review_rank_mismatch,3Y3C6,Mareca americana,Abbreviation,Amaurospiza_concolor_VS.csv,9/17/2026
+A. discors,A. discors,full_name,needs_review_rank_mismatch,9HKHF,Spatula discors,Abbreviation,Amaurospiza_concolor_VS.csv,9/17/2026
+A. oratrix,A. oratrix,full_name,needs_review_rank_mismatch,CKF3,Amazona oratrix,Abbreviation,Eupsittula_canicularis_AJ.csv,9/17/2026
+A. rubripes,A. rubripes,full_name,needs_review_rank_mismatch,DGPC,Anas rubripes,Abbreviation,Geothlypis_speciosa_LB.csv,9/17/2026
+A. superciliosa,A. superciliosa,full_name,needs_review_rank_mismatch,DGPM,Anas superciliosa,Abbreviation,Geothlypis_speciosa_LB.csv,9/17/2026
+A. wyvilliana,A. wyvilliana,full_name,needs_review_rank_mismatch,DGPR,Anas wyvilliana,Abbreviation,Geothlypis_speciosa_LB.csv,9/17/2026
+C. boucardi,C. boucardi,full_name,needs_review_rank_mismatch,323MF,Crypturellus boucardi,Abbreviation,Penelopina_nigra_AJ.csv,9/17/2026
+C. excellens,C. excellens,full_name,needs_review_rank_mismatch,8KQB4,Pampa excellens,Abbreviation,Campylopterus_ hemileucurus_AJ.csv,9/17/2026
+C. fuscater,C. fuscater,full_name,needs_review_rank_mismatch,69G37,Catharus fuscater,Abbreviation,Henicorhina_leucosticta_LB.csv,9/17/2026
+C. mexicanus,C. mexicanus,full_name,needs_review_rank_mismatch,69G2Z,Catharus mexicanus,Abbreviation,Henicorhina_leucosticta_LB.csv,9/17/2026
+C. morio,C. morio,full_name,needs_review_rank_mismatch,32NLQ,Cyanocorax morio,Abbreviation,Habia_fuscicauda_LB.csv,9/17/2026
+H. leucophrys,H. leucophrys,full_name,needs_review_rank_mismatch,6LQ8Y,Henicorhina leucophrys,Abbreviation,Henicorhina_leucosticta_LB.csv,9/17/2026
+M. axillaris,M. axillaris,full_name,needs_review_rank_mismatch,45CZ2,Myrmotherula axillaris,Abbreviation,Psarocolius_wagleri_LB.csv,9/17/2026
+M. chalybatus,M. chalybatus,full_name,needs_review_rank_mismatch,3XX3V,Manucodia chalybatus,Abbreviation,Psarocolius_wagleri_LB.csv,9/17/2026
+M. exsul,M. exsul,full_name,needs_review_rank_mismatch,S28KK,Poliocrania exsul,Abbreviation,Psarocolius_wagleri_LB.csv,9/17/2026
+M. ignota,M. ignota,full_name,needs_review_rank_mismatch,45CZF,Myrmotherula ignota,Abbreviation,Psarocolius_wagleri_LB.csv,9/17/2026
+M. menetriesii,M. menetriesii,full_name,needs_review_rank_mismatch,45CZN,Myrmotherula menetriesii,Abbreviation,Habia_fuscicauda_LB.csv,9/17/2026
+P. cyanea,P. cyanea,full_name,needs_review_rank_mismatch,4DXZR,Passerina cyanea,Abbreviation,Aimophila_rufescens_LB_LM.csv,9/17/2026
+P. mentalis,P. mentalis,full_name,needs_review_rank_mismatch,DD9JH,Ceratopipra mentalis,Abbreviation,Habia_fuscicauda_LB.csv,9/17/2026
+S. americana,S. americana,full_name,needs_review_rank_mismatch,4X3BD,Setophaga americana,Abbreviation,Piranga_roseogularis_LB.csv,9/17/2026
+S. ruticilla,S. ruticilla,full_name,needs_review_rank_mismatch,4X3CB,Setophaga ruticilla,Abbreviation,Piranga_roseogularis_LB.csv,9/17/2026
+S. striolatus,S. striolatus,full_name,needs_review_rank_mismatch,ZJF6,Crithagra striolata,Abbreviation,Spinus_notatus_SEP.csv,9/17/2026
+S. torqueola,S. torqueola,full_name,needs_review_rank_mismatch,4ZD4D,Sporophila torqueola,Abbreviation,Tiaris_ olivaceus_AJ.csv,9/17/2026
+T. ardesiacus,T. ardesiacus,full_name,needs_review_rank_mismatch,563FQ,Thamnomanes ardesiacus,Abbreviation,Habia_fuscicauda_LB.csv,9/17/2026
+T. longirostre,T. longirostre,full_name,needs_review_rank_mismatch,57MNX,Toxostoma longirostre,Abbreviation,Geothlypis_speciosa_LB.csv,9/17/2026
+V. flavifrons,V. flavifrons,full_name,needs_review_rank_mismatch,5BJKM,Vireo flavifrons,Abbreviation,Piranga_roseogularis_LB.csv,9/17/2026
+Black Skimmer,Black Skimmer,full_name,needs_review_rank_mismatch,78Z8K,Rynchops niger,Common name,Buteogallus_urubitinga_GD.csv,9/17/2026
+Black-and-white seedeater,Black-and-white seedeater,full_name,needs_review_rank_mismatch,4ZD3V,Sporophila luctuosa,Common name,Arremon_brunneinucha_SEP.csv,9/17/2026
+Black-and-white tanager,Black-and-white tanager,full_name,needs_review_rank_mismatch,5ZVNK,Conothraupis speculigera,Common name,Arremon_brunneinucha_SEP.csv,9/17/2026
+Blue-black Grassquit,Blue-black Grassquit,full_name,needs_review_rank_mismatch,5BP6K,Volatinia jacarina,Common name,Tiaris_ olivaceus_AJ.csv,9/17/2026
+Chestnut-capped brush finch,Chestnut-capped brush finch,full_name,needs_review_rank_mismatch,67T7V,Arremon brunneinucha,Common name,Pipilo_ocai_SEP.csv.csv,9/17/2026
+Eastern towhee,Eastern towhee,full_name,needs_review_rank_mismatch,4J6J5,Pipilo erythrophthalmus,Common name,Pipilo_ocai_SEP.csv.csv,9/17/2026
+Golden-chested Tanager,Golden-chested Tanager,full_name,needs_review_rank_mismatch,KKD9,Bangsia rothschildi,Common name,Amaurolimnas_concolor_AJ.csv,9/17/2026
+Roseate Spoonbill,Roseate Spoonbill,full_name,needs_review_rank_mismatch,77NWD,Platalea ajaja,Common name,Egretta_thula_EP_IH.csv ,9/17/2026
+unid. small flycatcher,unid. small flycatcher,full_name,needs_review_rank_mismatch,HMW,Tyrannidae,Common name,Henicorhina_leucophrys_SEP_CR.csv,9/17/2026
+Circus dossenus,Circus dossenus,full_name,needs_review_rank_mismatch,3Q54,Circus,EXTINCT: NOT IN GBIF; defaulted to genus level,Branta_sandvicensis_CR_EP.csv,9/17/2026
+Lanio aurantius aurantius,Lanio aurantius aurantius,full_name,needs_review_rank_mismatch,3S78K,Lanio aurantius,Extra name,Henicorhina_leucosticta_LB.csv,9/17/2026
+Vidua wilsoni incognita,Vidua wilsoni incognita,full_name,needs_review_rank_mismatch,5BDBB,Vidua wilsoni,Extra name,Vidua_wilsoni_GD_EP.csv,9/17/2026
+Cairina moschata domesticus,Cairina moschata domesticus,full_name,needs_review_rank_mismatch,PBGT,Cairina moschata,Extra subspecies,Alopochen_aegyptiaca_AH_EP.csv,9/17/2026
+Icterus bullockii x galbula,Icterus bullockii x galbula,full_name,needs_review_rank_mismatch,53FQ,Icterus†,HYBRID DROPPED TO GENUS,molothrus_aeneus_EP_IH.csv,9/17/2026
+Larus occidentalis x glaucescens,Larus occidentalis x glaucescens,full_name,needs_review_rank_mismatch,62XFH,Larus,HYBRID DROPPED TO GENUS,Gavia_pacifica_CR_EP.csv; Hydroprogne_caspia_EP_IH.csv,9/17/2026
+Cacicus leucoramphus,Cacicus leucoramphus,full_name,needs_review_rank_mismatch,5G3T4,Cacicus chrysonotus leucoramphus,Missing species,Henicorhina_leucophrys_SEP_CR.csv,9/17/2026
+Cardinalis carneus,Cardinalis carneus,full_name,needs_review_rank_mismatch,5G7QB,Cardinalis cardinalis carneus,Missing species,Eupherusa_ridgwayi_AJ.csv,9/17/2026
+Junco aikeni,Junco aikeni,full_name,needs_review_rank_mismatch,5J6CX,Junco hyemalis aikeni,Missing species,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Psaltriparus melanotis,Psaltriparus melanotis,full_name,needs_review_rank_mismatch,5KPR6,Psaltriparus minimus melanotis,Missing species,Peucaea_sumichrasti_LB.csv,9/17/2026
+Basileuterus ruÔ¨Åfrons,Basileuterus ruÔ¨Åfrons,full_name,needs_review_rank_mismatch,5WD8R,Basileuterus rufifrons,Non-English charcter,?,9/17/2026
+Accipiter getilis,Accipiter getilis,full_name,needs_review_rank_mismatch,CVW3C,Astur gentilis,Old name,dryocopus_pileatus.csv,9/17/2026
+Agelaius phoeniceus utahensis,Agelaius phoeniceus utahensis,full_name,needs_review_rank_mismatch,5FFYQ,Agelaius phoeniceus phoeniceus,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Anas cyanoptera,Anas cyanoptera,full_name,needs_review_rank_mismatch,9HKY4,Spatula cyanoptera,Old name,Spatula_discors_EP.csv;Amaurospiza_concolor_VS.csv,9/17/2026
+Argya affinis somervillei,Argya affinis somervillei,full_name,needs_review_rank_mismatch,7L6YC,Turdoides striata somervillei,Old name,Hierococcyx_varius_CR_EP.csv,9/17/2026
+Campylorhynchus minor albicilius,Campylorhynchus minor albicilius,full_name,needs_review_rank_mismatch,QHS7,Campylorhynchus griseus,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Chrysotrogon caligatus,Chrysotrogon caligatus,full_name,needs_review_rank_mismatch,8VDTQ,Trogon caligatus,Old name,Cardellina_versicolor_OG.csv,9/17/2026
+Coereba mexicana mexicana,Coereba mexicana mexicana,full_name,needs_review_rank_mismatch,5GJQX,Coereba flaveola mexicana,Old name,Arremonops_chloronotus_VS.csv,9/17/2026
+Cyanocitta nana,Cyanocitta nana,full_name,needs_review_rank_mismatch,32NNC,Cyanolyca nanus,Old name,Pipilo_ocai_SEP_JB.csv; Campylorhynchus_megalopterus_JB.csv; Cyanolyca_nanus_VS.csv,9/17/2026
+Dendroica auduboni,Dendroica auduboni,full_name,needs_review_rank_mismatch,4X3BF,Setophaga auduboni,Old name,Cardellina_versicolor_OG.csv,9/17/2026
+Hylophylax poecilinotus nigrigula,Hylophylax poecilinotus nigrigula,full_name,needs_review_rank_mismatch,5LSKY,Willisornis vidua nigrigula,Old name,Euphonia_minuta_VS.csv,9/17/2026
+Iridoprocene albilinea,Iridoprocene albilinea,full_name,needs_review_rank_mismatch,54CB9,Tachycineta albilinea,Old name,Henicorhina_leucosticta_LB.csv,9/17/2026
+Mareca stepera,Mareca stepera,full_name,needs_review_rank_mismatch,9HJGV,Mareca strepera,Old name,Oxyura_jamaicensis_IH_EP.csv,9/17/2026
+Melopelia asiatica mearnsi,Melopelia asiatica mearnsi,full_name,needs_review_rank_mismatch,7KW86,Zenaida asiatica mearnsi,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Otus asio,Otus asio,full_name,needs_review_rank_mismatch,3YXDW,Megascops asio,Old name,Ortalis_vetula.csv,9/17/2026
+Pachysylvia darienensis,Pachysylvia darienensis,full_name,needs_review_rank_mismatch,7JVHJ,Hylophilus decurtatus darienensis,Old name,Pachysylvia_decurtata_AJ.csv,9/17/2026
+Panyptila saxatilis,Panyptila saxatilis,full_name,needs_review_rank_mismatch,64ZXP,Aeronautes saxatalis,Old name,tachycineta_thalassina.csv,9/17/2026
+Parula americana americana,Parula americana americana,full_name,needs_review_rank_mismatch,4X3BD,Setophaga americana,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Pipilo erythrophthalmus repetens,Pipilo erythrophthalmus repetens,full_name,needs_review_rank_mismatch,5KGFR,Pipilo maculatus repetens,Old name,Dendrortyx_leucophrys_AF_LB.csv; Cardellina_versicolor_OG.csv,9/17/2026
+Platypsaris aglaiae albiventris,Platypsaris aglaiae albiventris,full_name,needs_review_rank_mismatch,5K4YS,Pachyramphus aglaiae albiventris,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Polyborus cheriway,Polyborus cheriway,full_name,needs_review_rank_mismatch,9F2RJ,Caracara plancus cheriway,Old name,Peucaea_sumichrasti_LB.csv,9/17/2026
+Psilorhinus mexicanus,Psilorhinus mexicanus,full_name,needs_review_rank_mismatch,32NLQ,Cyanocorax morio,Old name,Calocitta_colliei_LB_CR.csv; Peucaea_sumichrasti_LB.csv,9/17/2026
+Psomocolax oryzivorus,Psomocolax oryzivorus,full_name,needs_review_rank_mismatch,43YJK,Molothrus oryzivorus,Old name,Molothrus_oryzivorus_AH.csv,9/17/2026
+Richmondena cardinalis canicaudus,Richmondena cardinalis canicaudus,full_name,needs_review_rank_mismatch,5G7Q9,Cardinalis cardinalis canicaudus,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Setophaga petechia (aestiva group),Setophaga petechia (aestiva group),full_name,needs_review_rank_mismatch,4X3BC,Setophaga aestiva,Old name,molothrus_aeneus_EP_IH.csv; molothrus_ater_EP_IH.csv,9/17/2026
+Sporophila aurita aurita,Sporophila aurita aurita,full_name,needs_review_rank_mismatch,4ZD3L,Sporophila corvina,Old name,Arremonops_chloronotus_VS.csv,9/17/2026
+Stercorarius stercorarius,Stercorarius stercorarius,full_name,needs_review_rank_mismatch,52D8P,Stercorarius pomarinus,Old name,Gavia_adamsii_IH_EP.csv,9/17/2026
+Tanagra gouldi,Tanagra gouldi,full_name,needs_review_rank_mismatch,3CMPD,Euphonia gouldi,Old name,Caryothraustes_poliogaster_OG.csv; Arremonops_chloronotus_VS.csv; ,9/17/2026
+Tanagra gouldi praetermissa,Tanagra gouldi praetermissa,full_name,needs_review_rank_mismatch,5H92P,Euphonia gouldi praetermissa,Old name,Euphonia_gouldi_OG.csv,9/17/2026
+Tanagra nigrocincta larvata,Tanagra nigrocincta larvata,full_name,needs_review_rank_mismatch,9GCR4,Stilpnia larvata,Old name,Arremonops_chloronotus_VS.csv; Caryothraustes_poliogaster_OG.csv,9/17/2026
+Tangara nigro-cincta larvata,Tangara nigro-cincta larvata,full_name,needs_review_rank_mismatch,9GCR4,Stilpnia larvata,Old name,Euphonia_gouldi_OG.csv,9/17/2026
+Trichothraupis penicillata,Trichothraupis penicillata,full_name,needs_review_rank_mismatch,6H5K9,Eucometis penicillata,Old name,Habia_fuscicauda_LB.csv,9/17/2026
+Vireo virescens flavoviridis,Vireo virescens flavoviridis,full_name,needs_review_rank_mismatch,5BJKN,Vireo flavoviridis,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Vireo virescens vividior,Vireo virescens vividior,full_name,needs_review_rank_mismatch,VP2CB,Vireo chivi,Old name,Aimophila_rufescens_LB_LM.csv,9/17/2026
+Wilsonia pusilla,Wilsonia pusilla,full_name,needs_review_rank_mismatch,R4VB,Cardellina pusilla,Old name,Peucaea_sumichrasti_LB.csv; Cardellina_versicolor_OG.csv; Turdus_plebejus_AH_CR.csvÖ.,9/17/2026
+Zosterops lateralis gouldi,Zosterops lateralis gouldi,full_name,needs_review_rank_mismatch,7L7MK,Zosterops lateralis chloronotus,Old name,Chrysococcyx_lucidus_CR_EP.csv,9/17/2026
+Pipilo rutilus,Pipilo rutilus,full_name,needs_review_rank_mismatch,6R9XM,Melozone albicollis,Old name (took some digging to figure out),Aimophila_rufescens_LB_LM.csv,9/17/2026
+Setophaga petechia (erithachorides group),Setophaga petechia (erithachorides group),full_name,needs_review_rank_mismatch,5L66B,Setophaga petechia erithachorides,Parentheses,molothrus_aeneus_EP_IH.csv,9/17/2026
+Saltator straitipectus / albicollis,Saltator straitipectus / albicollis,full_name,needs_review_rank_mismatch,7BYV,Saltator,"Slash taxa, revert to genus",Molothrus_bonariensis_EP_IH.csv,9/17/2026
+Setophaga striata / tigrina,Setophaga striata / tigrina,full_name,needs_review_rank_mismatch,7G5R,Setophaga,"Slash taxa, revert to genus",Parkesia_noveboracensis_AH_EP.csv,9/17/2026
+Cuculus canorus telephonus,Cuculus canorus telephonus,full_name,needs_review_rank_mismatch,5GQM4,Cuculus canorus subtelephonus,Synonym,Cuculus_canorus_GD_EP.csv,9/17/2026
+Hydropsalis albicollis,Hydropsalis albicollis,full_name,needs_review_rank_mismatch,485KV,Nyctidromus albicollis,Synonym,Psarocolius_montezuma_VS.csv,9/17/2026
+Tanagra lauta,Tanagra lauta,full_name,needs_review_rank_mismatch,6GZCP,Euphonia hirundinacea,Synonym,Arremonops_chloronotus_VS.csv; Caryothraustes_poliogaster_OG.csv,9/17/2026
+Xenops rutilans,Xenops rutilans,full_name,needs_review_rank_mismatch,DTGN7,Xenops rutilus,Synonym,Cyclarhis_gujanensis_CR.csv; Ramphocaenus_melanurus_VS_CR.csv,9/17/2026
+Himantopus alexandrus,Himantopus alexandrus,full_name,needs_review_rank_mismatch,6LWTY,Himantopus mexicanus,Synonym?,Hydroprogne_caspia_EP_IH.csv,9/17/2026
+Accipiter chionogaster chionogaster,Accipiter chionogaster chionogaster,full_name,needs_review_rank_mismatch,64G77,Accipiter chionogaster,Trinomial,Cassiculus_melanicterus_SEP.csv,9/17/2026
+Acridotheres cristellatus,Acridotheres cristellatus,full_name,needs_review_rank_mismatch,9KHM,Acridotheres cristatellus,Typo,Acridotheres_tristis_AH_EP.csv,9/17/2026
+Anas affinis,Anas affinis,full_name,needs_review_rank_mismatch,K56N,Aythya affinis,Typo,mergus_serrator.csv,9/17/2026
+Anisognathus jlavinucha,Anisognathus jlavinucha,full_name,needs_review_rank_mismatch,5V3HB,Anisognathus somptuosus,Typo,Piranga_leucoptera_JNS.csv,9/17/2026
+Anus cyanoptera,Anus cyanoptera,full_name,needs_review_rank_mismatch,9HKY4,Spatula cyanoptera,Typo,Cardellina_versicolor_OG.csv,9/17/2026
+Artinga asteca,Artinga asteca,full_name,needs_review_rank_mismatch,C4C9X,Eupsittula nana astec,Typo,Psarocolius_montezuma_VS.csv,9/17/2026
+Basoleuterus culicivours,Basoleuterus culicivours,full_name,needs_review_rank_mismatch,5WD95,Basileuterus culicivorus,Typo,Henicorhina_leucosticta_LB.csv,9/17/2026
+Buteogallus epc.,Buteogallus epc.,full_name,needs_review_rank_mismatch,62HVD,Buteogallus,Typo,Tigrisoma_mexicanum_AF.csv,9/17/2026
+Coragyps atriceps,Coragyps atriceps,full_name,needs_review_rank_mismatch,Y9SZ,Coragyps atratus,Typo,Icterus_auratus_OG.csv,9/17/2026
+Corvus cora,Corvus cora,full_name,needs_review_rank_mismatch,YNHG,Corvus corax,Typo,Hydrobates_ homochroa_AJ.csv,9/17/2026
+Fratercula cirrha,Fratercula cirrha,full_name,needs_review_rank_mismatch,6JN2R,Fratercula cirrhata,Typo,Cepphus_columba_IH_EP.csv,9/17/2026
+Gaucidium palmarum,Gaucidium palmarum,full_name,needs_review_rank_mismatch,3G648,Glaucidium palmarum,Typo,Glaucidium_palmarum_AJ.csv,9/17/2026
+Ghymnorhinus cyanocephalus,Ghymnorhinus cyanocephalus,full_name,needs_review_rank_mismatch,6L83T,Gymnorhinus cyanocephalus,Typo,aphelocoma_wollweberi.csv,9/17/2026
+Hirundo mexicanus,Hirundo mexicanus,full_name,needs_review_rank_mismatch,6L8DR,Haemorhous mexicanus,Typo,petrochelidon_pyrrhonota.csv,9/17/2026
+Iridoprocne albinea,Iridoprocne albinea,full_name,needs_review_rank_mismatch,54CB9,Tachycineta albilinea,Typo,Peucaea_sumichrasti_LB.csv,9/17/2026
+Jancana spinosa,Jancana spinosa,full_name,needs_review_rank_mismatch,3QHZT,Jacana spinosa,Typo,Tyrannus_melancholicus_IH_EP.csv,9/17/2026
+Larus shistisagus,Larus shistisagus,full_name,needs_review_rank_mismatch,3SBR4,Larus schistisagus,Typo,Aethia_psittacula_IH_EP.csv,9/17/2026
+Leucophaeus villosus,Leucophaeus villosus,full_name,needs_review_rank_mismatch,7VPRT,Leuconotopicus villosus,Typo,dryobates_borealis.csv,9/17/2026
+Megus merganser,Megus merganser,full_name,needs_review_rank_mismatch,3ZTRN,Mergus merganser,Typo,Larus_californicus_IH_EP.csv,9/17/2026
+Molothrus aenus,Molothrus aenus,full_name,needs_review_rank_mismatch,43YJF,Molothrus aeneus,Typo,Eumomota_superciliosa_AF.csv,9/17/2026
+Morococcyx erthropygus,Morococcyx erthropygus,full_name,needs_review_rank_mismatch,6S3CT,Morococcyx erythropygus,Typo,Attila_spadiceus_AF.csv,9/17/2026
+Motmotus momota,Motmotus momota,full_name,needs_review_rank_mismatch,43Z6Q,Momotus momota,Typo,Euphonia_hirundinacea_AH.csv,9/17/2026
+Myarichus cinerascens,Myarichus cinerascens,full_name,needs_review_rank_mismatch,452NK,Myiarchus cinerascens,Typo,myiarchus_tyrannulus.csv,9/17/2026
+Pica hundonia,Pica hundonia,full_name,needs_review_rank_mismatch,4HPXK,Pica hudsonia,Typo,Spatula_discors_EP.csv,9/17/2026
+Psaltriparus mimus,Psaltriparus mimus,full_name,needs_review_rank_mismatch,4NB5F,Psaltriparus minimus,Typo,micrathene_whitneyi.csv,9/17/2026
+Puffinus iherminieri,Puffinus iherminieri,full_name,needs_review_rank_mismatch,4QFXV,Puffinus lherminieri,Typo,Onychoprion_anaethetus_MA.csv,9/17/2026
+Pyrrhula phyrrhula,Pyrrhula phyrrhula,full_name,needs_review_rank_mismatch,4QW2H,Pyrrhula pyrrhula,Typo,Asio_otus_EP_IH.csv,9/17/2026
+Ramphastos sufuratus,Ramphastos sufuratus,full_name,needs_review_rank_mismatch,6WR6G,Ramphastos sulfuratus,Typo,Pteroglossus_torquatus_MA.csv,9/17/2026
+Sterna fosteri,Sterna fosteri,full_name,needs_review_rank_mismatch,6ZSCV,Sterna forsteri,Typo,Thalasseus_maximus_IH_EP.csv,9/17/2026
+Urile aalge,Urile aalge,full_name,needs_review_rank_mismatch,7DS6Y,Uria aalge,Typo,Urile_urile_MA_CR.csv,9/17/2026
+Veniliornis afnis,Veniliornis afnis,full_name,needs_review_rank_mismatch,7FLPQ,Veniliornis affinis,Typo,Tolmomyias_sulphurescens_AJ.csv,9/17/2026
+Vireo flavirordis,Vireo flavirordis,full_name,needs_review_rank_mismatch,5BJKN,Vireo flavoviridis,Typo,Pteroglossus_torquatus_MA.csv,9/17/2026
+undi. Cacicus,undi. Cacicus,full_name,needs_review_rank_mismatch,62JRZ,Cacicus,Typo,Psarocolius_wagleri_LB.csv,9/17/2026
+undi. Dendrocolaptes,undi. Dendrocolaptes,full_name,needs_review_rank_mismatch,42YR,Dendrocolaptes,Typo,Habia_fuscicauda_LB.csv,9/17/2026
+undi. Denrocincla,undi. Denrocincla,full_name,needs_review_rank_mismatch,42YJ,Dendrocincla,Typo,Habia_fuscicauda_LB.csv,9/17/2026
+undi. Icteridae,undi. Icteridae,full_name,needs_review_rank_mismatch,BCZ,Icteridae,Typo,Psarocolius_wagleri_LB.csv,9/17/2026
+undi. Parulidae,undi. Parulidae,full_name,needs_review_rank_mismatch,626BR,Parulidae,Typo,Henicorhina_leucosticta_LB.csv,9/17/2026
+undi. Psarocolius,undi. Psarocolius,full_name,needs_review_rank_mismatch,6YDP,Psarocolius,Typo,Psarocolius_wagleri_LB.csv,9/17/2026
+undi. Tyrannidae,undi. Tyrannidae,full_name,needs_review_rank_mismatch,HMW,Tyrannidae,Typo,Psarocolius_wagleri_LB.csv,9/17/2026
+unid. Accipiter hawl,unid. Accipiter hawl,full_name,needs_review_rank_mismatch,627QR,Accipiter,Typo,zenaida_macroura.csv,9/17/2026
+Myiarchus tberculife,Myiarchus tberculife,full_name,needs_review_rank_mismatch,452NY,Myiarchus tuberculifer,Typo,,9/21/2026
+Myiarchus tberculifer,Myiarchus tberculifer,full_name,needs_review_rank_mismatch,452NY,Myiarchus tuberculifer,Typo,,9/21/2026
+Accipitiridae sp.,Accipitiridae sp.,higher_rank_expected,needs_review_coarsest_group_only,5W6,Accipitridae,Typo,,9/21/2026
+Accipitreidae sp.,Accipitreidae sp.,higher_rank_expected,needs_review_coarsest_group_only,5W6,Accipitridae,Typo,,9/21/2026
+Accipitrid sp.,Accipitrid sp.,higher_rank_expected,needs_review_coarsest_group_only,5W6,Accipitridae,Typo,,9/21/2026
+Alcid sp.,Alcid sp.,higher_rank_expected,needs_review_coarsest_group_only,66H,Alcidae,Short name,,9/21/2026
+Antidae sp.,Antidae sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Typo,,9/21/2026
+Apcodidae sp.,Apcodidae sp.,higher_rank_expected,needs_review_coarsest_group_only,6L5,Apodidae,Typo,,9/21/2026
+Areid sp.,Areid sp.,higher_rank_expected,needs_review_coarsest_group_only,6PB,Ardeidae,Typo,,9/21/2026
+Aves,Aves,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Correct,,9/21/2026
+Aves spp.,Aves spp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Correct,,9/21/2026
+Avian sp.,Avian sp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Correct,,9/21/2026
+Aythyinae sp.,Aythyinae sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Not recognized,,9/21/2026
+Aythyini sp.,Aythyini sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Not recognized,,9/21/2026
+Babbler sp.,Babbler sp.,higher_rank_expected,needs_review_coarsest_group_only,H9M,Timaliidae,Common name,,9/21/2026
+Blackbird sp.,Blackbird sp.,higher_rank_expected,needs_review_coarsest_group_only,BCZ,Icteridae,Common name,,9/21/2026
+Bunting sp.,Bunting sp.,higher_rank_expected,needs_review_coarsest_group_only,4B69,Emberiza,Common name (old world),,9/21/2026
+Cardinal sp.,Cardinal sp.,higher_rank_expected,needs_review_coarsest_group_only,7QR,Cardinalidae,Common name,,9/21/2026
+Certhiid sp.,Certhiid sp.,higher_rank_expected,needs_review_coarsest_group_only,7XP,Certhiidae,Short name,,9/21/2026
+Ciconiiform sp.,Ciconiiform sp.,higher_rank_expected,needs_review_coarsest_group_only,Y9,Ciconiiformes,Short name,,9/21/2026
+Cortunix sp.,Cortunix sp.,higher_rank_expected,needs_review_coarsest_group_only,9JJCS,Coturnix,Typo,,9/21/2026
+Corvid sp.,Corvid sp.,higher_rank_expected,needs_review_coarsest_group_only,8L6,Corvidae,Short name,,9/21/2026
+Crow sp.,Crow sp.,higher_rank_expected,needs_review_coarsest_group_only,62LZ4,Corvus,Common name,,9/21/2026
+Dabbling duck sp.,Dabbling duck sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Not recognized,,9/21/2026
+Diving duck sp.,Diving duck sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Not recognized,,9/21/2026
+Dove sp.,Dove sp.,higher_rank_expected,needs_review_coarsest_group_only,8GD,Columbidae,Common name,,9/21/2026
+Duck sp,Duck sp,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Common name,,9/21/2026
+Duck sp.,Duck sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Common name,,9/21/2026
+Finch sp.,Finch sp.,higher_rank_expected,needs_review_coarsest_group_only,6244D,Fringillidae,Common name,,9/21/2026
+Flycatcher sp.,Flycatcher sp.,higher_rank_expected,needs_review_coarsest_group_only,CZN,Muscicapidae,Common name (old world),,9/21/2026
+Forest grouse sp.,Forest grouse sp.,higher_rank_expected,needs_review_coarsest_group_only,625WG,Phasianidae,Common name,,9/21/2026
+Fringillid sp.,Fringillid sp.,higher_rank_expected,needs_review_coarsest_group_only,6244D,Fringillidae,Short name,,9/21/2026
+Fulmar sp.,Fulmar sp.,higher_rank_expected,needs_review_coarsest_group_only,4LCC,Fulmarus,Common name,,9/21/2026
+Galliform sp.,Galliform sp.,higher_rank_expected,needs_review_coarsest_group_only,38Z,Galliformes,Short name,,9/21/2026
+Gnatcatcher sp.,Gnatcatcher sp.,higher_rank_expected,needs_review_coarsest_group_only,627GW,Polioptilidae†,Common name,,9/21/2026
+Goose sp.,Goose sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,Common name,,9/21/2026
+Grallistrix sp.,Grallistrix sp.,higher_rank_expected,needs_review_coarsest_group_only,GQX,Strigidae,EXTINCT (revert to family),,9/21/2026
+Grebe sp.,Grebe sp.,higher_rank_expected,needs_review_coarsest_group_only,3V6,Podicipediformes,Common name,,9/21/2026
+Grouse sp.,Grouse sp.,higher_rank_expected,needs_review_coarsest_group_only,625WG,Phasianidae,Common name,,9/21/2026
+Gull sp.,Gull sp.,higher_rank_expected,needs_review_coarsest_group_only,BSK,Laridae,Common name,,9/21/2026
+Harrier sp.,Harrier sp.,higher_rank_expected,needs_review_coarsest_group_only,3Q54,Circus,Common name,,9/21/2026
+Hawk sp.,Hawk sp.,higher_rank_expected,needs_review_coarsest_group_only,5W6,Accipitridae,Common name,,9/21/2026
+Heron sp.,Heron sp.,higher_rank_expected,needs_review_coarsest_group_only,6PB,Ardeidae,Typo,,9/21/2026
+Ibis sp.,Ibis sp.,higher_rank_expected,needs_review_coarsest_group_only,H89,Threskiornithidae,Common name,,9/21/2026
+Jaeger sp.,Jaeger sp.,higher_rank_expected,needs_review_coarsest_group_only,7N5S,Stercorarius,Common name,,9/21/2026
+Jay sp.,Jay sp.,higher_rank_expected,needs_review_coarsest_group_only,8L6,Corvidae,Common name,,9/21/2026
+Lapogus sp.,Lapogus sp.,higher_rank_expected,needs_review_coarsest_group_only,63836,Lagopus,Typo,,9/21/2026
+Lapwing sp.,Lapwing sp.,higher_rank_expected,needs_review_coarsest_group_only,824,Charadriidae,Common name,,9/21/2026
+Muscicapid sp.,Muscicapid sp.,higher_rank_expected,needs_review_coarsest_group_only,CZN,Muscicapidae,Short name,,9/21/2026
+Owl sp.,Owl sp.,higher_rank_expected,needs_review_coarsest_group_only,466,Strigiformes,Common name,,9/21/2026
+Parid sp.,Parid sp.,higher_rank_expected,needs_review_coarsest_group_only,626B2,Paridae,Short name,,9/21/2026
+Partridge sp.,Partridge sp.,higher_rank_expected,needs_review_coarsest_group_only,625WG,Phasianidae,Common name,,9/21/2026
+Parulid sp.,Parulid sp.,higher_rank_expected,needs_review_coarsest_group_only,626BR,Parulidae,Short name,,9/21/2026
+Petrel sp.,Petrel sp.,higher_rank_expected,needs_review_coarsest_group_only,622V8,Procellariiformes,Common name,,9/21/2026
+Phalacrocoracid sp.,Phalacrocoracid sp.,higher_rank_expected,needs_review_coarsest_group_only,62694,Phalacrocoracidae,Short name,,9/21/2026
+Pheasant sp.,Pheasant sp.,higher_rank_expected,needs_review_coarsest_group_only,625WG,Phasianidae,Common name,,9/21/2026
+Plover sp.,Plover sp.,higher_rank_expected,needs_review_coarsest_group_only,824,Charadriidae,Common name,,9/21/2026
+Pogionulus sp.,Pogionulus sp.,higher_rank_expected,needs_review_coarsest_group_only,63NN7,Pogoniulus,Typo,,9/21/2026
+Procellariiform sp.,Procellariiform sp.,higher_rank_expected,needs_review_coarsest_group_only,622V8,Procellariiformes,Short name,,9/21/2026
+Psittacid sp.,Psittacid sp.,higher_rank_expected,needs_review_coarsest_group_only,FBD,Psittacidae,Short name,,9/21/2026
+Psittacines sp.,Psittacines sp.,higher_rank_expected,needs_review_coarsest_group_only,3X7,Psittaciformes,Short name,,9/21/2026
+Rallid sp.,Rallid sp.,higher_rank_expected,needs_review_coarsest_group_only,FJ9,Rallidae,Short name,,9/21/2026
+Sandpiper sp.,Sandpiper sp.,higher_rank_expected,needs_review_coarsest_group_only,G4X,Scolopacidae,Common name,,9/21/2026
+Scoter sp.,Scoter sp.,higher_rank_expected,needs_review_coarsest_group_only,62YSK,Melanitta,Common name,,9/21/2026
+Seabird sp.,Seabird sp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Non-specific,,9/21/2026
+Shearwater sp.,Shearwater sp.,higher_rank_expected,needs_review_coarsest_group_only,627CQ,Procellariidae,Common name,,9/21/2026
+Shorebird sp.,Shorebird sp.,higher_rank_expected,needs_review_coarsest_group_only,X3,Charadriiformes,Common name,,9/21/2026
+Sittid sp.,Sittid sp.,higher_rank_expected,needs_review_coarsest_group_only,626XK,Sittidae,Short name,,9/21/2026
+Skua sp.,Skua sp.,higher_rank_expected,needs_review_coarsest_group_only,7N5S,Stercorarius,Common name,,9/21/2026
+Songbird sp.,Songbird sp.,higher_rank_expected,needs_review_coarsest_group_only,3RL,Passeriformes,Common name,,9/21/2026
+Sparrow sp.,Sparrow sp.,higher_rank_expected,needs_review_coarsest_group_only,9G6YK,Passerellidae,Common name (new world),,9/21/2026
+Stint sp.,Stint sp.,higher_rank_expected,needs_review_coarsest_group_only,3F8J,Calidris,Common name,,9/21/2026
+Storm-petrel sp.,Storm-petrel sp.,higher_rank_expected,needs_review_coarsest_group_only,622V8,Procellariiformes,Common name,,9/21/2026
+Swallow sp.,Swallow sp.,higher_rank_expected,needs_review_coarsest_group_only,B3Y,Hirundinidae,Common name,,9/21/2026
+Tanager sp.,Tanager sp.,higher_rank_expected,needs_review_coarsest_group_only,H87,Thraupidae,Common name,,9/21/2026
+Thrasher sp.,Thrasher sp.,higher_rank_expected,needs_review_coarsest_group_only,CTD,Mimidae,Common name,,9/21/2026
+Threskiornithid sp.,Threskiornithid sp.,higher_rank_expected,needs_review_coarsest_group_only,H89,Threskiornithidae,Short name,,9/21/2026
+Tringinae sp.,Tringinae sp.,higher_rank_expected,needs_review_coarsest_group_only,G4X,Scolopacidae,Not recognized,,9/21/2026
+Unid. Bunting sp.,Unid. Bunting sp.,higher_rank_expected,needs_review_coarsest_group_only,6JG5,Passerina,Common name (new world),,9/21/2026
+Unid. Cormorant sp.,Unid. Cormorant sp.,higher_rank_expected,needs_review_coarsest_group_only,62694,Phalacrocoracidae,Common name,,9/21/2026
+Unid. Crane sp.,Unid. Crane sp.,higher_rank_expected,needs_review_coarsest_group_only,625DG,Gruidae,Common name,,9/21/2026
+Unid. Ibis sp.,Unid. Ibis sp.,higher_rank_expected,needs_review_coarsest_group_only,H89,Threskiornithidae,Common name,,9/21/2026
+Unid. Lark sp.,Unid. Lark sp.,higher_rank_expected,needs_review_coarsest_group_only,667,Alaudidae,Common name,,9/21/2026
+Unid. Raptor sp.,Unid. Raptor sp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Non-specific,,9/21/2026
+Vireonid sp.,Vireonid sp.,higher_rank_expected,needs_review_coarsest_group_only,626RC,Vireonidae,Short name,,9/21/2026
+Wading bird sp.,Wading bird sp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Non-specific,,9/21/2026
+Warbler sp.,Warbler sp.,higher_rank_expected,needs_review_coarsest_group_only,3RL,Passeriformes,Not specific (old world),,9/21/2026
+Waterbird sp.,Waterbird sp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Non-specific,,9/21/2026
+Waterfowl sp.,Waterfowl sp.,higher_rank_expected,needs_review_coarsest_group_only,PQ,Anseriformes,Common name,,9/21/2026
+Wood-warbler sp.,Wood-warbler sp.,higher_rank_expected,needs_review_coarsest_group_only,626BR,Parulidae,Common name,,9/21/2026
+Woodpecker sp.,Woodpecker sp.,higher_rank_expected,needs_review_coarsest_group_only,625L8,Picidae,Common name,,9/21/2026
+Wren sp.,Wren sp.,higher_rank_expected,needs_review_coarsest_group_only,626S2,Troglodytidae,Common name,,9/21/2026
+alcidae sp.,alcidae sp.,higher_rank_expected,needs_review_coarsest_group_only,66H,Alcidae,?,,9/21/2026
+anatidae sp.,anatidae sp.,higher_rank_expected,needs_review_coarsest_group_only,9H6K5,Anatidae,?,,9/21/2026
+mountain-gem,mountain-gem,higher_rank_expected,needs_review_coarsest_group_only,KGD,Trochilinae,Not recognized,,9/21/2026
+parrot sp.,parrot sp.,higher_rank_expected,needs_review_coarsest_group_only,3X7,Psittaciformes,Common name,,9/21/2026
+rallidae sp.,rallidae sp.,higher_rank_expected,needs_review_coarsest_group_only,FJ9,Rallidae,?,,9/21/2026
+raptor sp.,raptor sp.,higher_rank_expected,needs_review_coarsest_group_only,V2,Aves,Non-specific,,9/21/2026
+trogonidae sp.,trogonidae sp.,higher_rank_expected,needs_review_coarsest_group_only,HJJ,Trogonidae,?,,9/21/2026
+unid. Owl sp.,unid. Owl sp.,higher_rank_expected,needs_review_coarsest_group_only,466,Strigiformes,Common name,,9/21/2026
+unid. Tanager sp.,unid. Tanager sp.,higher_rank_expected,needs_review_coarsest_group_only,H87,Thraupidae,Common name,,9/21/2026
+unid. falcon sp.,unid. falcon sp.,higher_rank_expected,needs_review_coarsest_group_only,62SZ6,Falco,Common name,,9/21/2026
+unid. furnariid,unid. furnariid,higher_rank_expected,needs_review_coarsest_group_only,6245S,Furnariidae,Short name,,9/21/2026
+unid. screech-owl sp.,unid. screech-owl sp.,higher_rank_expected,needs_review_coarsest_group_only,5N2J,Megascops†,Common name,,9/21/2026
+uria sp.,uria sp.,higher_rank_expected,needs_review_coarsest_group_only,855Y,Uria,?,,9/21/2026
