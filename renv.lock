@@ -78,12 +78,13 @@
       "Encoding": "UTF-8",
       "RoxygenNote": "6.0.1",
       "Repository": "https://bioc.r-universe.dev",
-      "RemoteUrl": "https://github.com/bioc/BiocVersion",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "252d7c8f03a39a9b83f6de7e9dbf9a5ee6584365",
       "NeedsCompilation": "no",
       "Author": "Martin Morgan [aut], Marcel Ramos [ctb], Bioconductor Package Maintainer [ctb, cre]",
-      "Maintainer": "Bioconductor Package Maintainer <maintainer@bioconductor.org>"
+      "Maintainer": "Bioconductor Package Maintainer <maintainer@bioconductor.org>",
+      "RemoteType": "bioconductor",
+      "RemoteUrl": "https://github.com/bioc/BiocVersion",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "252d7c8f03a39a9b83f6de7e9dbf9a5ee6584365"
     },
     "DBI": {
       "Package": "DBI",
@@ -2675,12 +2676,13 @@
       "RoxygenNote": "7.3.3",
       "Roxygen": "list(markdown = TRUE)",
       "Config/pak/sysreqs": "libcairo2-dev cmake libfontconfig1-dev libfreetype6-dev make libicu-dev libpng-dev libuv1-dev",
-      "Repository": "https://bioc-release.r-universe.dev",
+      "Repository": "Bioconductor 3.23",
+      "NeedsCompilation": "no",
+      "Author": "Guangchuang Yu [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-6485-8781>), Tommy Tsan-Yuk Lam [aut, ths], Shuangbin Xu [aut] (ORCID: <https://orcid.org/0000-0003-3513-5362>), Lin Li [ctb], Bradley Jones [ctb], Justin Silverman [ctb], Watal M. Iwasaki [ctb], Yonghe Xia [ctb], Ruizhu Huang [ctb]",
+      "RemoteType": "bioconductor",
       "RemoteUrl": "https://github.com/bioc/ggtree",
       "RemoteRef": "RELEASE_3_23",
-      "RemoteSha": "c23145ee8ead5375fb7423f961683485cb7c0a57",
-      "NeedsCompilation": "no",
-      "Author": "Guangchuang Yu [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-6485-8781>), Tommy Tsan-Yuk Lam [aut, ths], Shuangbin Xu [aut] (ORCID: <https://orcid.org/0000-0003-3513-5362>), Lin Li [ctb], Bradley Jones [ctb], Justin Silverman [ctb], Watal M. Iwasaki [ctb], Yonghe Xia [ctb], Ruizhu Huang [ctb]"
+      "RemoteSha": "c23145ee8ead5375fb7423f961683485cb7c0a57"
     },
     "glue": {
       "Package": "glue",
@@ -4930,15 +4932,17 @@
     },
     "rgbif": {
       "Package": "rgbif",
-      "Version": "3.8.5",
-      "Source": "Repository",
+      "Version": "3.9.0",
+      "Source": "GitHub",
       "Title": "Interface to the Global Biodiversity Information Facility API",
       "Description": "A programmatic interface to the Web Service methods provided by the Global Biodiversity Information Facility (GBIF; <https://www.gbif.org/developer/summary>). GBIF is a database of species occurrence records from sources all over the globe. rgbif includes functions for searching for taxonomic names, retrieving information on data providers, getting species occurrence records, getting counts of occurrence records, and using the GBIF tile map service to make rasters summarizing huge amounts of data.",
       "License": "MIT + file LICENSE",
-      "Authors@R": "c( person(\"Scott\", \"Chamberlain\", role = \"aut\", comment = c(\"0000-0003-1444-9135\")), person(\"Damiano\", \"Oldoni\", role = \"aut\", comment = c(\"0000-0003-3445-7562\")), person(\"Vijay\", \"Barve\", role = \"ctb\", comment = c(\"0000-0002-4852-2567\")), person(\"Peter\", \"Desmet\", role = \"ctb\", comment = c(\"0000-0002-8442-8025\")), person(\"Laurens\", \"Geffert\", role = \"ctb\"), person(\"Dan\", \"Mcglinn\", role = \"ctb\", comment = c(\"0000-0003-2359-3526\")), person(\"Karthik\", \"Ram\", role = \"ctb\", comment = c(\"0000-0002-0233-1757\")), person(given = \"rOpenSci\", role = \"fnd\", comment = c(\"019jywm96\")), person(\"John\",\"Waller\", role = c(\"aut\", \"cre\"), email = \"jwaller@gbif.org\", comment = c(\"0000-0002-7302-5976\")) )",
+      "Authors@R": "c( person(\"Scott\", \"Chamberlain\", role = \"aut\", comment = c(ORCID = \"0000-0003-1444-9135\")), person(\"Damiano\", \"Oldoni\", role = \"aut\", comment = c(ORCID = \"0000-0003-3445-7562\")), person(\"Vijay\", \"Barve\", role = \"ctb\", comment = c(ORCID = \"0000-0002-4852-2567\")), person(\"Peter\", \"Desmet\", role = \"ctb\", comment = c(ORCID = \"0000-0002-8442-8025\")), person(\"Laurens\", \"Geffert\", role = \"ctb\"), person(\"Dan\", \"Mcglinn\", role = \"ctb\", comment = c(ORCID = \"0000-0003-2359-3526\")), person(\"Karthik\", \"Ram\", role = \"ctb\", comment = c(ORCID = \"0000-0002-0233-1757\")), person(given = \"rOpenSci\", role = \"fnd\", comment = \"https://ror.org/019jywm96\"), person(\"John\",\"Waller\", role = c(\"aut\", \"cre\"), email = \"jwaller@gbif.org\", comment = c(ORCID = \"0000-0002-7302-5976\")) )",
       "URL": "https://github.com/ropensci/rgbif (devel), https://docs.ropensci.org/rgbif/ (documentation)",
       "BugReports": "https://github.com/ropensci/rgbif/issues",
+      "LazyData": "true",
       "LazyLoad": "true",
+      "Roxygen": "list(markdown = TRUE)",
       "Encoding": "UTF-8",
       "Language": "en-US",
       "Imports": [
@@ -4971,10 +4975,14 @@
       "X-schema.org-applicationCategory": "Biodiversity",
       "X-schema.org-keywords": "GBIF, specimens, API, web-services, occurrences, species, taxonomy",
       "X-schema.org-isPartOf": "https://ropensci.org",
-      "NeedsCompilation": "no",
-      "Author": "Scott Chamberlain [aut] (0000-0003-1444-9135), Damiano Oldoni [aut] (0000-0003-3445-7562), Vijay Barve [ctb] (0000-0002-4852-2567), Peter Desmet [ctb] (0000-0002-8442-8025), Laurens Geffert [ctb], Dan Mcglinn [ctb] (0000-0003-2359-3526), Karthik Ram [ctb] (0000-0002-0233-1757), rOpenSci [fnd] (019jywm96), John Waller [aut, cre] (0000-0002-7302-5976)",
+      "Author": "Scott Chamberlain [aut] (ORCID: <https://orcid.org/0000-0003-1444-9135>), Damiano Oldoni [aut] (ORCID: <https://orcid.org/0000-0003-3445-7562>), Vijay Barve [ctb] (ORCID: <https://orcid.org/0000-0002-4852-2567>), Peter Desmet [ctb] (ORCID: <https://orcid.org/0000-0002-8442-8025>), Laurens Geffert [ctb], Dan Mcglinn [ctb] (ORCID: <https://orcid.org/0000-0003-2359-3526>), Karthik Ram [ctb] (ORCID: <https://orcid.org/0000-0002-0233-1757>), rOpenSci [fnd] (https://ror.org/019jywm96), John Waller [aut, cre] (ORCID: <https://orcid.org/0000-0002-7302-5976>)",
       "Maintainer": "John Waller <jwaller@gbif.org>",
-      "Repository": "CRAN"
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "ropensci",
+      "RemoteRepo": "rgbif",
+      "RemoteRef": "v3.9.0",
+      "RemoteSha": "97a0c96959d2cae9768acaad7c7a2fee830b4df8"
     },
     "rglobi": {
       "Package": "rglobi",
@@ -6302,13 +6310,14 @@
       "biocViews": "Software, Annotation, Clustering, DataImport, DataRepresentation, Alignment, MultipleSequenceAlignment, Phylogenetics",
       "RoxygenNote": "7.3.2",
       "Config/pak/sysreqs": "cmake make libicu-dev libuv1-dev",
-      "Repository": "https://bioc-release.r-universe.dev",
-      "RemoteUrl": "https://github.com/bioc/treeio",
-      "RemoteRef": "RELEASE_3_23",
-      "RemoteSha": "098376fd6461b23a97dbe4a91f4e366c3e934db9",
+      "Repository": "Bioconductor 3.23",
       "NeedsCompilation": "no",
       "Author": "Guangchuang Yu [aut, cre] (ORCID: <https://orcid.org/0000-0002-6485-8781>), Tommy Tsan-Yuk Lam [ctb, ths], Shuangbin Xu [ctb] (ORCID: <https://orcid.org/0000-0003-3513-5362>), Bradley Jones [ctb], Casey Dunn [ctb], Tyler Bradley [ctb], Konstantinos Geles [ctb]",
-      "Maintainer": "Guangchuang Yu <guangchuangyu@gmail.com>"
+      "Maintainer": "Guangchuang Yu <guangchuangyu@gmail.com>",
+      "RemoteType": "bioconductor",
+      "RemoteUrl": "https://github.com/bioc/treeio",
+      "RemoteRef": "RELEASE_3_23",
+      "RemoteSha": "098376fd6461b23a97dbe4a91f4e366c3e934db9"
     },
     "triebeard": {
       "Package": "triebeard",
@@ -6702,7 +6711,8 @@
       ],
       "RoxygenNote": "6.1.1",
       "NeedsCompilation": "no",
-      "Repository": "CRAN"
+      "Repository": "RSPM",
+      "Encoding": "UTF-8"
     },
     "wikitaxa": {
       "Package": "wikitaxa",
@@ -7016,7 +7026,8 @@
       "NeedsCompilation": "yes",
       "Author": "Achim Zeileis [aut, cre] (ORCID: <https://orcid.org/0000-0003-0918-3766>), Gabor Grothendieck [aut], Jeffrey A. Ryan [aut], Joshua M. Ulrich [ctb], Felix Andrews [ctb]",
       "Maintainer": "Achim Zeileis <Achim.Zeileis@R-project.org>",
-      "Repository": "CRAN"
+      "Repository": "RSPM",
+      "Encoding": "UTF-8"
     }
   }
 }
