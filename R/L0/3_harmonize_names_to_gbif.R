@@ -539,7 +539,7 @@ crosswalk <- taxa_apply_gbif_manual_matches(
   "./R/L0/3_gbif_manual_matches.csv"
 )
 
-crosswalk_new <- crosswalk
+write.csv(crosswalk, "./R/L0/3_metanetwork_gbif_crosswalk.csv", row.names = F)
 
 # taxa_count_avilist_matches <- function(crosswalk, avilist_2025) {
 #   avilist_combined <-
@@ -562,10 +562,6 @@ crosswalk_new <- crosswalk
 #       )
 #     )
 # }
-
-# crosswalk_new$query_name[
-#   crosswalk_new$query_name == "Cynanthus auriceps)"
-# ] <- "Cynanthus auriceps"
 
 # avilist_2025 <- avilistr::avilist_2025
 
