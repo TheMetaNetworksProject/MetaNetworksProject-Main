@@ -11,12 +11,12 @@
 #                       there, not here).
 #                   (2) a standardized checklist object from a checklist_load_*()
 #                       adapter below (default: AviList v2025 via avilistr).
-#                   (3) an optional aux_checklist_manual_matches.csv correction
+#                   (3) an optional 4_checklist_manual_matches.csv correction
 #                       CSV (created by this script, edited by hand, re-read
 #                       on the next run).
 # DATA OUTPUT:      one crosswalk data.frame: MetaNetworks name x GBIF match x
 #                   <checklist> match, with a method column per hop and a
-#                   resolved taxonomic hierarchy. aux_checklist_manual_matches.csv
+#                   resolved taxonomic hierarchy. 4_checklist_manual_matches.csv
 #                   (review template / correction registry for the checklist
 #                   hop, written to disk).
 # DATE:             initiated: 17 September 2026
@@ -85,6 +85,7 @@
 #                   reason -- nothing left in this script calls it directly.
 
 library(avilistr)
+library(tidyverse)
 
 # =============================================================================
 # DESIGN NOTES (read before editing)
@@ -684,7 +685,7 @@ checklist_crosswalk <- taxa_build_checklist_crosswalk(
 taxa_export_checklist_review_template(
   checklist_crosswalk,
   "avilist_2025",
-  "aux_checklist_manual_matches.csv"
+  "./R/L0/4_checklist_manual_matches.csv"
 )
 
 # ... fill in aux_checklist_manual_matches.csv by hand, then re-run with
@@ -693,7 +694,7 @@ checklist_crosswalk <- taxa_apply_checklist_manual_matches(
   checklist_crosswalk,
   avilist,
   "avilist_2025",
-  "aux_checklist_manual_matches.csv"
+  "./R/L0/4_checklist_manual_matches.csv"
 )
 
 # final columns of interest:
