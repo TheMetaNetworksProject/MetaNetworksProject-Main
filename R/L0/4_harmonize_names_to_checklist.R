@@ -671,8 +671,8 @@ taxa_apply_checklist_manual_matches <- function(
 # taxa_apply_gbif_manual_matches()) all happens in harmonize_names_to_gbif.R
 # now. Nothing here should be rebuilding or re-correcting the GBIF hop.
 #
-# gbif_crosswalk <- ...   # from harmonize_names_to_gbif.R, already reviewed
-#
+gbif_crosswalk <- read.csv("./R/L0/3_metanetwork_gbif_crosswalk.csv") # from harmonize_names_to_gbif.R, already reviewed
+
 avilist <- checklist_load_avilist()
 
 checklist_crosswalk <- taxa_build_checklist_crosswalk(
