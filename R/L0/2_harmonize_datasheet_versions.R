@@ -822,7 +822,11 @@ harmonize_datasheet <- function(
   #    rather than patching each place downstream where two differently-typed
   #    versions of the same column collide.
   out <- read.csv(file, colClasses = "character") |>
-    mutate(source_file = basename(file), original_version = native_version)
+    mutate(
+      source_file = basename(file),
+      original_version = native_version,
+      source_row = row_number() + 1L
+    )
 
   # 2. Fix up whatever column-naming quirks are specific to this one schema,
   #    so it matches the shared canonical shape for its native version.
