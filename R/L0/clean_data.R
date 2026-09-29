@@ -1,746 +1,256 @@
-# TITLE:            [FILL IN]
+# TITLE:            Master cleaning script for the harmonized data frame
 # PROJECT:          AvianMetaNetwork
 # AUTHORS:          Kelly Kapsar
 # COLLABORATORS:    [FILL IN]
 # DATA INPUT:       The harmonized data frame `df` produced by
 #                   aux_harmonize_datasheet_versions.R (one row per
 #                   interaction record, tagged with source_file), plus
-#                   column_names.csv (schema definition with data_format and
-#                   mandatory_col flags) and aux_interaction_corrections.csv (known
-#                   interaction-type typos)
-# DATA OUTPUT:      (1) cleaned csv: harmonized data with standardized column
-#                       types and corrected typos/inconsistencies. Exclusion
-#                       is ROW-level: only rows missing a mandatory field are
-#                       dropped, not the whole file they came from.
-#                   (2) audit report csv: one row per source_file (wide
-#                       format), with a flag_<column> indicator for every
-#                       field that had at least one issue, an issue_summary
-#                       column, an overall status (OK / WARNING / ERROR),
-#                       and n_rows_excluded_error / excluded_rows_detail
-#                       showing exactly which rows were dropped and why
-# DATE:             initiated: 10 Aug 2026
-# OVERVIEW:         Runs AFTER harmonization, on the single combined data
-#                   frame -- not on raw per-file CSVs. All column names are
-#                   hardcoded to the unified taxa1_*/effect_tx*_on_tx*
-#                   naming, since by this point in the pipeline every file
-#                   has already been renamed to one consistent schema.
-#                   Cleaning steps (whitespace, numeric commas, taxon name
-#                   standardization, known-typo correction, lat/long
-#                   plausibility, type coercion) run first; every issue is
-#                   logged with source_file/column/row rather than silently
-#                   dropped. The mandatory-field check runs last, using
-#                   whatever is still NA at that point (whether originally
-#                   blank or NA'd out by a failed type coercion), and
-#                   determines which files get excluded from the cleaned
-#                   output and flagged ERROR in the audit report.
-# REQUIRES:         aux_harmonize_datasheet_versions.R must be run first
-#                   (this script expects `df` to already exist, with a
-#                   source_file column)
-# NOTES:            Whitespace TRIMMING and blank/"NA"-string handling is
-#                   already done by clean_na() inside
-#                   aux_harmonize_datasheet_versions.R -- this script only
-#                   adds what that doesn't do (collapsing internal double
-#                   spaces), rather than repeating the trim.
+#                   column_names.csv (schema with data_format and
+#                   mandatory_col flags) and aux_interaction_corrections.csv
+#                   (known interaction-type typos)
+# DATA OUTPUT:      (1) df_clean: the full data frame with `errors` and
+#                       `warnings` columns (nothing dropped)
+#                   (2) df_final: df_clean minus every row from any source
+#                       file with at least one error; those source files are
+#                       moved to taxa_flagged
+# DATE:             initiated: 10 Aug 2026; modularized 29 Sep 2026
+# OVERVIEW:         Orchestrates cleaning in this order:
+#                     1. basic text cleaning        (clean_data_basic.R)
+#                     2. column-specific cleaning   (clean_data_<column>.R)
+#                     3. validation and typing      (clean_data_basic.R)
+#                   then, as a separate step, move_flagged_files().
+#
+#                   Mandatory columns are passed in as a character vector.
+#                   Invalid values in a mandatory column are logged as
+#                   errors; invalid values in any other column are logged as
+#                   warnings. Only errors get a source file flagged.
+#
+#                   TO ADD A NEW COLUMN-SPECIFIC CLEANER:
+#                     1. write clean_data_<column>.R defining a function with
+#                        signature f(df, col, on_invalid = c("error",
+#                        "warning")) that returns df with notes appended to
+#                        `errors` / `warnings` (see add_note() in
+#                        clean_data_basic.R)
+#                     2. source() it below
+#                     3. add one line to `column_cleaners` in the run section
+# REQUIRES:         aux_harmonize_datasheet_versions.R (run first, so `df`
+#                   exists), clean_data_basic.R, clean_data_life_history.R
+# NOTES:            Run on fresh harmonizer output. Cleaners are not safe to
+#                   run twice on the same data frame (e.g. already-recoded
+#                   life history values would be flagged as unrecognized),
+#                   so assign to a new object (df_clean) instead of
+#                   overwriting df.
+
+source("./R/L0/clean_data_basic_formatting.R")
+source("./R/L0/clean_data_life_history.R")
 
 # ============================================================================
-# SETUP
+# MASTER CLEANING FUNCTION
 # ============================================================================
 
-# expects df to already be in the environment from:
-# source("./R/auxiliary_scripts/aux_harmonize_datasheet_versions.R")
-stopifnot(exists("df"), "source_file" %in% names(df))
-
-schema_path <- "./docs/interaction_metadata_schemas/column_names.csv"
-corrections_path <- "./R/L0/aux_interaction_corrections.csv"
-cleaned_output_path <- "./test_harmonized_output.csv"
-audit_report_path <- "./test_audit_report.csv"
-
-# ============================================================================
-# HELPER: issues log
-# ============================================================================
-
-#' Start an empty issues log with the standard columns
-#' @returns empty data frame: source_file, column, row, issue, detail
-empty_issues_log <- function() {
-  data.frame(
-    source_file = character(),
-    column = character(),
-    row = integer(),
-    issue = character(),
-    detail = character(),
-    stringsAsFactors = FALSE
-  )
-}
-
-# ============================================================================
-# CLEANING FUNCTIONS
-# Each takes the full harmonized df (with source_file column) and returns
-# list(data = <cleaned df>, issues = <issues log>). Row numbers in the log
-# are row indices into `df` itself; source_file for each logged issue is
-# looked up via df$source_file[row], so nothing needs to be run per-file.
-# ============================================================================
-
-#' Collapse internal double (or more) spaces in every character column
+#' Run all basic, then column-specific, cleaning on the harmonized data frame
 #'
-#' Leading/trailing trim and blank/"NA"-string handling already happened in
-#' clean_na() during harmonization -- this only handles what that doesn't:
-#' runs of 2+ spaces in the middle of a value.
-#' @param df harmonized data frame
-#' @returns list(data = cleaned df, issues = issues log)
-clean_collapse_spaces <- function(df) {
-  issues <- empty_issues_log()
-  char_cols <- names(df)[vapply(df, is.character, logical(1))]
-
-  for (col in char_cols) {
-    original <- df[[col]]
-    cleaned <- gsub(" {2,}", " ", original)
-
-    df[[col]] <- cleaned
-  }
-
-  list(data = df, issues = issues)
-}
-
-#' Strip thousands-separator commas from numeric-typed schema columns
-#'
-#' Only checks columns the schema says should be numeric/integer (e.g.
-#' effect_tx1_on_tx2, year, latitude), and only touches values that look
-#' unambiguously like a comma-grouped number (e.g. "1,234"). Runs before
-#' coerce_col_types() so those commas don't cause an otherwise-valid number
-#' to fail conversion.
-#' @param df harmonized data frame (numeric-typed columns still character
-#'   at this point)
-#' @param numeric_cols character vector of column names that should end up
-#'   numeric or integer, per the schema
-#' @returns list(data = cleaned df, issues = issues log)
-clean_numeric_commas <- function(df, numeric_cols) {
-  issues <- empty_issues_log()
-  pattern <- "^-?[0-9]{1,3}(,[0-9]{3})+(\\.[0-9]+)?$"
-
-  cols <- intersect(numeric_cols, names(df))
-  for (col in cols) {
-    if (!is.character(df[[col]])) {
-      next
-    }
-    vals <- df[[col]]
-    trimmed <- trimws(vals)
-    is_comma_number <- !is.na(vals) & grepl(pattern, trimmed)
-
-    if (any(is_comma_number)) {
-      rows <- which(is_comma_number)
-      issues <- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[rows],
-          column = col,
-          row = rows,
-          issue = "comma_stripped_from_number",
-          detail = NA_character_,
-          stringsAsFactors = FALSE
-        )
-      )
-      df[[col]][is_comma_number] <- gsub(",", "", trimmed[is_comma_number])
-    }
-  }
-
-  list(data = df, issues = issues)
-}
-
-#' Standardize taxa1/taxa2 scientific and common name columns
-#'
-#' Hardcoded to taxa1_scientific/taxa2_scientific/taxa1_common/taxa2_common
-#' -- safe now that every row has already been renamed to this naming
-#' during harmonization.
-#'   - fixes missing space after "unid." (e.g. "unid.duck" -> "unid. duck")
-#'   - standardizes "spp." to "sp."
-#'   - sentence-cases scientific names (except entries starting "unid.")
-#'   - title-cases common names
-#' @param df harmonized data frame
-#' @returns list(data = cleaned df, issues = issues log)
-standardize_taxon_names <- function(df) {
-  issues <- empty_issues_log()
-  sci_cols <- intersect(c("taxa1_scientific", "taxa2_scientific"), names(df))
-  common_cols <- intersect(c("taxa1_common", "taxa2_common"), names(df))
-
-  for (col in sci_cols) {
-    original <- df[[col]]
-    x <- original
-    x <- gsub("(?i)unid\\.(?=[A-Za-z])", "unid. ", x, perl = TRUE)
-    x <- gsub("\\bspp\\.", "sp.", x)
-
-    non_na <- !is.na(x)
-    is_unid <- non_na & grepl("(?i)^unid\\.", x)
-    to_sentence <- non_na & !is_unid
-    if (any(to_sentence)) {
-      v <- x[to_sentence]
-      x[to_sentence] <- paste0(
-        toupper(substring(v, 1, 1)),
-        tolower(substring(v, 2))
-      )
-    }
-    x <- gsub(" {2,}", " ", x)
-
-    changed <- which(!is.na(original) & !is.na(x) & original != x)
-    if (length(changed)) {
-      issues <- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[changed],
-          column = col,
-          row = changed,
-          issue = "scientific_name_standardized",
-          detail = NA_character_,
-          stringsAsFactors = FALSE
-        )
-      )
-    }
-    df[[col]] <- x
-  }
-
-  for (col in common_cols) {
-    original <- df[[col]]
-    x <- original
-    x <- gsub("(?i)unid[. ]+", "unid. ", x, perl = TRUE)
-    x <- gsub(" {2,}", " ", x)
-
-    non_na <- !is.na(x)
-    if (any(non_na)) {
-      words <- strsplit(x[non_na], " ")
-      x[non_na] <- vapply(
-        words,
-        function(w) {
-          paste(
-            toupper(substring(w, 1, 1)),
-            tolower(substring(w, 2)),
-            sep = "",
-            collapse = " "
-          )
-        },
-        character(1)
-      )
-    }
-
-    changed <- which(!is.na(original) & !is.na(x) & original != x)
-    if (length(changed)) {
-      issues <- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[changed],
-          column = col,
-          row = changed,
-          issue = "common_name_standardized",
-          detail = NA_character_,
-          stringsAsFactors = FALSE
-        )
-      )
-    }
-    df[[col]] <- x
-  }
-
-  list(data = df, issues = issues)
-}
-
-#' Correct known typos in the interaction column using a lookup table
-#' @param df harmonized data frame
-#' @param corrections data frame with columns "incorrect" and "correct"
-#' @returns list(data = cleaned df, issues = issues log)
-correct_known_typos <- function(df, corrections) {
-  issues <- empty_issues_log()
-  if (!"interaction" %in% names(df)) {
-    return(list(data = df, issues = issues))
-  }
-
-  original <- df$interaction
-  lookup_key <- tolower(trimws(original))
-  match_idx <- match(lookup_key, tolower(trimws(corrections$incorrect)))
-  has_correction <- !is.na(match_idx)
-
-  cleaned <- original
-  cleaned[has_correction] <- corrections$correct[match_idx[has_correction]]
-
-  changed <- which(has_correction)
-  if (length(changed)) {
-    issues <- rbind(
-      issues,
-      data.frame(
-        source_file = df$source_file[changed],
-        column = "interaction",
-        row = changed,
-        issue = "typo_corrected",
-        detail = original[changed],
-        stringsAsFactors = FALSE
-      )
-    )
-  }
-  df$interaction <- cleaned
-
-  list(data = df, issues = issues)
-}
-
-#' Flag rows where source_url_backfilled was set during harmonization
-#'
-#' aux_harmonize_datasheet_versions.R's reshape_sources() backfills a blank
-#' sourceB/C/D_URL from sourceA_URL when the paired notes column has
-#' content but the URL doesn't. That substitution is data-affecting, so it
-#' gets logged here into the audit trail rather than passing through
-#' silently. The helper column itself is dropped from `data` afterward --
-#' it's bookkeeping for the audit, not part of the output schema.
-#' @param df harmonized data frame (must have a source_url_backfilled
-#'   logical column if reshape_sources() was used upstream; a no-op
-#'   otherwise)
-#' @returns list(data = df with source_url_backfilled column removed,
-#'   issues = issues log)
-flag_backfilled_urls <- function(df) {
-  issues <- empty_issues_log()
-  if (!"source_url_backfilled" %in% names(df)) {
-    return(list(data = df, issues = issues))
-  }
-
-  backfilled <- which(df$source_url_backfilled)
-  if (length(backfilled)) {
-    issues <- rbind(
-      issues,
-      data.frame(
-        source_file = df$source_file[backfilled],
-        column = "source_URL",
-        row = backfilled,
-        issue = "source_url_backfilled_from_sourceA",
-        detail = NA_character_,
-        stringsAsFactors = FALSE
-      )
-    )
-  }
-  df$source_url_backfilled <- NULL
-
-  list(data = df, issues = issues)
-}
-
-#' Flag implausible latitude/longitude values
-#'
-#' Runs BEFORE coerce_col_types(), while values are still the original
-#' strings -- DMS-formatted values need to be caught here, since after
-#' numeric coercion they'd already be NA and this function would have
-#' nothing left to inspect. Does not attempt to auto-convert DMS to decimal
-#' degrees; flags for manual review instead.
-#' @param df harmonized data frame (latitude/longitude still character)
-#' @returns list(data = df unchanged, issues = issues log)
-validate_latlon <- function(df) {
-  issues <- empty_issues_log()
-  dms_pattern <- "[\u00b0'\"]|\\bN\\b|\\bS\\b|\\bE\\b|\\bW\\b"
-
-  check_one <- function(col, bound) {
-    if (!col %in% names(df)) {
-      return(invisible(NULL))
-    }
-    vals <- trimws(df[[col]])
-    non_na <- !is.na(vals)
-
-    looks_dms <- non_na & grepl(dms_pattern, vals)
-    if (any(looks_dms)) {
-      rows <- which(looks_dms)
-      issues <<- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[rows],
-          column = col,
-          row = rows,
-          issue = "latlon_looks_like_dms_not_decimal",
-          detail = vals[rows],
-          stringsAsFactors = FALSE
-        )
-      )
-    }
-
-    numeric_vals <- suppressWarnings(as.numeric(vals))
-    not_numeric <- non_na & !looks_dms & is.na(numeric_vals)
-    if (any(not_numeric)) {
-      rows <- which(not_numeric)
-      issues <<- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[rows],
-          column = col,
-          row = rows,
-          issue = "latlon_not_numeric",
-          detail = vals[rows],
-          stringsAsFactors = FALSE
-        )
-      )
-    }
-
-    out_of_range <- non_na &
-      !is.na(numeric_vals) &
-      (numeric_vals < -bound | numeric_vals > bound)
-    if (any(out_of_range)) {
-      rows <- which(out_of_range)
-      issues <<- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[rows],
-          column = col,
-          row = rows,
-          issue = "latlon_out_of_range",
-          detail = vals[rows],
-          stringsAsFactors = FALSE
-        )
-      )
-    }
-  }
-
-  check_one("latitude", 90)
-  check_one("longitude", 180)
-
-  list(data = df, issues = issues)
-}
-
-#' Coerce every schema column to its declared data_format
-#'
-#' Runs LAST among the cleaning steps, after commas are stripped and lat/
-#' long DMS values are already flagged. For numeric/integer columns, any
-#' value that had real content but fails to parse is logged (with the
-#' original value in `detail`) rather than silently becoming NA -- that
-#' logged NA is exactly what check_mandatory_fields() picks up next if the
-#' column happens to be mandatory.
-#' @param df harmonized data frame
+#' Phase order matters:
+#'   1. text cleaning first, so column-specific cleaners see tidy strings
+#'   2. column-specific cleaners next, while values are still the original
+#'      strings (type coercion would break string recoding)
+#'   3. lat/long validation, type coercion, and the mandatory-field check
+#'      last, so NAs filled in by cleaners aren't flagged as missing
+#' @param df harmonized data frame (must have a source_file column)
 #' @param schema data frame from column_names.csv (columns: column_name,
 #'   data_format, ...)
-#' @returns list(data = type-coerced df, issues = issues log)
-coerce_col_types <- function(df, schema) {
-  issues <- empty_issues_log()
-
-  for (i in seq_len(nrow(schema))) {
-    col <- schema$column_name[i]
-    fmt <- schema$data_format[i]
-    if (!col %in% names(df)) {
-      next
-    }
-
-    original <- df[[col]]
-
-    converted <- switch(
-      fmt,
-      integer = suppressWarnings(as.integer(original)),
-      numeric = suppressWarnings(as.numeric(original)),
-      factor = as.factor(original),
-      character = as.character(original),
-      original
-    )
-
-    if (fmt %in% c("integer", "numeric")) {
-      lost <- !is.na(original) & is.na(converted)
-      if (any(lost)) {
-        rows <- which(lost)
-        issues <- rbind(
-          issues,
-          data.frame(
-            source_file = df$source_file[rows],
-            column = col,
-            row = rows,
-            issue = "type_coercion_failed",
-            detail = original[rows],
-            stringsAsFactors = FALSE
-          )
-        )
-      }
-    }
-
-    df[[col]] <- converted
-  }
-
-  list(data = df, issues = issues)
-}
-
-# ============================================================================
-# MANDATORY FIELD AUDIT
-# ============================================================================
-
-#' Flag rows with a blank mandatory field
-#'
-#' Checks whatever is NA at this point in the pipeline -- whether it was
-#' originally blank in the raw data, or became NA via a failed type
-#' coercion above. Both are equally "missing" from an ERROR standpoint.
-#' @param df cleaned + type-coerced data frame
-#' @param mandatory_cols character vector of column names flagged
-#'   mandatory_col == "x" in column_names.csv
-#' @returns issues log (no `data` element -- this function doesn't modify df)
-check_mandatory_fields <- function(df, mandatory_cols) {
-  issues <- empty_issues_log()
-  cols <- intersect(mandatory_cols, names(df))
-
-  for (col in cols) {
-    missing <- is.na(df[[col]])
-    if (any(missing)) {
-      rows <- which(missing)
-      issues <- rbind(
-        issues,
-        data.frame(
-          source_file = df$source_file[rows],
-          column = col,
-          row = rows,
-          issue = "missing_mandatory_field",
-          detail = NA_character_,
-          stringsAsFactors = FALSE
-        )
-      )
-    }
-  }
-
-  issues
-}
-
-# ============================================================================
-# AUDIT REPORT (wide, one row per file) + OUTPUT WRITING
-# ============================================================================
-
-#' Summarize which rows were excluded for missing mandatory fields, per file
-#'
-#' Produces one row per affected source_file with a count of excluded rows
-#' and a human-readable detail string listing each excluded row and which
-#' mandatory column(s) were missing on it, e.g. "row 45: taxa1_scientific;
-#' row 112: interaction, effect_tx2_on_tx1". Row numbers refer to the
-#' position in the harmonized data frame at the time this audit ran, not
-#' the original raw CSV's line number.
-#' @param mandatory_issues subset of the issues log where
-#'   issue == "missing_mandatory_field"
-#' @returns data frame: source_file, n_rows_excluded_error,
-#'   excluded_rows_detail
-summarize_excluded_rows <- function(mandatory_issues) {
-  if (nrow(mandatory_issues) == 0) {
-    return(data.frame(
-      source_file = character(),
-      n_rows_excluded_error = integer(),
-      excluded_rows_detail = character(),
-      stringsAsFactors = FALSE
-    ))
-  }
-
-  per_row <- aggregate(
-    column ~ source_file + row,
-    data = mandatory_issues,
-    FUN = function(x) paste(unique(x), collapse = ", ")
-  )
-
-  per_file <- do.call(
-    rbind,
-    lapply(split(per_row, per_row$source_file), function(d) {
-      d <- d[order(d$row), ]
-      data.frame(
-        source_file = unique(d$source_file),
-        n_rows_excluded_error = nrow(d),
-        excluded_rows_detail = paste0(
-          "row ",
-          d$row,
-          ": ",
-          d$column,
-          collapse = "; "
-        ),
-        stringsAsFactors = FALSE
-      )
-    })
-  )
-  rownames(per_file) <- NULL
-  per_file
-}
-
-#' Build the wide-format, one-row-per-file audit report
-#'
-#' status is ERROR if the file has any missing_mandatory_field issue,
-#' WARNING if it has any other issue but no ERROR, OK otherwise. Note that
-#' ERROR here means "this file had at least one row excluded" -- exclusion
-#' itself is row-level (see write_clean_audit_outputs()), not file-level,
-#' so an ERROR file can still contribute its non-excluded rows to the
-#' cleaned output. n_rows_excluded_error and excluded_rows_detail make
-#' that row-level detail visible per file rather than collapsing it into a
-#' single ERROR flag. A flag_<column> column is added for every column
-#' that had at least one issue anywhere in the data, with a count of
-#' affected rows for that file.
-#' @param df cleaned + type-coerced data frame (for row counts)
-#' @param all_issues combined issues log from every cleaning step
-#'   (including check_mandatory_fields())
-#' @returns data frame, one row per source_file
-build_audit_report <- function(df, all_issues) {
-  file_list <- unique(df$source_file)
-  n_rows <- as.data.frame(table(df$source_file), stringsAsFactors = FALSE)
-  names(n_rows) <- c("source_file", "n_rows")
-
-  if (nrow(all_issues) == 0) {
-    flags <- data.frame(source_file = file_list, stringsAsFactors = FALSE)
-  } else {
-    tab <- table(all_issues$source_file, paste0("flag_", all_issues$column))
-    flags <- as.data.frame.matrix(tab)
-    flags$source_file <- rownames(flags)
-    rownames(flags) <- NULL
-
-    missing_files <- setdiff(file_list, flags$source_file)
-    if (length(missing_files)) {
-      filler <- as.data.frame(matrix(
-        0,
-        nrow = length(missing_files),
-        ncol = ncol(flags) - 1,
-        dimnames = list(NULL, setdiff(names(flags), "source_file"))
-      ))
-      filler$source_file <- missing_files
-      flags <- rbind(flags, filler)
-    }
-  }
-
-  mandatory_issues <- all_issues[
-    all_issues$issue == "missing_mandatory_field",
-  ]
-  error_files <- unique(mandatory_issues$source_file)
-  warning_files <- unique(all_issues$source_file)
-
-  base <- data.frame(source_file = file_list, stringsAsFactors = FALSE)
-  base$status <- ifelse(
-    base$source_file %in% error_files,
-    "ERROR",
-    ifelse(base$source_file %in% warning_files, "WARNING", "OK")
-  )
-  base$issue_summary <- vapply(
-    base$source_file,
-    function(f) {
-      f_issues <- unique(all_issues$issue[all_issues$source_file == f])
-      paste(f_issues, collapse = "; ")
-    },
-    character(1)
-  )
-
-  excluded_detail <- summarize_excluded_rows(mandatory_issues)
-
-  report <- merge(base, n_rows, by = "source_file", all.x = TRUE)
-  report <- merge(report, excluded_detail, by = "source_file", all.x = TRUE)
-  report$n_rows_excluded_error[is.na(report$n_rows_excluded_error)] <- 0L
-  report$excluded_rows_detail[is.na(report$excluded_rows_detail)] <- ""
-  report <- merge(report, flags, by = "source_file", all.x = TRUE)
-
-  status_order <- match(report$status, c("ERROR", "WARNING", "OK"))
-  report <- report[order(status_order, report$source_file), ]
-
-  front_cols <- c(
-    "source_file",
-    "n_rows",
-    "status",
-    "issue_summary",
-    "n_rows_excluded_error",
-    "excluded_rows_detail"
-  )
-  report[, c(front_cols, setdiff(names(report), front_cols))]
-}
-
-#' Exclude rows missing a mandatory field and write the two output CSVs
-#'
-#' Exclusion is ROW-level, not file-level: only the specific rows flagged
-#' missing_mandatory_field are dropped from the cleaned output. A file with
-#' one bad row still contributes its other, valid rows -- the file's
-#' ERROR status in the report (see build_audit_report()) flags that it had
-#' exclusions, without discarding data that was actually fine.
-#' @param df cleaned + type-coerced data frame
-#' @param all_issues combined issues log from every cleaning step
-#'   (including check_mandatory_fields())
-#' @param report audit report from build_audit_report()
-#' @param cleaned_output_path file path to write the cleaned csv to
-#' @param audit_report_path file path to write the audit report csv to
-#' @returns invisibly, the cleaned data frame that was written
-write_clean_audit_outputs <- function(
+#' @param corrections data frame with columns "incorrect" and "correct"
+#' @param mandatory_cols character vector of mandatory column names; invalid
+#'   values in these are errors, in all other columns warnings
+#' @param column_cleaners named list: names are column names, values are
+#'   cleaning functions with signature f(df, col, on_invalid)
+#' @returns full data frame with `errors` and `warnings` columns; no rows
+#'   are dropped
+clean_data <- function(
   df,
-  all_issues,
-  report,
-  cleaned_output_path,
-  audit_report_path
+  schema,
+  corrections,
+  mandatory_cols,
+  column_cleaners
 ) {
-  excluded_rows <- unique(all_issues$row[
-    all_issues$issue == "missing_mandatory_field"
-  ])
-  cleaned_df <- if (length(excluded_rows)) df[-excluded_rows, ] else df
-
-  write.csv(
-    cleaned_df,
-    cleaned_output_path,
-    row.names = FALSE,
-    fileEncoding = "UTF-8"
-  )
-  write.csv(
-    report,
-    audit_report_path,
-    row.names = FALSE,
-    fileEncoding = "UTF-8"
-  )
-
-  invisible(cleaned_df)
-}
-
-# ============================================================================
-# DRIVER
-# ============================================================================
-
-#' Run the full clean + audit stage on the harmonized data frame
-#' @param df harmonized data frame (from aux_harmonize_datasheet_versions.R)
-#' @param schema_path path to column_names.csv
-#' @param corrections_path path to aux_interaction_corrections.csv
-#' @param cleaned_output_path file path to write the cleaned csv to
-#' @param audit_report_path file path to write the audit report csv to
-#' @returns list(data = final cleaned df, issues = full issues log,
-#'   report = audit report)
-run_clean_and_audit <- function(
-  df,
-  schema_path,
-  corrections_path,
-  cleaned_output_path,
-  audit_report_path
-) {
-  schema <- read.csv(schema_path, stringsAsFactors = FALSE)
-  schema <- schema[!is.na(schema$column_name), ]
-
-  mandatory_cols <- schema$column_name[
-    !is.na(schema$mandatory_col) & schema$mandatory_col == "x"
-  ]
+  stopifnot("source_file" %in% names(df))
   numeric_cols <- schema$column_name[
     schema$data_format %in% c("numeric", "integer")
   ]
 
-  corrections <- read.csv(corrections_path, stringsAsFactors = FALSE)
+  df <- init_note_cols(df)
 
-  r1 <- clean_collapse_spaces(df)
-  r2 <- clean_numeric_commas(r1$data, numeric_cols)
-  r3 <- standardize_taxon_names(r2$data)
-  r4 <- correct_known_typos(r3$data, corrections)
-  r5 <- flag_backfilled_urls(r4$data)
-  r6 <- validate_latlon(r5$data)
-  r7 <- coerce_col_types(r6$data, schema)
-  mandatory_issues <- check_mandatory_fields(r7$data, mandatory_cols)
+  # 1. basic text cleaning
+  df <- clean_collapse_spaces(df)
+  df <- clean_numeric_commas(df, numeric_cols)
+  df <- standardize_taxon_names(df)
+  df <- correct_known_typos(df, corrections)
+  df <- flag_backfilled_urls(df)
 
-  all_issues <- do.call(
-    rbind,
-    list(
-      r1$issues,
-      r2$issues,
-      r3$issues,
-      r4$issues,
-      r5$issues,
-      r6$issues,
-      r7$issues,
-      mandatory_issues
+  # 2. column-specific cleaning
+  for (col in names(column_cleaners)) {
+    if (!col %in% names(df)) {
+      stop(
+        "Column-specific cleaner registered for '",
+        col,
+        "' but df has no such column"
+      )
+    }
+    df <- column_cleaners[[col]](
+      df,
+      col = col,
+      on_invalid = on_invalid_for(col, mandatory_cols)
     )
-  )
+  }
 
-  report <- build_audit_report(r7$data, all_issues)
-  cleaned <- write_clean_audit_outputs(
-    r7$data,
-    all_issues,
-    report,
-    cleaned_output_path,
-    audit_report_path
-  )
+  # 3. validation and typing
+  df <- validate_latlon(df, mandatory_cols)
+  df <- coerce_col_types(df, schema, mandatory_cols)
+  df <- check_mandatory_fields(df, mandatory_cols)
 
-  list(data = cleaned, issues = all_issues, report = report)
+  df
 }
 
-result <- run_clean_and_audit(
+# ============================================================================
+# MOVE FLAGGED FILES
+# ============================================================================
+
+#' Move source files with at least one error into taxa_flagged
+#'
+#' Any file with a non-NA `errors` value in at least one row is moved out of
+#' its current folder into `flagged_dir`, and ALL of its rows are removed
+#' from the data frame. Files with only warnings are left alone. Every file
+#' is located before anything is moved, so a missing file stops the function
+#' with nothing moved.
+#'
+#' Note: the file is moved as-is (unmodified). The error messages live only
+#' in the returned `flagged` data frame, not in the moved csv.
+#'
+#' `flagged` has one row per unique combination of source file, row number,
+#' and error message. If `df` has a `row_col` column (source_row, stamped in
+#' harmonize_datasheet() before any rows are dropped or reshaped), that is
+#' the row number reported. Otherwise it falls back to the row's position
+#' within its source file in `df`, which shifts if anything upstream removed
+#' rows and requires that df hasn't been filtered or reordered. Messages are
+#' split on "; " only where the next piece starts with "<column>: ", so
+#' values that themselves contain "; " stay intact.
+#' @param df cleaned data frame from clean_data() (needs `errors` and the
+#'   file column)
+#' @param source_dirs character vector of folders the source files might be
+#'   in (e.g. taxa_to_check and taxa_checked_raw)
+#' @param flagged_dir folder to move flagged files into (taxa_flagged)
+#' @param file_col name of the column holding the source file name
+#' @param row_col name of the column holding each row's original row number
+#'   in its source file; if not in df, position within file is used instead
+#' @returns list(data = df without rows from flagged files,
+#'   flagged = data frame with columns source_file, row, error)
+move_flagged_files <- function(
   df,
-  schema_path = schema_path,
-  corrections_path = corrections_path,
-  cleaned_output_path = cleaned_output_path,
-  audit_report_path = audit_report_path
+  source_dirs,
+  flagged_dir,
+  file_col = "source_file",
+  row_col = "source_row"
+) {
+  stopifnot(file_col %in% names(df), "errors" %in% names(df))
+
+  flagged_files <- unique(df[[file_col]][!is.na(df$errors)])
+  in_flagged <- df[[file_col]] %in% flagged_files
+
+  # one row per (file, row within file, individual error message)
+  if (row_col %in% names(df)) {
+    row_in_file <- df[[row_col]]
+  } else {
+    row_in_file <- ave(seq_len(nrow(df)), df[[file_col]], FUN = seq_along)
+  }
+  error_rows <- which(!is.na(df$errors))
+  messages <- strsplit(
+    df$errors[error_rows],
+    "; (?=[A-Za-z0-9_]+: )",
+    perl = TRUE
+  )
+  flagged <- data.frame(
+    source_file = rep(df[[file_col]][error_rows], lengths(messages)),
+    row = rep(row_in_file[error_rows], lengths(messages)),
+    error = as.character(unlist(messages)),
+    stringsAsFactors = FALSE
+  )
+  flagged <- unique(flagged)
+  flagged <- flagged[order(flagged$source_file, flagged$row), ]
+  rownames(flagged) <- NULL
+
+  if (length(flagged_files) > 0) {
+    # locate every file first
+    from <- character(length(flagged_files))
+    for (i in seq_along(flagged_files)) {
+      candidates <- file.path(source_dirs, basename(flagged_files[i]))
+      found <- candidates[file.exists(candidates)]
+      if (length(found) != 1) {
+        stop(
+          length(found),
+          " copies of '",
+          flagged_files[i],
+          "' found in source_dirs (expected exactly 1)"
+        )
+      }
+      from[i] <- found
+    }
+
+    # then move them
+    #   dir.create(flagged_dir, showWarnings = FALSE, recursive = TRUE)
+    #   for (i in seq_along(flagged_files)) {
+    #     to <- file.path(flagged_dir, basename(flagged_files[i]))
+    #     if (!file.copy(from[i], to, overwrite = TRUE)) {
+    #       stop("Could not copy '", from[i], "' to '", to, "'")
+    #     }
+    #     file.remove(from[i])
+    #   }
+    #   message("Moved ", length(flagged_files), " file(s) to ", flagged_dir)
+  }
+
+  list(data = df[!in_flagged, ], flagged = flagged)
+}
+
+# ============================================================================
+# RUN
+# ============================================================================
+
+# paths -- adjust to your folder layout
+schema_path <- "./docs/interaction_metadata_schemas/column_names.csv"
+corrections_path <- "./R/L0/aux_interaction_corrections.csv"
+source_dirs <- c(
+  "../MetaNetworksProject-Working/L0/taxa_to_check",
+  "../MetaNetworksProject-Working/L0/taxa_checked_raw"
 )
-df_clean <- result$data
-audit <- result$report
+flagged_dir <- "../MetaNetworksProject-Working/L0/taxa_flagged"
+
+# expects df from source("./R/auxiliary_scripts/aux_harmonize_datasheet_versions.R")
+stopifnot(exists("df"))
+
+schema <- read.csv(schema_path, stringsAsFactors = FALSE)
+schema <- schema[!is.na(schema$column_name), ]
+corrections <- read.csv(corrections_path, stringsAsFactors = FALSE)
+
+mandatory_cols <- schema$column_name[
+  !is.na(schema$mandatory_col) & schema$mandatory_col == "x"
+]
+
+# one line per column-specific cleaner: column name = cleaning function
+column_cleaners <- list(
+  tx1_life_history_season = standardize_life_history_season
+)
+
+df_clean <- clean_data(
+  df,
+  schema = schema,
+  corrections = corrections,
+  mandatory_cols = mandatory_cols,
+  column_cleaners = column_cleaners
+)
+
+result <- move_flagged_files(
+  df_clean,
+  source_dirs = source_dirs,
+  flagged_dir = flagged_dir
+)
+df_final <- result$data
+df_flagged <- result$flagged
