@@ -17,27 +17,24 @@ Only use GitHub or Google Sheets for data entry and editing of files.
 *Do not use Microsoft Excel* for data entry or any editing of files
 it has text encoding that differs from GitHub and Google Sheets.
 
-### The <code>MetaNetwork repository data/L0</code> folder contains the following files:
+### The <code>MetaNetwork repository docs/interaction_metadata</code> folder contains the following files:
 
-### <code>data/L0/metadata</code>
-Subfolder containing metadata for several column options, including definitions for those options.
-
-### <code>metadata/interactions.csv</code>
+### <code>interactions.csv</code>
 Metadata and definitions for interaction types.
 
-### <code>metadata/resolutions.csv</code>
+### <code>resolutions.csv</code>
 Metadata and definitions for taxonomic resolutions.
 
-### <code>metadata/taxonomic_groups.csv</code>
+### <code>taxonomic_groups.csv</code>
 Metadata and definitions for taxonomic groups.
 
-### <code>metadata/interaction_confidence.csv</code>
+### <code>interaction_confidence.csv</code>
 Metadata and definitions for interaction confidence keywords.
 
-### <code>metadata/life_stages.csv</code>
+### <code>life_stages.csv</code>
 Metadata and definitions for taxon life stages.
 
-### <code>metadata/life_histories.csv</code>
+### <code>life_histories.csv</code>
 Metadata and definitions for life history keywords.
 
 ### <code>jointproject_taxalist.csv</code>
@@ -207,24 +204,24 @@ The columns are described below based on the order we feel makes the most sense 
 ### <code style="color : #31cae6">taxa1_resolution</code>, <code style="color : #31cae6">taxa2_resolution</code>
 - These columns contain dropdowns with several taxonomic resolution levels (i.e. Kingdom, Family, Genus). Select the finest level resolution that taxa1 and taxa2 fall under. For the most part this will be species, but some taxa may be at broader or finer resolutions.
 - If you are unsure what resolution your taxa falls under, check with an experienced lab member.
-- If you need a refresher on what these terms mean, check the <code>metadata/resolutions.csv</code>
+- If you need a refresher on what these terms mean, check the <code>resolutions.csv</code>
 
 ### <code style="color : #31cae6">taxa1_group</code>, <code style="color : #31cae6">taxa2_group</code>
 - These columns contain dropdowns with the names of colloquial "groups" of organisms. For the most part, these are at kindgom level (*plant*, *fungus*, *archaea*, *protist*, *bacteria*), but the animals are broken down further into *invertebrate*, *reptile*, *amphibian*, *fish*, *bird* and *mammal*.
 - Indicate, for each species, which of these groups taxa1 and taxa2 fall under. If you are unsure, discuss with an experienced lab member.
 - Be very careful that you select the correct groups here. These determine the dropdown options for future columns, so selecting the wrong group could cause later issues.
 - Each organism should fall into one of these groups, and therefore you should only select options available in the dropdown. If you enter another value, the cell will be flagged, indicating a potential mistake.
-- If you need a refresher on what these terms mean, check the <code>metadata/taxonomic_groups.csv</code>
+- If you need a refresher on what these terms mean, check the <code>taxonomic_groups.csv</code>
 
 ### <code style="color : #f1c955">interaction</code>
 - This column contains a dropdown with a list of potential interaction types based on the entries in the group columns. If nothing appears in this column, or the interactions look incorrect, check your entries in <code style="color : #31cae6">taxa1_group</code> and <code style="color : #31cae6">taxa2_group</code>.
 - Enter in the appropriate interaction type, based on information from the text.
 - Entering a value not on the dropdown list will pop up with a warning in that cell, which is usually caused by a typo. It is possible you will need to enter a value not on the list. For example, you may have "competition-" over a resource not defined in the interactions, or find a new interaction that has yet to be defined in the list. In this case, you may ignore the warning. 
-- If you need a reminder about the interaction options, check <code>metadata/interactions.csv</code>
+- If you need a reminder about the interaction options, check <code>interactions.csv</code>
 
 ### <code style="color : #f1c955">effect_on_tx1</code>, <code style="color : #f1c955">effect_on_tx2</code>
 - These columns contain dropdowns with options of -1, 0 and 1. These are the impacts that an interaction has on each species, with 1 indicating beneficial interactions, -1 indicating harmful interactions and 0 indicating neutral interactions.
-- Each interaction type has a specific set of effects, which are defined in <code>metadata/interactions.csv</code>.
+- Each interaction type has a specific set of effects, which are defined in <code>interactions.csv</code>.
 - In these columns, you must enter either -1, 0, or 1, as entering another value will cause the sheet to error. Be careful to place the correct value in the effect columns.   
 
 ### <code style="color : #f1c955">interaction_confidence</code>
@@ -238,14 +235,14 @@ The columns are described below based on the order we feel makes the most sense 
 - Enter the lifestage appropriate to the interaction, per taxa. 
 - It may differ between the two taxa or be the same. For example, with Brood Parasites, the interactions involved include BOTH adult and nestlings. The options for this dropdown will vary based on the taxon’s group. 
 - If nothing appears in these columns, or the life stages look incorrect, check your entries in <code style="color : #31cae6">taxa1_group</code> and <code style="color : #31cae6">taxa2_group</code>.
-- Be sure to check <code>metadata/life_stages.csv</code> for definitions.
+- Be sure to check <code>life_stages.csv</code> for definitions.
 
 ### <code style="color : #f1c955">taxa1_life_history_season</code>,  <code style="color : #f1c955">taxa2_life_history_season</code>
 - These columns contain dropdowns with options for life history seasons that the interaction takes place during.
 - Enter the life history timing of the interaction for each taxa (year-round, migration, breeding, non-breeding). For example, if the interaction occurs during the non-breeding season (typically winter), indicate "non-breeding". 
   - 🐦 If the article mentions a month, you can check if it occurs during taxa1 breeding season using the phenology diagram (usually on the Introduction or Breeding page), or reading the Breeding page (the middle ring in the diagram in the breeding period). 
 - These options are available from a dropdown, and if the interaction occurs throughout multiple seasons, select multiple. If it occurs year-round, only select that option. 
-- Be sure to check <code>metadata/life_histories.csv</code> for definitions.
+- Be sure to check <code>life_histories.csv</code> for definitions.
 
 ### <code style="color : #946bf1">time_of_year</code>
 - Enter the time of year that the interaction occurs in. 
