@@ -17,7 +17,7 @@ Only use GitHub or Google Sheets for data entry and editing of files.
 *Do not use Microsoft Excel* for data entry or any editing of files
 it has text encoding that differs from GitHub and Google Sheets.
 
-### The <code>MetaNetwork repository docs/interaction_metadata</code> folder contains the following files:
+### The <code>MetaNetworks-Main repository docs/interaction_metadata_schemas</code> folder contains the following files:
 
 ### <code>interactions.csv</code>
 Metadata and definitions for interaction types.
