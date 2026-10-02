@@ -370,7 +370,7 @@ When you've completed entering the all interactions in your Google Sheet, it nee
 
 ## Step 8: Upload CSV to GitHub 
 
-1) Open the <code>repository</code> and navigate to the <code>data/L0/taxa_to_check</code> folder. Click the **[Add file]** button. That button has two choices, select "Upload files".   
+1) Open the <code>repository</code> and navigate to the <code>L0/taxa_to_check</code> folder. Click the **[Add file]** button. That button has two choices, select "Upload files".   
 
 2) You may drag the CSV file, or click the "choose your files" option to select it. 
 
@@ -385,13 +385,13 @@ When you've completed entering the all interactions in your Google Sheet, it nee
 
 ## Step 9: Entry checking
 
-All taxa files in the <code>data/L0/taxa_to_check</code> folder are processed with a script that checks for invalid entries and logical errors, such as a negative year or a misspelled month. Taxa with no issues are passed into the <code>data/L0/taxa_checked</code> folder and incorporated into the larger dataset.
+All taxa files in the <code>L0/taxa_to_check</code> folder are processed with a script that checks for invalid entries and logical errors, such as a negative year or a misspelled month. Taxa with no issues are passed into the <code>L0/taxa_checked</code> folder and incorporated into the larger dataset.
 
-If the script flags the taxa sheet, it is sent to the <code>data/L0/taxa_flagged</code> folder for checking.
+If the script flags the taxa sheet, it is sent to the <code>L0/taxa_flagged</code> folder for checking.
 
 ## Step 10: Manual checking
 
-Reviewers will check all sheets that are placed in <code>data/L0/taxa_flagged</code>. The script will add a <code>flagged_issue</code> to indicate the problem row, and a short description of what the error is. 
+Reviewers will check all sheets that are placed in <code>L0/taxa_flagged</code>. The script will add a <code>flagged_issue</code> to indicate the problem row, and a short description of what the error is. 
 
-Reviewers will open the CSV and adjust the issues in the sheet as necessary, leaving an annotation of the changes with their initials and the date in the `entry_changes` column. The sheet can be moved back to the <code>data/L0/taxa_to_check</code> folder, and passed through the checking script again.
+Reviewers will open the CSV and adjust the issues in the sheet as necessary, leaving an annotation of the changes with their initials and the date in the `entry_changes` column. The sheet can be moved back to the <code>L0/taxa_to_check</code> folder, and passed through the checking script again.
 
