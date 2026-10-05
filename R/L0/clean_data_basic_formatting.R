@@ -1,7 +1,7 @@
 # TITLE:            Basic cleaning functions for the harmonized data frame
 # PROJECT:          AvianMetaNetwork
 # AUTHORS:          Kelly Kapsar
-# COLLABORATORS:    [FILL IN]
+# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       None (function definitions only). Every function takes the
 #                   harmonized data frame `df` (from
 #                   aux_harmonize_datasheet_versions.R) plus whatever else it

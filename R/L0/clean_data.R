@@ -43,6 +43,7 @@
 
 source("./R/L0/clean_data_basic_formatting.R")
 source("./R/L0/clean_data_life_history.R")
+source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 
 # ============================================================================
 # MASTER CLEANING FUNCTION
@@ -123,8 +124,11 @@ clean_data <- function(
 #' is located before anything is moved, so a missing file stops the function
 #' with nothing moved.
 #'
-#' Note: the file is moved as-is (unmodified). The error messages live only
-#' in the returned `flagged` data frame, not in the moved csv.
+#' The error messages are appended (source_file, row, error) to
+#' `flagged_file_metadata.csv` in `flagged_dir`, which is created if it does not
+#' exist and shared with 1_schema_audit.R. Duplicate rows are not re-added. The
+#' file itself is moved as-is (unmodified). A message reports how many files
+#' were moved.
 #'
 #' `flagged` has one row per unique combination of source file, row number,
 #' and error message. If `df` has a `row_col` column (source_row, stamped in
@@ -142,6 +146,8 @@ clean_data <- function(
 #' @param file_col name of the column holding the source file name
 #' @param row_col name of the column holding each row's original row number
 #'   in its source file; if not in df, position within file is used instead
+#' @param move TRUE = append to flagged_file_metadata.csv and move the files;
+#'   FALSE = dry run that only locates and lists them (nothing written/moved)
 #' @returns list(data = df without rows from flagged files,
 #'   flagged = data frame with columns source_file, row, error)
 move_flagged_files <- function(
@@ -149,7 +155,8 @@ move_flagged_files <- function(
   source_dirs,
   flagged_dir,
   file_col = "source_file",
-  row_col = "source_row"
+  row_col = "source_row",
+  move = TRUE
 ) {
   stopifnot(file_col %in% names(df), "errors" %in% names(df))
 
@@ -178,34 +185,14 @@ move_flagged_files <- function(
   flagged <- flagged[order(flagged$source_file, flagged$row), ]
   rownames(flagged) <- NULL
 
-  if (length(flagged_files) > 0) {
-    # locate every file first
-    from <- character(length(flagged_files))
-    for (i in seq_along(flagged_files)) {
-      candidates <- file.path(source_dirs, basename(flagged_files[i]))
-      found <- candidates[file.exists(candidates)]
-      if (length(found) != 1) {
-        stop(
-          length(found),
-          " copies of '",
-          flagged_files[i],
-          "' found in source_dirs (expected exactly 1)"
-        )
-      }
-      from[i] <- found
-    }
-
-    # then move them
-    #   dir.create(flagged_dir, showWarnings = FALSE, recursive = TRUE)
-    #   for (i in seq_along(flagged_files)) {
-    #     to <- file.path(flagged_dir, basename(flagged_files[i]))
-    #     if (!file.copy(from[i], to, overwrite = TRUE)) {
-    #       stop("Could not copy '", from[i], "' to '", to, "'")
-    #     }
-    #     file.remove(from[i])
-    #   }
-    #   message("Moved ", length(flagged_files), " file(s) to ", flagged_dir)
-  }
+  # locate every file (stop if any is missing), append `flagged` to
+  # flagged_file_metadata.csv, then move the files (see _flagged_files.R)
+  flag_files(
+    flagged,
+    source_dirs = source_dirs,
+    flagged_dir = flagged_dir,
+    move = move
+  )
 
   list(data = df[!in_flagged, ], flagged = flagged)
 }
@@ -217,11 +204,9 @@ move_flagged_files <- function(
 # paths -- adjust to your folder layout
 schema_path <- "./docs/interaction_metadata_schemas/column_names.csv"
 corrections_path <- "./R/L0/aux_interaction_corrections.csv"
-source_dirs <- c(
-  "../MetaNetworksProject-Working/L0/taxa_to_check",
-  "../MetaNetworksProject-Working/L0/taxa_checked_raw"
-)
-flagged_dir <- "../MetaNetworksProject-Working/L0/taxa_flagged"
+source_dirs <- taxa_source_dirs # defined in _flagged_files.R
+# flagged_dir is also defined in _flagged_files.R, so this script and
+# 1_schema_audit.R always write to the same flagged_file_metadata.csv
 
 # expects df from source("./R/auxiliary_scripts/aux_harmonize_datasheet_versions.R")
 stopifnot(exists("df"))
@@ -250,7 +235,8 @@ df_clean <- clean_data(
 result <- move_flagged_files(
   df_clean,
   source_dirs = source_dirs,
-  flagged_dir = flagged_dir
+  flagged_dir = flagged_dir,
+  move = FALSE # set TRUE to write flagged_file_metadata.csv and move files
 )
 df_final <- result$data
 df_flagged <- result$flagged
