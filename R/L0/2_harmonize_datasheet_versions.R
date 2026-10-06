@@ -954,7 +954,9 @@ harmonized_df <- harmonize_all_datasheets(
 )
 
 df <- harmonized_df |>
-  filter(interaction != "co-occur")
+  filter(interaction != "co-occur") |>
+  select(-version) |>
+  rename(version = original_version)
 
 # ============================================================================
 # VERIFICATION (do this once, before retiring the previous version of this
