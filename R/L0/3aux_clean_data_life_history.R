@@ -2,8 +2,8 @@
 # PROJECT:          MetaNetworks Project (MetaNetworksProject-Main)
 # AUTHORS:          Kelly
 # COLLABORATORS:
-# DATA INPUT:       harmonized_df / df from 2_harmonize_datasheet_versions.R
-#                   (must contain tx1_life_history_season and original_version)
+# DATA INPUT:       harmonized_df / df from aux_harmonize_datasheet_versions.R
+#                   (must contain tx1_life_history_season and version)
 # DATA OUTPUT:      Same data frame with tx1_life_history_season standardized and
 #                   notes appended to `warnings` and `errors` columns
 # DATE:             initiated: 2026-09-29
@@ -19,7 +19,7 @@
 #                   Drive CSV export. Legacy values separated by ";" or ","
 #                   are both recoded; v4+ values must use ",".
 #                   Unrecognized values are left unchanged and noted in `errors`.
-# REQUIRES:         2_harmonize_datasheet_versions.R (run first)
+# REQUIRES:         aux_harmonize_datasheet_versions.R (run first)
 # NOTES:            Add new typos/variants to the lookup tables below rather than
 #                   to the functions.
 
@@ -181,7 +181,7 @@ check_season_value <- function(raw, col) {
 standardize_life_history_season <- function(
   df,
   col = "tx1_life_history_season",
-  version_col = "original_version",
+  version_col = "version",
   nonbreeding_versions = c("v1", "v2"),
   breeding_migration_versions = "v3",
   on_invalid = c("error", "warning")
@@ -236,7 +236,7 @@ df_clean <- standardize_life_history_season(harmonized_df)
 #
 # # Anything still needing a human look:
 # df_clean |> filter(str_detect(errors, "tx1_life_history_season")) |>
-#   count(original_version, tx1_life_history_season)
+#   count(version, tx1_life_history_season)
 #
 # # Should only contain allowed values (or ", " combos) and NA:
 # df_clean |> count(tx1_life_history_season)
