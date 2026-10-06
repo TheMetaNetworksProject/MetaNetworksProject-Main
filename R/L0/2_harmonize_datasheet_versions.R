@@ -274,8 +274,6 @@ if (n_skipped > 0) {
 
 # ============================================================================
 # GENERIC HELPER FUNCTIONS
-# (unchanged in spirit from the previous version of this script; all take
-# every input they use as an explicit parameter)
 # ============================================================================
 
 # Collapse several old columns into one new column per row, keeping only
