@@ -41,8 +41,8 @@
 #                   so assign to a new object (df_clean) instead of
 #                   overwriting df.
 
-source("./R/L0/clean_data_basic_formatting.R")
-source("./R/L0/clean_data_life_history.R")
+source("./R/L0/3aux_clean_data_basic_formatting.R")
+source("./R/L0/3aux_clean_data_life_history.R")
 source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 
 # ============================================================================

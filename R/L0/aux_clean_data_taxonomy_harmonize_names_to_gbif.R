@@ -528,7 +528,7 @@ crosswalk <- taxa_build_gbif_crosswalk(
 # raw_names, so this is safe to re-run:
 taxa_export_gbif_review_template(
   crosswalk,
-  "./R/L0/3_gbif_manual_matches.csv"
+  "./R/L0/aux_clean_data_taxonomy_gbif_manual_matches.csv"
 )
 
 # ... fill in aux_gbif_manual_matches.csv by hand (manual_gbif_usageKey
@@ -536,10 +536,14 @@ taxa_export_gbif_review_template(
 # re-run with corrections applied:
 crosswalk <- taxa_apply_gbif_manual_matches(
   crosswalk,
-  "./R/L0/3_gbif_manual_matches.csv"
+  "./R/L0/aux_clean_data_taxonomy_gbif_manual_matches.csv"
 )
 
-write.csv(crosswalk, "./R/L0/3_metanetwork_gbif_crosswalk.csv", row.names = F)
+write.csv(
+  crosswalk,
+  "./R/L0/aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv",
+  row.names = F
+)
 
 # taxa_count_avilist_matches <- function(crosswalk, avilist_2025) {
 #   avilist_combined <-
