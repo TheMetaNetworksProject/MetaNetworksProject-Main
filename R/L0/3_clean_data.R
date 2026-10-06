@@ -1,9 +1,9 @@
 # TITLE:            Master cleaning script for the harmonized data frame
 # PROJECT:          AvianMetaNetwork
 # AUTHORS:          Kelly Kapsar
-# COLLABORATORS:    [FILL IN]
+# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       The harmonized data frame `df` produced by
-#                   aux_harmonize_datasheet_versions.R (one row per
+#                   2_harmonize_datasheet_versions.R (one row per
 #                   interaction record, tagged with source_file), plus
 #                   column_names.csv (schema with data_format and
 #                   mandatory_col flags) and aux_interaction_corrections.csv
@@ -15,9 +15,9 @@
 #                       moved to taxa_flagged
 # DATE:             initiated: 10 Aug 2026; modularized 29 Sep 2026
 # OVERVIEW:         Orchestrates cleaning in this order:
-#                     1. basic text cleaning        (clean_data_basic.R)
+#                     1. basic text cleaning        (3aux_clean_data_basic_formatting.R)
 #                     2. column-specific cleaning   (clean_data_<column>.R)
-#                     3. validation and typing      (clean_data_basic.R)
+#                     3. validation and typing      (3aux_clean_data_basic_formatting.R)
 #                   then, as a separate step, move_flagged_files().
 #
 #                   Mandatory columns are passed in as a character vector.
@@ -30,11 +30,11 @@
 #                        signature f(df, col, on_invalid = c("error",
 #                        "warning")) that returns df with notes appended to
 #                        `errors` / `warnings` (see add_note() in
-#                        clean_data_basic.R)
+#                        3aux_clean_data_basic_formatting.R)
 #                     2. source() it below
 #                     3. add one line to `column_cleaners` in the run section
-# REQUIRES:         aux_harmonize_datasheet_versions.R (run first, so `df`
-#                   exists), clean_data_basic.R, clean_data_life_history.R
+# REQUIRES:         2_harmonize_datasheet_versions.R (run first, so `df`
+#                   exists), 3aux_clean_data_basic_formatting.R, clean_data_life_history.R
 # NOTES:            Run on fresh harmonizer output. Cleaners are not safe to
 #                   run twice on the same data frame (e.g. already-recoded
 #                   life history values would be flagged as unrecognized),
@@ -43,6 +43,7 @@
 
 source("./R/L0/3aux_clean_data_basic_formatting.R")
 source("./R/L0/3aux_clean_data_life_history.R")
+source("./R/L0/3aux_clean_data_taxonomy.R")
 source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 
 # ============================================================================
@@ -208,7 +209,7 @@ source_dirs <- taxa_source_dirs # defined in _flagged_files.R
 # flagged_dir is also defined in _flagged_files.R, so this script and
 # 1_schema_audit.R always write to the same flagged_file_metadata.csv
 
-# expects df from source("./R/auxiliary_scripts/aux_harmonize_datasheet_versions.R")
+# expects df from source("./R/auxiliary_scripts/2_harmonize_datasheet_versions.R")
 stopifnot(exists("df"))
 
 schema <- read.csv(schema_path, stringsAsFactors = FALSE)

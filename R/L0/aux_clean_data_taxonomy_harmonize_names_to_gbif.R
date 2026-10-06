@@ -1,7 +1,7 @@
 # TITLE:            harmonize_names_to_gbif.R
 # PROJECT:          The MetaNetworks Project
 # AUTHORS:          Kelly Kapsar
-# COLLABORATORS:
+# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       (1) `df`, the output of 2_harmonize_datasheet_versions.R
 #                       -- must have taxa1_scientific/taxa1_group and
 #                       taxa2_scientific/taxa2_group columns.

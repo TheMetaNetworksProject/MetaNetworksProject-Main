@@ -4,7 +4,7 @@
 # COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       None (function definitions only). Every function takes the
 #                   harmonized data frame `df` (from
-#                   aux_harmonize_datasheet_versions.R) plus whatever else it
+#                   2_harmonize_datasheet_versions.R) plus whatever else it
 #                   needs as explicit arguments.
 # DATA OUTPUT:      None. Every function returns `df` with notes appended to
 #                   the `errors` and/or `warnings` columns.
