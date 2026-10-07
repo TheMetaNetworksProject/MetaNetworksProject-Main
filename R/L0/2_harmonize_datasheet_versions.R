@@ -954,7 +954,10 @@ harmonized_df <- harmonize_all_datasheets(
 )
 
 df <- harmonized_df |>
-  filter(interaction != "co-occur") |>
+  # Remove co-occur interactions
+  filter(!coalesce(str_detect(str_to_lower(interaction), "occur"), FALSE)) |>
+  # Remove rows with no taxa names or interaction (assumed erroneous extra rows)
+  filter(!if_all(c(taxa1_scientific, taxa2_scientific, interaction), is.na)) |>
   select(-version) |>
   rename(version = original_version)
 
