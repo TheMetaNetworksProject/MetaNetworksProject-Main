@@ -1,193 +1,232 @@
-taxa 1 group,taxa 2 group,interaction,asymmetric,effect on taxa 1,effect on taxa 2,definition,notes
-invertebrate,invertebrate,competition-,no,-1,-1,"competing over something other than food,...; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA
-invertebrate,reptile,commensalism-scavenge,yes,1,0,case of commensalism in which one species consumes/scavanges a previously deceased individuals or deserted/addled eggs: scavenger=1; carcass=0,NA
-invertebrate,invertebrate,competition-food,no,-1,-1,competing over food. both species = -1,NA
-invertebrate,invertebrate,competition-territory,no,-1,-1,competing over territory. both species = -1,NA
-invertebrate,invertebrate,intraguild predation,yes,1,-1,two species that compete for the same prey also prey upon each other.,NA
-invertebrate,invertebrate,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA
-invertebrate,invertebrate,courtship,no,0,0,one species attempts to court another; both species = 0,NA
-invertebrate,invertebrate,facilitation-alarm signaling,no,1,1,"collective warning of danger through chemical, acoustic, or vibrational means by one species that are recognized/acted upon by another to evade or defend against a predator",NA
-invertebrate,invertebrate,facilitation,no,1,1,where both species benefit (if we do not have a specific interaction for it); both species = 1,NA
-invertebrate,invertebrate,facilitation-swarming,no,1,1,"collective behavior driven by local interactions, environmental cues (like temperature or humidity), and chemical signals (pheromones) to facilitate mating, migration, or foraging",NA
-invertebrate,invertebrate,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA
-invertebrate,plant,herbivory-synzoochory,no,1,1,"intentional seed dispersal, includes burying, hoarding, caching them, or mouth-dispersal","some seeds may get eaten, but results in general net positive effect"
-invertebrate,plant,herbivory-stomatochory,no,1,1,fruits or seeds being carried in the mouth or the beak of the animal—for immediate consumption—rather than caching and are dispersed without been swallowed,NA
-invertebrate,plant,pollination,no,1,1,transfer of pollen between flowers as a result of feeding on nectar or pollen,NA
-invertebrate,invertebrate,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-invertebrate,invertebrate,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA
-invertebrate,invertebrate,commensalism-scavenge,yes,1,0,case of commensalism in which one species consumes/scavanges a previously deceased individuals or deserted/addled eggs: scavenger=1; carcass=0,NA
-invertebrate,invertebrate,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-invertebrate,invertebrate,defense-chemical,yes,1,-1,"release of chemical defenses on predator (e.g., chemical sprays)",NA
-invertebrate,invertebrate,defense-envenomation,yes,1,-1,"the injection of poisonous venom into threat species (via bite, sting, or spray)",NA
-invertebrate,invertebrate,defense-physical,yes,1,-1,structural adaptations (spines) to defend against herbivory,NA
-invertebrate,invertebrate,kleptoparasitism-food,yes,-1,1,one species steals food from another species. species that steals and benefits = 1; species that is stolen from = -1,NA
-invertebrate,invertebrate,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA
-invertebrate,invertebrate,nest predation,yes,-1,1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-invertebrate,invertebrate,nest takeover,yes,-1,1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA
-invertebrate,invertebrate,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-bird,invertebrate,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-bird,invertebrate,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-bird,invertebrate,predation,yes,1,-1,predator eats prey,NA
-invertebrate,bird,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-invertebrate,bird,defense-chemical,yes,1,-1,"release of chemical defenses on predator (e.g., chemical sprays)",NA
-invertebrate,bird,defense-envenomation,yes,1,-1,"the injection of poisonous venom into threat species (via bite, sting, or spray)",NA
-invertebrate,bird,defense-physical,yes,1,-1,structural adaptations (spines) to defend against herbivory,NA
-invertebrate,mammal,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-invertebrate,mammal,defense-chemical,yes,1,-1,"release of chemical defenses on predator (e.g., chemical sprays)",NA
-invertebrate,mammal,defense-envenomation,yes,1,-1,"the injection of poisonous venom into threat species (via bite, sting, or spray)",NA
-invertebrate,mammal,defense-physical,yes,1,-1,structural adaptations (spines) to defend against herbivory,NA
-invertebrate,mammal,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-invertebrate,mammal,nest takeover,yes,1,-1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA
-invertebrate,mammal,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm",not sure if endo-/ecto-parasitism should be considered (could be a comment on sheets)
-invertebrate,plant,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA
-invertebrate,plant,herbivory,yes,-1,1,consumption of plant material,NA
-invertebrate,plant,herbivory-endophagy,yes,1,-1,"Herbivorous feeding inside plant tissues (include boring, rolling, tying, mining, galls, or modifying plant tissues so that the tissues surround the invertebrates while they are feeding)",NA
-invertebrate,plant,herbivory-exploitation,yes,1,-1,removal of plant tissues for structural materials (nesting),NA
-invertebrate,plant,herbivory-folivory,yes,1,-1,consumption of leaves,NA
-invertebrate,plant,herbivory-frugivory,yes,1,-1,consumption of fruit,generally -/+ for invertebrates
-invertebrate,plant,herbivory-granivory,yes,1,-1,consumption of seeds,not sure if post-/pre-dispersal seed predation should be considered (could be a comment on sheets)
-invertebrate,plant,herbivory-nectivory,yes,1,-1,consumption of nectar,considering nectivory alone without pollination here (nector-robbery)
-invertebrate,plant,herbivory-xylophagy,yes,1,-1,consumpion of wood,NA
-invertebrate,plant,inquilinism,yes,0,1,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA
-invertebrate,bird,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA
-invertebrate,bird,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-invertebrate,bird,nest takeover,yes,1,-1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA
-invertebrate,bird,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm",not sure if endo-/ecto-parasitism should be considered (could be a comment on sheets)
-invertebrate,bird,commensalism,yes,0,1,"one species benefits and the other receives no effect (example: cavities are constructed by primary cavity nesting bird like a woodpecker, and later used by another bird for its own nest (without any conflict). species that benefits from the interaction = 1; species that provides the benefit = 0.",NA
-bird,bird,communal nesting,no,1,1,"nesting together, usually during breeding season. both species = 1",NA
-bird,bird,communal roosting,no,1,1,"roosting together, typically during nonbreeding season (indicate in ""nonbreedingseason"" column). both species = 1",NA
-bird,bird,competition-,no,-1,-1,"competing over something other than food, nest, or territory; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA
-bird,bird,competition-food,no,-1,-1,competing over food. both species = -1,NA
-bird,bird,competition-nest,no,-1,-1,competing over nest site or nest space or nest material. both species = -1,NA
-bird,bird,competition-territory,no,-1,-1,competing over territory. both species = -1,NA
-bird,bird,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA
-bird,bird,courtship,no,0,0,one species attempts to court another; both species = 0,NA
-bird,bird,facilitation,no,1,1,"where both species benefit (if we do not have a specific interaction for it), e.g., mutual allopreening. both species = 1",NA
-bird,bird,facilitation-comigration,no,1,1,special case of facilitation where species migrate together. both species = 1,NA
-bird,plant,herbivory-endozoochory,no,1,1,excretion of consumed seeds,could have 0 or -1 effect on seed if it doesn't germinate
-bird,plant,herbivory-seed dispersal,no,0,1,dispersal of seeds through unknown means,NA
-bird,plant,herbivory-frugivory,no,1,1,consumption of fruit,generally +/+ but could be -/+
-bird,plant,herbivory-synzoochory,no,1,1,"intentional seed dispersal, includes burying, hoarding, caching them, or mouth-dispersal","some seeds may get eaten, but results in general net positive effect"
-bird,plant,herbivory-stomatochory,no,1,1,fruits or seeds being carried in the mouth or the beak of the animal—for immediate consumption—rather than caching and are dispersed without been swallowed,NA
-bird,plant,pollination,no,1,1,transfer of pollen between flowers as a result of feeding on nectar or pollen,NA
-bird,bird,facilitation-creching,no,1,1,"for multi-species interactions, this occurs when adult parents (usually mothers) care for a group of young from different species; essentially providing childcare to a group. The young and adults of all species involved benefit. both species = 1",NA
-bird,bird,facilitation-distress calls,no,1,1,"distress calls by young or adults of one species when restrained (by predator, mist net, handling), and this elicits a vocal response by another species. Both species = 1.",NA
-bird,bird,facilitation-feeding,no,1,1,"case of facilitation when both species feed together, either in mixed-flocks or feeding aggregations; both species = 1",NA
-bird,bird,facilitation-foraging,no,1,1,shared foraging for food (seeking food); both species = 1,NA
-bird,mammal,facilitation-pest reduction,no,1,1,"where one or both species contribute to pest reduction or consumption in a shared environment, both species = 1",NA
-bird,bird,facilitation-mixed flocking,no,1,1,"where both species benefit by being in a group, both species = 1",NA
-bird,bird,facilitation-passive predator deterrence,no,1,1,"where one or both species contribute to predator deterrence by passive means (chemical secretions, intimidation through size, etc.) rather than mobbing, both species = 1",NA
-bird,bird,facilitation-pest reduction,no,1,1,"where one or both species contribute to pest reduction or consumption in a shared environment, both species = 1",NA
-bird,bird,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA
-bird,bird,play,no,0,0,species play with each other; both species = 0,NA
-bird,mammal,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-bird,bird,shared scolding,no,1,1,"usually indicative of predation, where the smaller birds vocally scold a predator. The species doing the shared scolding are usually potential prey = 1.",NA
-bird,bird,accidental killing,yes,0,-1,"when one species accidentally kills another, but has no intent on doing so (e.g., no intent on preying on the dead species or competing with the dead species); species killed = -1, species who causes the death = 0",NA
-bird,bird,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself (e.g. flushing from nest in response to perceived predator, accidental destruction of eggs); harmful species = 0, harmed species = -1",NA
-bird,bird,brood parasitism,yes,-1,1,one species places its egg in another species' nest so the nesting species has to raise a conspecific (includes egg-dumping). species that lays egg in another species nest = 1; species that has to care for the conspecific young = -1.,NA
-bird,bird,brood parasitism defense-egg ejection,yes,1,-1,host species removes eggs of brood parasite from its nest. host species = 1; parasite species = -1.,NA
-bird,bird,brood parasitism defense-feeding discrimination,yes,1,-1,host species avoids feeding chicks or young of brood parasite species. host species = 1; parasite species = -1.,NA
-bird,mammal,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA
-bird,bird,brood parasitism defense-nest abandonment,yes,1,-1,host species abandons nest upon detection of brood parasite eggs and may re-nest. host species = 1; parasite species = -1.,NA
-bird,bird,brood parasitism defense-nest defense,yes,1,-1,host species shows aggression towards and defends its nest from parasite species. host species = 1; parasite species = -1.,NA
-bird,bird,commensalism,yes,0,1,"one species benefits and the other receives no effect (example: cavities are constructed by primary cavity nesting bird like a woodpecker, and later used by another bird for its own nest (without any conflict). species that benefits from the interaction = 1; species that provides the benefit = 0.",NA
-bird,bird,commensalism-call mimicry,yes,1,0,"when one species copies the call/song of another; species that is mimicking = 1, species that is being mimicked = 0",NA
-bird,bird,commensalism-chick adoption,yes,1,0,when one species adopts another species' chicks/eggs. Species that is adopting = 0 Species that is adopted = 1,NA
-bird,bird,commensalism-scavenge,yes,0,1,case of commensalism in which a bird consumes/scavanges a previously deceased bird or deserted/addled eggs: scavenger=1; dead bird=0,NA
-bird,plant,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-bird,plant,herbivory,yes,-1,1,consumption of plant material,NA
-bird,plant,herbivory-exploitation,yes,1,-1,removal of plant tissues for structural materials (nesting),NA
-bird,plant,herbivory-folivory,yes,1,-1,consumption of leaves,NA
-bird,plant,herbivory-granivory,yes,1,-1,consumption of seeds,not sure if post-/pre-dispersal seed predation should be considered (could be a comment on sheets)
-bird,plant,herbivory-nectivory,yes,1,-1,consumption of nectar,considering nectivory alone without pollination here (nector-robbery)
-bird,plant,commensalism-inquilinism,yes,1,0,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA
-bird,bird,kleptoparasitism-food,yes,-1,1,one species steals food from another species. species that steals and benefits = 1; species that is stolen from = -1,NA
-bird,bird,kleptoparasitism-nest material,yes,-1,1,"when one species steals nest material from another species; species who steals = 1, species who loses nest material = -1.",NA
-bird,bird,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger bird. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA
-bird,bird,nest parasitism,yes,-1,1,"similar to brood parasitism where one species parasitizes the nest of another species; species whose nest is parasitized =-1, species who parasitizes the nest = 1.",NA
-bird,bird,nest predation,yes,-1,1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-bird,bird,nest takeover,yes,-1,1,"where one species takes over (steals) the nest of another species, sometimes kicking out the existing eggs. species that takes over = 1; species whose nest is stolen = -1",NA
-bird,bird,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-bird,fish,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-bird,fish,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA
-bird,reptile,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-bird,mammal,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-mammal,mammal,competition-,no,-1,-1,"competing over something other than food,...; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA
-mammal,mammal,competition-food,no,-1,-1,competing over food. both species = -1,NA
-mammal,mammal,competition-territory,no,-1,-1,competing over territory. both species = -1,NA
-mammal,mammal,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA
-mammal,mammal,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA
-mammal,mammal,courtship,no,0,0,one species attempts to court another; both species = 0,NA
-mammal,mammal,courtship,no,0,0,one species attempts to court another; both species = 0,NA
-mammal,mammal,facilitation,no,1,1,"where both species benefit (if we do not have a specific interaction for it), e.g., mutual allopreening. both species = 1",NA
-mammal,mammal,facilitation-distress calls,no,1,1,"distress calls by young or adults of one species when restrained (by predator, mist net, handling), and this elicits a vocal response by another species. Both species = 1.",NA
-mammal,mammal,facilitation-feeding,no,1,1,"case of facilitation when both species feed together, either in mixed-flocks or feeding aggregations; both species = 1",NA
-mammal,mammal,facilitation-foraging,no,1,1,shared foraging for food (seeking food); both species = 1,NA
-mammal,mammal,facilitation-pest reduction,no,1,1,"where one or both species contribute to pest reduction or consumption in a shared environment, both species = 1",NA
-mammal,mammal,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA
-mammal,mammal,play,no,0,0,species play with each other; both species = 0,NA
-mammal,plant,herbivory-endozoochory,no,1,1,excretion of consumed seeds,could have 0 or -1 effect on seed if it doesn't germinate
-mammal,plant,herbivory-seed dispersal,no,0,1,dispersal of seeds through unknown means,NA
-mammal,plant,herbivory-frugivory,no,1,1,consumption of fruit,generally +/+ but could be -/+
-mammal,plant,herbivory-synzoochory,no,1,1,"intentional seed dispersal, includes burying, hoarding, caching them, or mouth-dispersal","some seeds may get eaten, but results in general net positive effect"
-mammal,plant,herbivory-stomatochory,no,1,1,fruits or seeds being carried in the mouth or the beak of the animal—for immediate consumption—rather than caching and are dispersed without been swallowed,NA
-mammal,plant,pollination,no,1,1,transfer of pollen between flowers as a result of feeding on nectar or pollen,NA
-mammal,bird,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-mammal,mammal,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-mammal,mammal,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA
-mammal,bird,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-mammal,mammal,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-mammal,invertebrate,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-mammal,invertebrate,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-mammal,invertebrate,predation,yes,1,-1,predator eats prey,NA
-mammal,mammal,kleptoparasitism-food,yes,-1,1,one species steals food from another species. species that steals and benefits = 1; species that is stolen from = -1,NA
-mammal,bird,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA
-mammal,mammal,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA
-mammal,bird,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-mammal,mammal,nest predation,yes,-1,1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA
-mammal,mammal,nest takeover,yes,-1,1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA
-mammal,bird,predation,yes,1,-1,predator eats prey,NA
-mammal,mammal,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-mammal,plant,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA
-mammal,plant,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA
-mammal,plant,commensalism-inquilinism,yes,0,1,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA
-mammal,plant,herbivory,yes,-1,1,consumption of plant material,NA
-mammal,plant,herbivory-exploitation,yes,1,-1,removal of plant tissues for structural materials (nesting),NA
-mammal,plant,herbivory-folivory,yes,1,-1,consumption of leaves,NA
-mammal,plant,herbivory-granivory,yes,1,-1,consumption of seeds,not sure if post-/pre-dispersal seed predation should be considered (could be a comment on sheets)
-mammal,plant,herbivory-nectivory,yes,1,-1,consumption of nectar,considering nectivory alone without pollination here (nector-robbery)
-plant,plant,competition-,no,-1,-1,"competing over something other than food,...; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA
-plant,plant,competition-light,no,-1,-1,competing over light. both species = -1,NA
-plant,plant,competition-nutrients,no,-1,-1,competing over nutrients. both species = -1,NA
-plant,plant,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA
-plant,bird,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-plant,bird,defense-chemical,yes,1,-1,"plants release chemical defenses on herbivores (e.g., structural barriers (like trichomes) release toxic or repellent compounds)",NA
-plant,bird,defense-physical,yes,1,-1,"structural adaptations (spines, thorns, trichomes) to defend against herbivory",NA
-plant,invertebrate,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-plant,invertebrate,defense-chemical,yes,1,-1,"plants release chemical defenses on herbivores (e.g., structural barriers (like trichomes) release toxic or repellent compounds)",NA
-plant,invertebrate,defense-physical,yes,1,-1,"structural adaptations (spines, thorns, trichomes) to defend against herbivory",NA
-plant,invertebrate,insectivory,yes,1,-1,"flora attracts, traps, and digests insects to obtain essential nutrients",NA
-plant,mammal,defense,yes,1,-1,species employs mechanisms to protect themselves from negative outcomes,NA
-plant,mammal,defense-chemical,yes,1,-1,"plants release chemical defenses on herbivores (e.g., structural barriers (like trichomes) release toxic or repellent compounds)",NA
-plant,mammal,defense-physical,yes,1,-1,"structural adaptations (spines, thorns, trichomes) to defend against herbivory",NA
-plant,plant,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA
-plant,plant,commensalism-inquilinism,yes,0,1,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA
-plant,plant,competition-alleopathy,yes,1,-1,"release of chemicals into the environment that affect the growth, survival, or reproduction of nearby plants, often inhibiting them",NA
-plant,plant,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA
-reptile,bird,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-plant,fungus,facilitation-endophytic symbiosis,no,1,1,"symbiosis between fungi and plants in which fungi colonize the inter and intracellular spaces of healthy plant tissues and perform important functions for their hosts (e.g., providing nutrients, enhancing growth, stimulating systemic resistance against pathogens, as well as buffering external stresses and microbial competition)",NA
-mammal,bird,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026
-mammal,amphibian,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026
-mammal,reptile,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026
-mammal,mammal,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026
-bird,protist,parasitism,no,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA
-reptile,protist,parasitism,no,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA
-amphibian,protist,parasitism,no,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA
-fish,invertebrate,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,six new fish interactions added below. - 8/25/2026
-fish,plant,herbivory,yes,1,-1,consumption of plant material,NA
-fish,fish,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-fish,amphibian,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA
-fish,bacteria,bacterivory,yes,1,-1,consumer eats bacteria. consumer = 1; bacteria = -1,NA
-fish,algae,herbivory,yes,1,-1,consumption of algae,NA
-invertebrate,fish,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 1, host = -1",two new fish interactions added below. - 8/26/2026
-protist,fish,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 1, host = -1",NA
+taxa 1 group,taxa 2 group,interaction,asymmetric,effect on taxa 1,effect on taxa 2,definition,notes,examples
+bird,bird,accidental killing,yes,0,-1,"when one species accidentally kills another, but has no intent on doing so (e.g., no intent on preying on the dead species or competing with the dead species); species killed = -1, species who causes the death = 0",NA,NA
+invertebrate,invertebrate,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+bird,invertebrate,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+bird,mammal,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+bird,bird,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself (e.g. flushing from nest in response to perceived predator, accidental destruction of eggs); harmful species = 0, harmed species = -1",NA,NA
+bird,plant,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+mammal,bird,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+mammal,mammal,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+mammal,invertebrate,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+mammal,plant,amensalism,yes,0,-1,"one species causes harm to another species without any cost or benefits to itself; harmful species = 0, harmed species = -1",NA,NA
+fish,bacteria,bacterivory,yes,1,-1,consumer eats bacteria. consumer = 1; bacteria = -1,NA,NA
+bird,bird,brood parasitism,yes,-1,1,one species places its egg in another species' nest so the nesting species has to raise a conspecific (includes egg-dumping). species that lays egg in another species nest = 1; species that has to care for the conspecific young = -1.,NA,NA
+fish,fish,brood parasitism,yes,-1,1,one species places its egg in another species' nest so the nesting species has to raise a conspecific (includes egg-dumping). species that lays egg in another species nest = 1; species that has to care for the conspecific young = -1.,added 9/25/2026,NA
+bird,bird,brood parasitism defense-egg ejection,yes,1,-1,host species removes eggs of brood parasite from its nest. host species = 1; parasite species = -1.,NA,NA
+bird,bird,brood parasitism defense-feeding discrimination,yes,1,-1,host species avoids feeding chicks or young of brood parasite species. host species = 1; parasite species = -1.,NA,NA
+bird,bird,brood parasitism defense-nest abandonment,yes,1,-1,host species abandons nest upon detection of brood parasite eggs and may re-nest. host species = 1; parasite species = -1.,NA,NA
+bird,bird,brood parasitism defense-nest defense,yes,1,-1,host species shows aggression towards and defends its nest from parasite species. host species = 1; parasite species = -1.,NA,NA
+invertebrate,invertebrate,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA,NA
+invertebrate,plant,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA,NA
+invertebrate,bird,commensalism,yes,0,1,"one species benefits and the other receives no effect (example: cavities are constructed by primary cavity nesting bird like a woodpecker, and later used by another bird for its own nest (without any conflict). species that benefits from the interaction = 1; species that provides the benefit = 0.",NA,NA
+bird,mammal,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA,NA
+bird,bird,commensalism,yes,0,1,"one species benefits and the other receives no effect (example: cavities are constructed by primary cavity nesting bird like a woodpecker, and later used by another bird for its own nest (without any conflict). species that benefits from the interaction = 1; species that provides the benefit = 0.",NA,NA
+mammal,mammal,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA,NA
+mammal,plant,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA,NA
+plant,plant,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,NA,NA
+fish,fish,commensalism,yes,0,1,one species benefits and the other receives no effect. species that benefits from the interaction = 1; species that provides the benefit = 0.,added 9/25/2026,NA
+bird,bird,commensalism-call mimicry,yes,1,0,"when one species copies the call/song of another; species that is mimicking = 1, species that is being mimicked = 0",NA,NA
+bird,bird,commensalism-chick adoption,yes,1,0,when one species adopts another species' chicks/eggs. Species that is adopting = 0 Species that is adopted = 1,NA,NA
+bird,plant,commensalism-inquilinism,yes,1,0,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA,NA
+mammal,plant,commensalism-inquilinism,yes,0,1,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA,NA
+plant,plant,commensalism-inquilinism,yes,0,1,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA,NA
+mammal,bird,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026,NA
+mammal,amphibian,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026,NA
+mammal,reptile,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026,NA
+mammal,mammal,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 7/10/2026,NA
+plant,mammal,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 9/18/2026,NA
+plant,bird,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 9/18/2026,NA
+plant,reptile,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 9/18/2026,NA
+plant,amphibian,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 9/18/2026,NA
+plant,invertebrate,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 9/18/2026,NA
+plant,fish,commensalism-metabiosis,yes,0,1,"one organism creates or prepares a suitable environment for another, without harm to either individual. metabiont (the organism that creates the habitat) = 0; dependent organism = 1",added 9/18/2026,NA
+mammal,bacteria,commensalism-metabiosis,yes,0,1,NA,added 10/6/2026,NA
+invertebrate,reptile,commensalism-scavenge,yes,1,0,case of commensalism in which one species consumes/scavanges a previously deceased individuals or deserted/addled eggs: scavenger=1; carcass=0,NA,NA
+invertebrate,invertebrate,commensalism-scavenge,yes,1,0,case of commensalism in which one species consumes/scavanges a previously deceased individuals or deserted/addled eggs: scavenger=1; carcass=0,NA,NA
+bird,bird,commensalism-scavenge,yes,0,1,case of commensalism in which a bird consumes/scavanges a previously deceased bird or deserted/addled eggs: scavenger=1; dead bird=0,NA,NA
+bird,bird,communal nesting,no,1,1,"nesting together in the same place/area, usually during breeding season. both species = 1",NA,NA
+bird,bird,communal roosting,no,1,1,"roosting together in the same place/area, typically during nonbreeding season (indicate in ""nonbreedingseason"" column). both species = 1",NA,NA
+invertebrate,invertebrate,competition,no,-1,-1,"competing over something other than food,...; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA,NA
+bird,bird,competition,no,-1,-1,"competing over something other than food, nest, or territory; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA,NA
+mammal,mammal,competition,no,-1,-1,"competing over something other than food,...; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA,NA
+plant,plant,competition,no,-1,-1,"competing over something other than food,...; indicate what the competition is over, with a word after ""competition-"". both species = -1",NA,NA
+plant,plant,competition-alleopathy,yes,1,-1,"release of chemicals into the environment that affect the growth, survival, or reproduction of nearby plants, often inhibiting them",NA,NA
+invertebrate,invertebrate,competition-food,no,-1,-1,competing over food. both species = -1,NA,NA
+bird,bird,competition-food,no,-1,-1,competing over food. both species = -1,NA,NA
+mammal,mammal,competition-food,no,-1,-1,competing over food. both species = -1,NA,NA
+plant,plant,competition-light,no,-1,-1,competing over light. both species = -1,NA,NA
+bird,bird,competition-nest,no,-1,-1,competing over nest site or nest space or nest material. both species = -1,NA,NA
+plant,plant,competition-nutrients,no,-1,-1,competing over nutrients. both species = -1,NA,NA
+invertebrate,invertebrate,competition-territory,no,-1,-1,competing over territory. both species = -1,NA,NA
+bird,bird,competition-territory,no,-1,-1,competing over territory. both species = -1,NA,NA
+mammal,mammal,competition-territory,no,-1,-1,competing over territory. both species = -1,NA,NA
+invertebrate,invertebrate,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA,NA
+bird,bird,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA,NA
+mammal,mammal,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA,NA
+mammal,mammal,copulation,no,0,0,mating across species (whether successful or not); could result in hybridization; both species = 0,NA,NA
+invertebrate,invertebrate,courtship,no,0,0,one species attempts to court another; both species = 0,NA,NA
+bird,bird,courtship,no,0,0,one species attempts to court another; both species = 0,NA,NA
+mammal,mammal,courtship,no,0,0,one species attempts to court another; both species = 0,NA,NA
+mammal,mammal,courtship,no,0,0,one species attempts to court another; both species = 0,NA,NA
+invertebrate,invertebrate,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2026,NA
+invertebrate,bird,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2027,NA
+invertebrate,mammal,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2028,NA
+mammal,bird,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2029,NA
+mammal,mammal,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2030,NA
+plant,bird,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2031,NA
+plant,invertebrate,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2032,NA
+plant,mammal,defense,yes,-1,-1,species employs mechanisms to protect themselves from negative outcomes,effect on taxa 1 changed to -1 on 10/2/2033,NA
+invertebrate,invertebrate,defense-chemical,yes,-1,-1,"release of chemical defenses on predator (e.g., chemical sprays)",effect on taxa 1 changed to -1 on 10/2/2034,NA
+invertebrate,bird,defense-chemical,yes,-1,-1,"release of chemical defenses on predator (e.g., chemical sprays)",effect on taxa 1 changed to -1 on 10/2/2035,NA
+invertebrate,mammal,defense-chemical,yes,-1,-1,"release of chemical defenses on predator (e.g., chemical sprays)",effect on taxa 1 changed to -1 on 10/2/2036,NA
+plant,bird,defense-chemical,yes,-1,-1,"plants release chemical defenses on herbivores (e.g., structural barriers (like trichomes) release toxic or repellent compounds)",effect on taxa 1 changed to -1 on 10/2/2037,NA
+plant,invertebrate,defense-chemical,yes,-1,-1,"plants release chemical defenses on herbivores (e.g., structural barriers (like trichomes) release toxic or repellent compounds)",effect on taxa 1 changed to -1 on 10/2/2038,NA
+plant,mammal,defense-chemical,yes,-1,-1,"plants release chemical defenses on herbivores (e.g., structural barriers (like trichomes) release toxic or repellent compounds)",effect on taxa 1 changed to -1 on 10/2/2039,NA
+invertebrate,invertebrate,defense-envenomation,yes,-1,-1,"the injection of poisonous venom into threat species (via bite, sting, or spray)",effect on taxa 1 changed to -1 on 10/2/2040,NA
+invertebrate,bird,defense-envenomation,yes,-1,-1,"the injection of poisonous venom into threat species (via bite, sting, or spray)",effect on taxa 1 changed to -1 on 10/2/2041,NA
+invertebrate,mammal,defense-envenomation,yes,-1,-1,"the injection of poisonous venom into threat species (via bite, sting, or spray)",effect on taxa 1 changed to -1 on 10/2/2042,NA
+mammal,bacteria,defense-immune response,yes,-1,-1,immune system response (such as producing antibodies) that targets specific pathogens,added 10/2/2026,NA
+bird,bacteria,defense-immune response,yes,-1,-1,immune system response (such as producing antibodies) that targets specific pathogens,added 10/2/2026,NA
+amphibian,bacteria,defense-immune response,yes,-1,-1,immune system response (such as producing antibodies) that targets specific pathogens,added 10/2/2026,NA
+reptile,bacteria,defense-immune response,yes,-1,-1,immune system response (such as producing antibodies) that targets specific pathogens,added 10/2/2026,NA
+invertebrate,bacteria,defense-immune response,yes,-1,-1,immune system response (such as producing antibodies) that targets specific pathogens,added 10/2/2026,NA
+invertebrate,invertebrate,defense-physical,yes,-1,-1,structural adaptations (spines) to defend against herbivory,effect on taxa 1 changed to -1 on 10/2/2043,NA
+invertebrate,bird,defense-physical,yes,-1,-1,structural adaptations (spines) to defend against herbivory,effect on taxa 1 changed to -1 on 10/2/2044,NA
+invertebrate,mammal,defense-physical,yes,-1,-1,structural adaptations (spines) to defend against herbivory,effect on taxa 1 changed to -1 on 10/2/2045,NA
+plant,bird,defense-physical,yes,-1,-1,"structural adaptations (spines, thorns, trichomes) to defend against herbivory",effect on taxa 1 changed to -1 on 10/2/2046,NA
+plant,invertebrate,defense-physical,yes,-1,-1,"structural adaptations (spines, thorns, trichomes) to defend against herbivory",effect on taxa 1 changed to -1 on 10/2/2047,NA
+plant,mammal,defense-physical,yes,-1,-1,"structural adaptations (spines, thorns, trichomes) to defend against herbivory",effect on taxa 1 changed to -1 on 10/2/2048,NA
+mammal,invertebrate,disease transmission,yes,0,1,"one organism (a host vector) transmits a parasite (i.e. protist, bacteria, virus) to a second organism that becomes a new host. transmitting organism = 0, receiving organism = -1",added 9/22/2026,NA
+mammal,mammal,disease transmission,yes,0,1,"one organism (a host vector) transmits a parasite (i.e. protist, bacteria, virus) to a second organism that becomes a new host. transmitting organism = 0, receiving organism = -1",added 9/22/2026,NA
+bird,bird,facilitation,no,1,1,"where both species benefit (if we do not have a specific interaction for it), e.g., mutual allopreening. both species = 1",NA,NA
+mammal,mammal,facilitation,no,1,1,"where both species benefit (if we do not have a specific interaction for it), e.g., mutual allopreening. both species = 1",NA,NA
+invertebrate,plant,facilitation,no,1,1,where both species benefit (if we do not have a specific interaction for it); both species = 1,added 9/22/2026,NA
+plant,invertebrate,facilitation,no,1,1,where both species benefit (if we do not have a specific interaction for it); both species = 1,added 9/22/2026,NA
+fish,fish,facilitation,no,1,1,where both species benefit (if we do not have a specific interaction for it); both species = 1,added 9/25/2026,NA
+invertebrate,invertebrate,facilitation-alarm signaling,no,1,1,"collective warning of danger through chemical, acoustic, or vibrational means by one species that are recognized/acted upon by another to evade or defend against a predator",NA,NA
+bird,bird,facilitation-comigration,no,1,1,special case of facilitation where species migrate together. both species = 1,NA,NA
+bird,bird,facilitation-creching,no,1,1,"for multi-species interactions, this occurs when adult parents (usually mothers) care for a group of young from different species; essentially providing childcare to a group. The young and adults of all species involved benefit. both species = 1",NA,NA
+bird,bird,facilitation-distress calls,no,1,1,"distress calls by young or adults of one species when restrained (by predator, mist net, handling), and this elicits a vocal response by another species. Both species = 1.",NA,NA
+mammal,mammal,facilitation-distress calls,no,1,1,"distress calls by young or adults of one species when restrained (by predator, mist net, handling), and this elicits a vocal response by another species. Both species = 1.",NA,NA
+plant,fungus,facilitation-endophytic symbiosis,no,1,1,"symbiosis between fungi and plants in which fungi colonize the inter and intracellular spaces of healthy plant tissues and perform important functions for their hosts (e.g., providing nutrients, enhancing growth, stimulating systemic resistance against pathogens, as well as buffering external stresses and microbial competition)",NA,NA
+bird,bird,facilitation-feeding/foraging,no,1,1,"case of facilitation when both species feed and/or forage for food together, either in mixed-flocks or feeding aggregations; both species = 1",NA,NA
+mammal,mammal,facilitation-feeding/foraging,no,1,1,"case of facilitation when both species feed and/or forage for food together, either in mixed-flocks or feeding aggregations; both species = 1",NA,NA
+bird,bird,facilitation-mixed flocking,no,1,1,"where both species benefit by being in a group, both species = 1",NA,NA
+bird,bird,facilitation-passive predator deterrence,no,1,1,"where one or both species contribute to predator deterrence by passive means (chemical secretions, intimidation through size, etc.) rather than mobbing, both species = 1",NA,NA
+bird,mammal,facilitation-pest reduction,no,1,1,"where one or both species contribute to pest reduction or consumption in a shared environment, both species = 1",NA,NA
+bird,bird,facilitation-pest reduction,no,1,1,"where one or both species contribute to pest reduction or consumption in a shared environment, both species = 1",NA,NA
+mammal,mammal,facilitation-pest reduction,no,1,1,"where one or both species contribute to pest reduction or consumption in a shared environment, both species = 1",NA,NA
+invertebrate,invertebrate,facilitation-swarming,no,1,1,"collective behavior driven by local interactions, environmental cues (like temperature or humidity), and chemical signals (pheromones) to facilitate mating, migration, or foraging",NA,NA
+invertebrate,plant,herbivory,yes,-1,1,consumption of plant material,NA,NA
+bird,plant,herbivory,yes,-1,1,consumption of plant material,NA,NA
+mammal,plant,herbivory,yes,-1,1,consumption of plant material,NA,NA
+fish,plant,herbivory,yes,1,-1,consumption of plant material,NA,NA
+fish,algae,herbivory,yes,1,-1,consumption of algae,NA,NA
+invertebrate,plant,herbivory-endophagy,yes,1,-1,"Herbivorous feeding inside plant tissues (include boring, rolling, tying, mining, galls, or modifying plant tissues so that the tissues surround the invertebrates while they are feeding)",NA,NA
+bird,plant,herbivory-endozoochory,no,1,1,excretion of consumed seeds,could have 0 or -1 effect on seed if it doesn't germinate,NA
+mammal,plant,herbivory-endozoochory,no,1,1,excretion of consumed seeds,could have 0 or -1 effect on seed if it doesn't germinate,NA
+invertebrate,plant,herbivory-exploitation,yes,1,-1,removal of plant tissues for structural materials (nesting),NA,NA
+bird,plant,herbivory-exploitation,yes,1,-1,removal of plant tissues for structural materials (nesting),NA,NA
+mammal,plant,herbivory-exploitation,yes,1,-1,removal of plant tissues for structural materials (nesting),NA,NA
+invertebrate,plant,herbivory-folivory,yes,1,-1,consumption of leaves,NA,NA
+bird,plant,herbivory-folivory,yes,1,-1,consumption of leaves,NA,NA
+mammal,plant,herbivory-folivory,yes,1,-1,consumption of leaves,NA,NA
+invertebrate,plant,herbivory-frugivory,yes,1,-1,consumption of fruit,generally -/+ for invertebrates,NA
+bird,plant,herbivory-frugivory,no,1,1,consumption of fruit,generally +/+ but could be -/+,NA
+mammal,plant,herbivory-frugivory,no,1,1,consumption of fruit,generally +/+ but could be -/+,NA
+invertebrate,plant,herbivory-granivory,yes,1,-1,consumption of seeds,not sure if post-/pre-dispersal seed predation should be considered (could be a comment on sheets),NA
+bird,plant,herbivory-granivory,yes,1,-1,consumption of seeds,not sure if post-/pre-dispersal seed predation should be considered (could be a comment on sheets),NA
+mammal,plant,herbivory-granivory,yes,1,-1,consumption of seeds,not sure if post-/pre-dispersal seed predation should be considered (could be a comment on sheets),NA
+invertebrate,plant,herbivory-nectivory,yes,1,-1,consumption of nectar,considering nectivory alone without pollination here (nector-robbery),NA
+bird,plant,herbivory-nectivory,yes,1,-1,consumption of nectar,considering nectivory alone without pollination here (nector-robbery),NA
+mammal,plant,herbivory-nectivory,yes,1,-1,consumption of nectar,considering nectivory alone without pollination here (nector-robbery),NA
+invertebrate,plant,herbivory-palynovory,yes,1,-1,"consumption of pollen (separate from pollen dispersal, or pollination)",added 10/1/2026,NA
+mammal,plant,herbivory-palynovory,yes,1,-1,"consumption of pollen (separate from pollen dispersal, or pollination)",added 10/1/2026,NA
+bird,plant,herbivory-palynovory,yes,1,-1,"consumption of pollen (separate from pollen dispersal, or pollination)",added 10/1/2026,NA
+mammal,plant,herbivory-seed dispersal,yes,0,1,dispersal of seeds through unknown means,NA,NA
+invertebrate,plant,herbivory-stomatochory,no,1,1,fruits or seeds being carried in the mouth or the beak of the animal—for immediate consumption—rather than caching and are dispersed without been swallowed,NA,NA
+bird,plant,herbivory-stomatochory,no,1,1,fruits or seeds being carried in the mouth or the beak of the animal—for immediate consumption—rather than caching and are dispersed without been swallowed,NA,NA
+mammal,plant,herbivory-stomatochory,no,1,1,fruits or seeds being carried in the mouth or the beak of the animal—for immediate consumption—rather than caching and are dispersed without been swallowed,NA,NA
+invertebrate,plant,herbivory-synzoochory,no,1,1,"intentional seed dispersal, includes burying, hoarding, caching them, or mouth-dispersal","some seeds may get eaten, but results in general net positive effect",NA
+bird,plant,herbivory-synzoochory,no,1,1,"intentional seed dispersal, includes burying, hoarding, caching them, or mouth-dispersal","some seeds may get eaten, but results in general net positive effect",NA
+mammal,plant,herbivory-synzoochory,no,1,1,"intentional seed dispersal, includes burying, hoarding, caching them, or mouth-dispersal","some seeds may get eaten, but results in general net positive effect",NA
+invertebrate,plant,herbivory-xylophagy,yes,1,-1,consumption of wood,NA,NA
+invertebrate,invertebrate,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA,NA
+bird,bird,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA,NA
+mammal,mammal,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA,NA
+plant,plant,hybridization,no,0,0,when species successfully mate and produce hybrid offspring; includes intergrades (hybrids of subspecies). both species = 0,NA,NA
+invertebrate,plant,inquilinism,yes,0,1,"one organism (the inquiline) lives habitually within another species (the host), deriving shelter or resources without typically harming it; inquiline = 1, host = 0",NA,NA
+plant,invertebrate,insectivory,yes,1,-1,"flora attracts, traps, and digests insects to obtain essential nutrients",NA,NA
+invertebrate,invertebrate,kleptoparasitism-food,yes,-1,1,one species steals food from another species. species that steals and benefits = 1; species that is stolen from = -1,NA,NA
+bird,bird,kleptoparasitism-food,yes,-1,1,one species steals food from another species. species that steals and benefits = 1; species that is stolen from = -1,NA,NA
+mammal,mammal,kleptoparasitism-food,yes,-1,1,one species steals food from another species. species that steals and benefits = 1; species that is stolen from = -1,NA,NA
+bird,bird,kleptoparasitism-nest material,yes,-1,1,"when one species steals nest material from another species; species who steals = 1, species who loses nest material = -1.",NA,NA
+bird,mammal,kleptoparasitism,yes,-1,1,"when one species steals something (e.g., food, nesting material, prey) from another species; species who steals = 1, species who loses nest material = -1.",NA,NA
+bird,invertebrate,kleptoparasitism,yes,-1,1,"when one species steals something (e.g., food, nesting material, prey) from another species; species who steals = 1, species who loses nest material = -1.",NA,NA
+bird,bird,kleptoparasitism,yes,-1,1,"when one species steals something (e.g., food, nesting material, prey) from another species; species who steals = 1, species who loses nest material = -1.",NA,NA
+invertebrate,invertebrate,kleptoparasitism,yes,-1,1,"when one species steals something (e.g., food, nesting material, prey) from another species; species who steals = 1, species who loses nest material = -1.",NA,NA
+mammal,mammal,kleptoparasitism,yes,-1,1,"when one species steals something (e.g., food, nesting material, prey) from another species; species who steals = 1, species who loses nest material = -1.",NA,NA
+invertebrate,invertebrate,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA,NA
+invertebrate,bird,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA,NA
+bird,bird,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger bird. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA,NA
+bird,fish,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA,NA
+mammal,bird,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA,NA
+mammal,mammal,mobbing,yes,1,-1,"usually indicative of predation, where the smaller bird mobs the bigger animal. The species doing the mobbing (usually potential prey) = 1; the species receiving the mobbing = -1 (the potential predator). This is because mobbing is almost always deterring a predator, so the predator loses out.",NA,NA
+bird,bird,nest parasitism,yes,-1,1,"similar to brood parasitism where one species parasitizes the nest of another species; species whose nest is parasitized =-1, species who parasitizes the nest = 1.",NA,NA
+fish,fish,nest parasitism,yes,-1,1,"similar to brood parasitism where one species parasitizes the nest of another species; species whose nest is parasitized =-1, species who parasitizes the nest = 1.",added 9/25/2026,NA
+invertebrate,invertebrate,nest predation,yes,-1,1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+bird,invertebrate,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+invertebrate,mammal,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+invertebrate,bird,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+bird,bird,nest predation,yes,-1,1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+mammal,invertebrate,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+mammal,bird,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+mammal,mammal,nest predation,yes,-1,1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,NA,NA
+fish,fish,nest predation,yes,1,-1,where one species preys upon or consumes the young in a nest of another species; species that consumes = 1; species who is prey = -1,added 9/25/2026,NA
+invertebrate,invertebrate,nest takeover,yes,-1,1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA,NA
+invertebrate,mammal,nest takeover,yes,1,-1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA,NA
+invertebrate,bird,nest takeover,yes,1,-1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA,NA
+bird,bird,nest takeover,yes,-1,1,"where one species takes over (steals) the nest of another species, sometimes kicking out the existing eggs. species that takes over = 1; species whose nest is stolen = -1",NA,NA
+mammal,mammal,nest takeover,yes,-1,1,where one species takes over (steals) the nest of another species. species that takes over = 1; species whose nest is stolen = -1,NA,NA
+invertebrate,mammal,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm",not sure if endo-/ecto-parasitism should be considered (could be a comment on sheets),NA
+invertebrate,bird,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm",not sure if endo-/ecto-parasitism should be considered (could be a comment on sheets),NA
+invertebrate,fungus,parasitism,yes,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 1, host = -1",added 9/15/2026,NA
+plant,plant,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA,NA
+bird,protist,parasitism,no,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA,NA
+reptile,protist,parasitism,no,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA,NA
+amphibian,protist,parasitism,no,-1,1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 0, host = -1",NA,NA
+invertebrate,fish,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 1, host = -1",two new fish interactions added below. - 8/26/2026,NA
+protist,fish,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 1, host = -1",NA,NA
+fungus,invertebrate,parasitism,yes,1,-1,"living (at least some of the time) on or inside another organism, the host, causing it some harm; parasite = 1, host = -1",added 9/15/2026,NA
+invertebrate,invertebrate,parasitism,yes,-1,1,NA,added 10/6/2026,NA
+invertebrate,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+mammal,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+fish,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+plant,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+bird,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+reptile,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+amphibian,bacteria,parasitism-infection,yes,-1,1,"one species parasitizes another species by endoparasitic infection (i.e. diseases caused by bacteria, viruses). Host species = -1, infecting species = 1",added 9/25/2026,NA
+bird,bird,play,no,0,0,species play with each other; both species = 0,NA,NA
+mammal,mammal,play,no,0,0,species play with each other; both species = 0,NA,NA
+invertebrate,plant,pollination,no,1,1,transfer of pollen between flowers as a result of feeding on nectar or pollen,NA,NA
+bird,plant,pollination,no,1,1,transfer of pollen between flowers as a result of feeding on nectar or pollen,NA,NA
+mammal,plant,pollination,no,1,1,transfer of pollen between flowers as a result of feeding on nectar or pollen,NA,NA
+invertebrate,invertebrate,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+bird,invertebrate,predation,yes,1,-1,predator eats prey,NA,NA
+bird,bird,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+bird,fish,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+bird,reptile,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+bird,mammal,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+mammal,invertebrate,predation,yes,1,-1,predator eats prey,NA,NA
+mammal,bird,predation,yes,1,-1,predator eats prey,NA,NA
+mammal,mammal,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+reptile,bird,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+fish,invertebrate,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,six new fish interactions added below. - 8/25/2026,NA
+fish,fish,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+fish,amphibian,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,NA,NA
+mammal,reptile,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,added 9/11/2026,NA
+amphibian,invertebrate,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,added 9/15/2026,NA
+reptile,reptile,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,added 9/28/2026,NA
+bird,amphibian,predation,yes,1,-1,predator eats prey. predator = 1; prey = -1,added 10/2/2026,NA
+bird,bird,shared scolding,no,1,1,"usually indicative of predation, where the smaller birds vocally scold a predator. The species doing the shared scolding are usually potential prey = 1.",NA,NA
+invertebrate,invertebrate,mutualism,no,1,1,where both species benefit (if we do not have a specific interaction for it); both species = 1,NA,NA

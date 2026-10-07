@@ -30,4 +30,5 @@ entry_date,character,"1, 2, 3, 4, 5",Date of recording interaction into sheet. U
 interaction_confidence,factor,"3, 4, 5","Strength of the evidence for the interaction. Enter “weak” if the description is vague, mentions that it is a “possible” or ""likely"" (but not observed) interaction or inferred interaction. Enter “strong” if the interaction was observed, or was strongly stated (Options: weak, strong)",NA,NA,NA,NA,Unexpected value
 entry_changes,character,"1, 2, 3, 4, 5",For use by reviewers only. Enter any changes in this column.,NA,NA,NA,NA,NA
 notes,character,5,Enter any notes you have about the interaction. None are necessary.,NA,NA,NA,NA,NA
+DatabaseSearchURL,character,NA,NA,NA,NA,NA,NA,NA
 version,factor,5,This is an indicator column that helps us sort sheets later. Please do not edit it.,x,NA,NA,Value missing.,NA
