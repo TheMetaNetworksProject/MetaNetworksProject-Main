@@ -67,6 +67,7 @@
 
 source("./R/L0/3aux_clean_data_basic_formatting.R")
 source("./R/L0/3aux_clean_data_life_history.R")
+source("./R/L0/3aux_clean_data_interaction.R")
 source("./R/L0/aux_clean_data_taxonomy_harmonize_names_to_gbif.R")
 source("./R/L0/3aux_clean_data_taxonomy.R") # needs the line above first
 source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
@@ -122,27 +123,28 @@ clean_data <- function(
   # 1. basic text cleaning
   df <- clean_collapse_spaces(df)
   df <- clean_numeric_commas(df, numeric_cols)
-  df <- standardize_taxon_names(df)
-  df <- correct_known_typos(df, corrections)
   df <- flag_backfilled_urls(df)
 
   # 2. column-specific cleaning
-  for (col in names(column_cleaners)) {
-    if (!col %in% names(df)) {
-      stop(
-        "Column-specific cleaner registered for '",
-        col,
-        "' but df has no such column"
-      )
-    }
-    df <- column_cleaners[[col]](
-      df,
-      col = col,
-      on_invalid = on_invalid_for(col, mandatory_cols)
-    )
-  }
+  df <- standardize_life_history_season(
+    df,
+    "tx1_life_history_season",
+    on_invalid = on_invalid_for("tx1_life_history_season", mandatory_cols)
+  )
+  df <- standardize_life_history_season(
+    df,
+    "tx2_life_history_season",
+    on_invalid = on_invalid_for("tx2_life_history_season", mandatory_cols)
+  )
+  df <- standardize_interactions(
+    df,
+    on_invalid = on_invalid_for("interaction", mandatory_cols),
+    corrections = corrections
+  )
+  df <- check_effect_values(df)
 
   # 3. taxonomy: add GBIF names; unresolved names are errors (file flagged)
+  df <- standardize_taxon_names(df)
   df <- check_taxa_gbif(
     df,
     crosswalk_path = gbif_crosswalk_path,
@@ -268,10 +270,6 @@ mandatory_cols <- schema$column_name[
   !is.na(schema$mandatory_col) & schema$mandatory_col == "x"
 ]
 
-# one line per column-specific cleaner: column name = cleaning function
-column_cleaners <- list(
-  tx1_life_history_season = standardize_life_history_season
-)
 
 df_clean <- clean_data(
   df,

@@ -231,7 +231,7 @@ standardize_life_history_season <- function(
 }
 
 # ---- Example usage ----------------------------------------------------------
-df_clean <- standardize_life_history_season(harmonized_df)
+# df_clean <- standardize_life_history_season(harmonized_df)
 # df_clean <- standardize_life_history_season(harmonized_df, on_invalid = "warning")
 #
 # # Anything still needing a human look:

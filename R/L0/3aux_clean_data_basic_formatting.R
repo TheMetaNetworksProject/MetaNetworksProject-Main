@@ -203,33 +203,6 @@ standardize_taxon_names <- function(df) {
   df
 }
 
-#' Correct known typos in the interaction column using a lookup table
-#'
-#' Each corrected value is logged as a warning with the original value.
-#' @param df harmonized data frame
-#' @param corrections data frame with columns "incorrect" and "correct"
-#' @returns df
-correct_known_typos <- function(df, corrections) {
-  if (!"interaction" %in% names(df)) {
-    return(df)
-  }
-
-  original <- df$interaction
-  match_idx <- match(
-    tolower(trimws(original)),
-    tolower(trimws(corrections$incorrect))
-  )
-  rows <- which(!is.na(match_idx))
-
-  df$interaction[rows] <- corrections$correct[match_idx[rows]]
-  add_note(
-    df,
-    rows,
-    paste0("interaction: typo corrected from '", original[rows], "'"),
-    "warning"
-  )
-}
-
 #' Log rows where source_url_backfilled was set during harmonization
 #'
 #' reshape_sources() in 2_harmonize_datasheet_versions.R backfills a blank
