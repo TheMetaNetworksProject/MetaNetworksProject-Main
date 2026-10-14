@@ -2,8 +2,16 @@
 ## _schema_common.R
 ## Shared setup for the schema-audit tooling. Sourced by:
 ##   - 1_schema_audit.R      (read-only: NEVER assigns schema numbers)
-##   - 1b_schema_register.R   (the ONLY script that assigns/appends numbers)
+##   - 1b_schema_register.R   (the ONLY script that assigns/appends schema numbers)
 ## Nothing in here writes files; it just prepares data and defines helpers.
+##
+## NOTE: "Schemas" represent unique combinations of columns in the MetaNetworks
+## CSVs. Sometimes these column combinations were the result of deliberate changes
+## in the data sheet and other time, they were accidental misspellings or deletions.
+## All schemas are assigned to the appropriate major "version" of the data in the
+## script 2_harmonize_datasheet_versions.R.
+## NOTE: This code was created with assistance from an LLM. All outputs were
+## human-reviewed and manually tested for to verify outputs.
 ## =============================================================================
 
 `%||%` <- function(x, y) if (is.null(x)) y else x

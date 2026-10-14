@@ -1,5 +1,5 @@
 # TITLE:            Basic cleaning functions for the harmonized data frame
-# PROJECT:          AvianMetaNetwork
+# PROJECT:          The MetaNetworks Project
 # AUTHORS:          Kelly Kapsar
 # COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       None (function definitions only). Every function takes the
@@ -21,9 +21,10 @@
 #                     - routine fixes are always logged as warnings
 #                     - values that can't be fixed are logged as an error if
 #                       the column is mandatory, otherwise as a warning
-# REQUIRES:         Nothing (base R only)
 # NOTES:            Row numbers in notes are not used; the note lives on the
 #                   row it describes.
+# NOTE:              Original version of this code was manually created, but was refactored and
+#                    comments were added using AI. All code was human-reviewed after refactoring.
 
 # ============================================================================
 # NOTE HELPERS
@@ -123,83 +124,6 @@ clean_numeric_commas <- function(df, numeric_cols) {
     )
     df[[col]][rows] <- gsub(",", "", trimmed[rows])
   }
-  df
-}
-
-#' Standardize taxa1/taxa2 scientific and common name columns
-#'
-#'   - fixes missing space after "unid." (e.g. "unid.duck" -> "unid. duck")
-#'   - standardizes "spp." to "sp."
-#'   - sentence-cases scientific names (except entries starting "unid.")
-#'   - title-cases common names
-#' Each changed value is logged as a warning with the original value.
-#' @param df harmonized data frame
-#' @returns df
-standardize_taxon_names <- function(df) {
-  sci_cols <- intersect(c("taxa1_scientific", "taxa2_scientific"), names(df))
-  common_cols <- intersect(c("taxa1_common", "taxa2_common"), names(df))
-
-  for (col in sci_cols) {
-    original <- df[[col]]
-    x <- original
-    x <- gsub("(?i)unid\\.(?=[A-Za-z])", "unid. ", x, perl = TRUE)
-    x <- gsub("\\bspp\\.", "sp.", x)
-
-    non_na <- !is.na(x)
-    is_unid <- non_na & grepl("(?i)^unid\\.", x)
-    to_sentence <- non_na & !is_unid
-    if (any(to_sentence)) {
-      v <- x[to_sentence]
-      x[to_sentence] <- paste0(
-        toupper(substring(v, 1, 1)),
-        tolower(substring(v, 2))
-      )
-    }
-    x <- gsub(" {2,}", " ", x)
-
-    changed <- which(!is.na(original) & !is.na(x) & original != x)
-    df <- add_note(
-      df,
-      changed,
-      paste0(col, ": standardized from '", original[changed], "'"),
-      "warning"
-    )
-    df[[col]] <- x
-  }
-
-  for (col in common_cols) {
-    original <- df[[col]]
-    x <- original
-    x <- gsub("(?i)unid[. ]+", "unid. ", x, perl = TRUE)
-    x <- gsub(" {2,}", " ", x)
-
-    non_na <- !is.na(x)
-    if (any(non_na)) {
-      words <- strsplit(x[non_na], " ")
-      x[non_na] <- vapply(
-        words,
-        function(w) {
-          paste(
-            toupper(substring(w, 1, 1)),
-            tolower(substring(w, 2)),
-            sep = "",
-            collapse = " "
-          )
-        },
-        character(1)
-      )
-    }
-
-    changed <- which(!is.na(original) & !is.na(x) & original != x)
-    df <- add_note(
-      df,
-      changed,
-      paste0(col, ": standardized from '", original[changed], "'"),
-      "warning"
-    )
-    df[[col]] <- x
-  }
-
   df
 }
 

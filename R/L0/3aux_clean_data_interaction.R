@@ -29,9 +29,13 @@
 #                   clean_data_basic.R (source that first)
 # NOTES:            Row numbers in notes are not used; the note lives on the
 #                   row it describes.
+# NOTE:              Original version of this code was manually created, but was refactored and
+#                    comments were added using AI. All code was human-reviewed after refactoring.
 
 library(dplyr)
 library(stringr)
+
+source("./R/L0/clean_data_basic_formatting.R")
 
 # ============================================================================
 # PERMITTED INTERACTIONS
@@ -80,17 +84,7 @@ correct_known_typos <- function(df, corrections) {
 
 #' Move "potential" / "artificial" qualifiers out of the interaction column
 #'
-#' Some sheets encode certainty or experimental context in the interaction
-#' itself (e.g. "potential predation", "brood parasitism-artificial"). The
-#' permitted interaction list doesn't allow these, so this function:
-#'   - removes the word from `interaction`
-#'   - records it in `interaction_confidence`: "potential" -> "weak",
-#'     "artificial" -> "artificial"
-#'   - logs a warning on every row it changes, with the original value
-#'
-#' Matching ignores case and also catches the typos seen so far
-#' ("poteintal", "artifical"). Add new variants to the two patterns below.
-#' If `interaction_confidence` already contains the term (as a whole word) it
+#' Note: If `interaction_confidence` already contains the term (as a whole word) it
 #' is not added again; otherwise it is appended after "; ".
 #' @param df harmonized data frame (needs `interaction` and
 #'   `interaction_confidence` columns)
@@ -170,8 +164,6 @@ fix_potential_and_artificial <- function(df) {
 
 #' Standardize the interaction column and check it against permitted values
 #'
-#' Order matters: typos are fixed first (and logged), then values are
-#' lowercased, then anything not in `permitted_interactions` is logged.
 #' Unrecognized values are logged as an error if the interaction column is
 #' mandatory, otherwise as a warning (pass `on_invalid_for("interaction",
 #' mandatory_cols)`). NA values count as unrecognized, so any NA still here

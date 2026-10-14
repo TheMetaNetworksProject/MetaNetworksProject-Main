@@ -1,12 +1,12 @@
-# TITLE:            Standardize tx1_life_history_season
-# PROJECT:          MetaNetworks Project (MetaNetworksProject-Main)
-# AUTHORS:          Kelly
-# COLLABORATORS:
+# TITLE:            Standardize taxa life history columns
+# PROJECT:          The MetaNetworks Project
+# AUTHORS:          Kelly Kapsar
+# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       harmonized_df / df from aux_harmonize_datasheet_versions.R
-#                   (must contain tx1_life_history_season and version)
-# DATA OUTPUT:      Same data frame with tx1_life_history_season standardized and
+#                   (must contain tx<#>_life_history_season and version)
+# DATA OUTPUT:      Same data frame with tx<#>_life_history_season standardized and
 #                   notes appended to `warnings` and `errors` columns
-# DATE:             initiated: 2026-09-29
+# DATE:             initiated: 2026-09-29; last updated: October 2026
 # OVERVIEW:         Recodes legacy season values to the current vocabulary
 #                   (breeding, migration, non-breeding, year-round) and checks
 #                   v4+ entries against it.
@@ -19,9 +19,10 @@
 #                   Drive CSV export. Legacy values separated by ";" or ","
 #                   are both recoded; v4+ values must use ",".
 #                   Unrecognized values are left unchanged and noted in `errors`.
-# REQUIRES:         aux_harmonize_datasheet_versions.R (run first)
 # NOTES:            Add new typos/variants to the lookup tables below rather than
 #                   to the functions.
+# NOTE:              Original version of this code was manually created, but was refactored and
+#                    comments were added using AI. All code was human-reviewed after refactoring.
 
 library(dplyr)
 library(stringr)

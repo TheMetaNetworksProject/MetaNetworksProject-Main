@@ -3,8 +3,9 @@
 ## Audit using the FROZEN schema numbering in 1_schema_metadata.csv.
 ## It never assigns new numbers. Any CSV whose column combination is not
 ## already in the key is moved to taxa_flagged and recorded in
-## taxa_flagged/flagged_file_metadata.csv (same format clean_data.R appends to),
-## and the audit carries on with the remaining files. To recognize that layout,
+## taxa_flagged/flagged_file_metadata.csv,
+## and the audit carries on with the remaining files. To recognize a new,
+## unregistered set of columns (i.e., a new version of the data sheet),
 ## run 1b_schema_register.R and update 2_harmonize_datasheet_versions.R.
 ##
 ## Outputs (written for all files that fit a registered schema):
@@ -12,6 +13,14 @@
 ##   1_schema_metadata.csv   schema key (numbering frozen, metadata refreshed)
 ##   1_files_with_schema.csv per-file details (flagged files are not listed)
 ##   <taxa_flagged>/flagged_file_metadata.csv  appended/created if files flagged
+##
+## NOTE: "Schemas" represent unique combinations of columns in the MetaNetworks
+## CSVs. Sometimes these column combinations were the result of deliberate changes
+## in the data sheet and other time, they were accidental misspellings or deletions.
+## All schemas are assigned to the appropriate major "version" of the data in the
+## script 2_harmonize_datasheet_versions.R.
+## NOTE: This code was created with assistance from an LLM. All outputs were
+## human-reviewed and manually tested for to verify outputs.
 ## =============================================================================
 
 source("./R/L0/_schema_common.R")

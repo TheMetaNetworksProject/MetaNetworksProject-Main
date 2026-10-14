@@ -1,12 +1,15 @@
 ## =============================================================================
 ## _flagged_files.R
 ## Shared helpers for flagging source files. Sourced by 1_schema_audit.R and
-## clean_data.R so both write flagged_file_metadata.csv in the SAME format:
+## 3_clean_data.R so both write flagged_file_metadata.csv in the SAME format:
 ##
 ##   source_file | row | error
 ##
 ## One row per (file, row, error message). `row` is NA for file-level problems
 ## (e.g. a file that does not match any registered schema).
+##
+## NOTE: This code was created with assistance from an LLM. All outputs were
+## human-reviewed and manually tested for to verify outputs.
 ## =============================================================================
 
 ## ---- paths -- adjust to your folder layout ---------------------------------

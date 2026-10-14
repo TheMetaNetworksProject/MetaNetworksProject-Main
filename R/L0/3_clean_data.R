@@ -1,7 +1,7 @@
 # TITLE:            Master cleaning script for the harmonized data frame
-# PROJECT:          AvianMetaNetwork
+# PROJECT:          The MetaNetworks Project
 # AUTHORS:          Kelly Kapsar
-# COLLABORATORS:    [FILL IN]
+# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       The harmonized data frame `df` produced by
 #                   aux_harmonize_datasheet_versions.R (one row per
 #                   interaction record, tagged with source_file), plus
@@ -17,16 +17,11 @@
 #                   (2) df_final: df_clean minus every row from any source
 #                       file with at least one error; those source files are
 #                       moved to taxa_flagged
-#                   Both data frames carry tx1_gbif / tx1_gbif_rank /
-#                   tx1_gbif_usageKey and the same for tx2 (accepted GBIF
-#                   name, rank, and key).
-#                   (3) updated
-#                       aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv
+#                   (3) updated aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv
 #                       (new names appended) and
 #                       aux_clean_data_taxonomy_gbif_manual_matches.csv
 #                       (newly flagged names appended)
-# DATE:             initiated: 10 Aug 2026; modularized 29 Sep 2026;
-#                   taxonomy step added 6 Oct 2026
+# DATE:             initiated: 10 Aug 2026; last updated: October 2026
 # OVERVIEW:         Orchestrates cleaning in this order:
 #                     1. basic text cleaning        (clean_data_basic.R)
 #                     2. column-specific cleaning   (clean_data_<column>.R)
@@ -42,33 +37,26 @@
 #                   warnings. Only errors get a source file flagged.
 #
 #                   TO ADD A NEW COLUMN-SPECIFIC CLEANER:
-#                     1. write clean_data_<column>.R defining a function with
-#                        signature f(df, col, on_invalid = c("error",
-#                        "warning")) that returns df with notes appended to
-#                        `errors` / `warnings` (see add_note() in
-#                        clean_data_basic.R)
-#                     2. source() it below
-#                     3. add one line to `column_cleaners` in the run section
+#                     1. write 3aux_clean_data_<column>.R defining a function
+#                        that takes df (plus on_invalid and any other
+#                        arguments it needs) and returns df with notes
+#                        appended to `errors` / `warnings` (see add_note()
+#                        in 3aux_clean_data_basic_formatting.R)
+#                     2. source() it at the top of this script
+#                     3. add a call to it in step 2 of clean_data(), using
+#                        on_invalid_for(<column>, mandatory_cols) to choose
+#                        error vs. warning
 # REQUIRES:         aux_harmonize_datasheet_versions.R (run first, so `df`
 #                   exists), clean_data_basic.R, clean_data_life_history.R,
 #                   aux_clean_data_taxonomy_harmonize_names_to_gbif.R
 #                   (rgbif, tidyverse), 3aux_clean_data_taxonomy.R. The
 #                   taxonomy step needs a network connection (live GBIF).
-# NOTES:            Run on fresh harmonizer output. Cleaners are not safe to
-#                   run twice on the same data frame (e.g. already-recoded
-#                   life history values would be flagged as unrecognized),
-#                   so assign to a new object (df_clean) instead of
-#                   overwriting df.
-#                   The taxonomy step runs after text cleaning, so
-#                   standardized, typo-corrected names are what get sent to
-#                   GBIF. It runs before move_flagged_files(), so names from
-#                   files flagged for other reasons are still queried and
-#                   added to the crosswalk.
+# NOTE:              Original version of this code was manually created, but was refactored and
+#                    comments were added using AI. All code was human-reviewed after refactoring.
 
 source("./R/L0/3aux_clean_data_basic_formatting.R")
 source("./R/L0/3aux_clean_data_life_history.R")
 source("./R/L0/3aux_clean_data_interaction.R")
-source("./R/L0/aux_clean_data_taxonomy_harmonize_names_to_gbif.R")
 source("./R/L0/3aux_clean_data_taxonomy.R") # needs the line above first
 source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 
@@ -80,12 +68,13 @@ source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 #'
 #' Phase order matters:
 #'   1. text cleaning first, so column-specific cleaners see tidy strings
-#'   2. column-specific cleaners next, while values are still the original
-#'      strings (type coercion would break string recoding)
+#'   2. column-specific cleaners next (one explicit call per column), while
+#'      values are still the original strings (type coercion would break
+#'      string recoding)
 #'   3. taxonomy: taxa1/taxa2 names harmonized to GBIF (check_taxa_gbif()),
-#'      after text cleaning so cleaned names are what get queried. Not in
-#'      `column_cleaners` because it needs the two CSV paths and handles
-#'      both name columns in one GBIF batch.
+#'      after text cleaning so cleaned names are what get queried. Handled
+#'      separately from the per-column cleaners in step 2 because it needs
+#'      the two CSV paths and handles both name columns in one GBIF batch.
 #'   4. lat/long validation, type coercion, and the mandatory-field check
 #'      last, so NAs filled in by cleaners aren't flagged as missing
 #' @param df harmonized data frame (must have a source_file column)
@@ -94,8 +83,6 @@ source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 #' @param corrections data frame with columns "incorrect" and "correct"
 #' @param mandatory_cols character vector of mandatory column names; invalid
 #'   values in these are errors, in all other columns warnings
-#' @param column_cleaners named list: names are column names, values are
-#'   cleaning functions with signature f(df, col, on_invalid)
 #' @param gbif_crosswalk_path path to the GBIF crosswalk CSV
 #' @param gbif_manual_matches_path path to the manual GBIF matches CSV
 #' @param new_crosswalk TRUE = rebuild the GBIF crosswalk from scratch;
@@ -108,7 +95,6 @@ clean_data <- function(
   schema,
   corrections,
   mandatory_cols,
-  column_cleaners,
   gbif_crosswalk_path,
   gbif_manual_matches_path,
   new_crosswalk = FALSE
@@ -276,7 +262,6 @@ df_clean <- clean_data(
   schema = schema,
   corrections = corrections,
   mandatory_cols = mandatory_cols,
-  column_cleaners = column_cleaners,
   gbif_crosswalk_path = gbif_crosswalk_path,
   gbif_manual_matches_path = gbif_manual_matches_path,
   new_crosswalk = FALSE # set TRUE to rebuild the GBIF crosswalk from scratch

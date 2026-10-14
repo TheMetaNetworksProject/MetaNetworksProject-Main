@@ -8,6 +8,14 @@
 ##   writing schema_1, schema_2, ...
 ## Later runs: finds column combinations not yet in the key and appends them as
 ##   schema_(N+1), schema_(N+2), ... WITHOUT touching any existing numbers.
+##
+## NOTE: "Schemas" represent unique combinations of columns in the MetaNetworks
+## CSVs. Sometimes these column combinations were the result of deliberate changes
+## in the data sheet and other time, they were accidental misspellings or deletions.
+## All schemas are assigned to the appropriate major "version" of the data in the
+## script 2_harmonize_datasheet_versions.R.
+## NOTE: Original version of this code was manually created, but was refactored and
+## comments were added using AI. All code was human-reviewed after refactoring.
 ## =============================================================================
 
 source("./R/L0/_schema_common.R")
