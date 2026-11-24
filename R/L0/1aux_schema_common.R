@@ -1,5 +1,5 @@
 ## =============================================================================
-## _schema_common.R
+## 1aux_schema_common.R
 ## Shared setup for the schema-audit tooling. Sourced by:
 ##   - 1_schema_audit.R      (read-only: NEVER assigns schema numbers)
 ##   - 1b_schema_register.R   (the ONLY script that assigns/appends schema numbers)
@@ -11,7 +11,7 @@
 ## All schemas are assigned to the appropriate major "version" of the data in the
 ## script 2_harmonize_datasheet_versions.R.
 ## NOTE: This code was created with assistance from an LLM. All outputs were
-## human-reviewed and manually tested for to verify outputs.
+## human-reviewed and tested to verify outputs.
 ## =============================================================================
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
@@ -63,9 +63,7 @@ get_cols <- function(f) {
 # Whether a CSV has at least one row with at least one non-blank, non-NA
 # value in any column. FALSE covers both a header-only file (zero data rows)
 # and a file where every cell is NA, "", or the literal string "NA" once
-# trimmed -- added 11 Sept 2026 after several data sheets turned out to be
-# blank in one of those two ways and were causing logical/character type
-# mismatches downstream in the harmonization script.
+# trimmed.
 #
 # Returns NA (not TRUE/FALSE) if the file can't be read at all -- the same
 # kind of corrupted/mis-saved file get_cols() above already flags with a

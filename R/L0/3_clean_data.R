@@ -1,25 +1,25 @@
 # TITLE:            Master cleaning script for the harmonized data frame
 # PROJECT:          The MetaNetworks Project
-# AUTHORS:          Kelly Kapsar
-# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
+# AUTHORS:          Kelly Kapsar, Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas,
+#                   Minyoung Lee, Patrick Bills
 # DATA INPUT:       The harmonized data frame `df` produced by
-#                   aux_harmonize_datasheet_versions.R (one row per
+#                   2_harmonize_datasheet_versions.R (one row per
 #                   interaction record, tagged with source_file), plus
 #                   column_names.csv (schema with data_format and
-#                   mandatory_col flags) and aux_interaction_corrections.csv
+#                   mandatory_col flags) and 3aux_interaction_corrections.csv
 #                   (known interaction-type typos). For the taxonomy step:
-#                   aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv
+#                   ./docs/master_metanetworks_gbif_crosswalk.csv
 #                   (existing GBIF crosswalk, if any) and
-#                   aux_clean_data_taxonomy_gbif_manual_matches.csv (hand-
+#                   3aux_clean_data_taxonomy_gbif_manual_matches.csv (hand-
 #                   filled manual GBIF matches, if any)
 # DATA OUTPUT:      (1) df_clean: the full data frame with `errors` and
 #                       `warnings` columns (nothing dropped)
 #                   (2) df_final: df_clean minus every row from any source
 #                       file with at least one error; those source files are
 #                       moved to taxa_flagged
-#                   (3) updated aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv
+#                   (3) updated ./docs/master_metanetworks_gbif_crosswalk.csv
 #                       (new names appended) and
-#                       aux_clean_data_taxonomy_gbif_manual_matches.csv
+#                       3aux_clean_data_taxonomy_gbif_manual_matches.csv
 #                       (newly flagged names appended)
 # DATE:             initiated: 10 Aug 2026; last updated: October 2026
 # OVERVIEW:         Orchestrates cleaning in this order:
@@ -58,7 +58,7 @@ source("./R/L0/3aux_clean_data_basic_formatting.R")
 source("./R/L0/3aux_clean_data_life_history.R")
 source("./R/L0/3aux_clean_data_interaction.R")
 source("./R/L0/3aux_clean_data_taxonomy.R") # needs the line above first
-source("./R/L0/_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
+source("./R/L0/1aux_flagged_files.R") # flag_files(), flagged_dir, taxa_source_dirs
 
 # ============================================================================
 # MASTER CLEANING FUNCTION
@@ -236,11 +236,14 @@ move_flagged_files <- function(
 # RUN
 # ============================================================================
 
+# Read in concatenated data from step 2
+df <- readRDS("./R/L0/2_harmonized_df.rds")
+
 # paths -- adjust to your folder layout
 schema_path <- "./docs/interaction_metadata_schemas/column_names.csv"
-corrections_path <- "./R/L0/aux_interaction_corrections.csv"
-gbif_crosswalk_path <- "./R/L0/aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv"
-gbif_manual_matches_path <- "./R/L0/aux_clean_data_taxonomy_gbif_manual_matches.csv"
+corrections_path <- "./R/L0/3aux_interaction_corrections.csv"
+gbif_crosswalk_path <- "./docs/master_metanetworks_gbif_crosswalk.csv"
+gbif_manual_matches_path <- "./R/L0/3aux_clean_data_taxonomy_gbif_manual_matches.csv"
 source_dirs <- taxa_source_dirs # defined in _flagged_files.R
 # flagged_dir is also defined in _flagged_files.R, so this script and
 # 1_schema_audit.R always write to the same flagged_file_metadata.csv
@@ -271,7 +274,9 @@ result <- move_flagged_files(
   df_clean,
   source_dirs = source_dirs,
   flagged_dir = flagged_dir,
-  move = FALSE # set TRUE to write flagged_file_metadata.csv and move files
+  move = TRUE # set TRUE to write flagged_file_metadata.csv and move files
 )
 df_final <- result$data
 df_flagged <- result$flagged
+
+write.csv("../MetaNetworksProject-Working/")

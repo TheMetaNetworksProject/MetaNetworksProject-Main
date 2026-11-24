@@ -1,95 +1,72 @@
-# TITLE:            aux_clean_data_taxonomy_harmonize_names_to_gbif.R
+# TITLE:            3aux_clean_data_taxonomy_harmonize_names_to_gbif.R
 # PROJECT:          The MetaNetworks Project
-# AUTHORS:          Kelly Kapsar
-# COLLABORATORS:
-# DATA INPUT:       None directly -- this script only DEFINES functions.
-#                   They are called from 3_clean_data.R by
-#                   harmonize_taxonomy_gbif(), which passes in the cleaned
-#                   data frame's taxa1_scientific/taxa1_group and
-#                   taxa2_scientific/taxa2_group columns, plus the path to
-#                   aux_clean_data_taxonomy_gbif_manual_matches.csv (the
-#                   manual-correction CSV, created by
-#                   taxa_export_gbif_review_template(), edited by hand,
-#                   re-read on the next run).
-# DATA OUTPUT:      None directly. The functions produce `crosswalk`: one row
-#                   per unique MetaNetworks raw_name, matched against the
-#                   GBIF backbone with a match_status, final_usageKey, and
-#                   accepted taxonomy (every GBIF rank). 3aux_clean_data_taxonomy.R writes it to
-#                   aux_clean_data_taxonomy_metanetwork_gbif_crosswalk.csv.
-# DATE:             initiated: unknown -- predates this header, please
-#                   backfill from version control if available; last
-#                   updated: 6 October 2026.
-# OVERVIEW:         Classifies each raw MetaNetworks taxon name (full name /
-#                   higher-rank-expected / excluded), matches it against the
-#                   GBIF backbone -- optionally constrained by taxa_group
-#                   (e.g. bird names searched within class Aves) -- and
-#                   triages the result into an automatic match or a row
-#                   needing manual review. Supports a hand-edited
-#                   manual-match correction registry
-#                   (aux_clean_data_taxonomy_gbif_manual_matches.csv) that
-#                   overrides an automated match by usageKey and backfills
-#                   its accepted taxonomy via a live GBIF lookup.
-# REQUIRES:         rgbif, tidyverse. avilistr, for the commented-out
-#                   exploratory AviList match-count helper at the bottom.
-#                   Sourced by 3_clean_data.R. harmonize_names_to_checklist.R
-#                   consumes the resulting crosswalk downstream, and expects
-#                   it to already be fully reviewed and corrected (i.e. the
-#                   whole build -> export -> hand-fill -> apply cycle).
-# NOTES:            2026-09-21: match_status now sends a "higher-rank-expected"
-#                   query (bare genus, "sp.", "unid.", ...) to manual review
-#                   ("needs_review_coarsest_group_only") when GBIF can only
-#                   resolve it to the taxa_group's own coarsest filter rank
-#                   (e.g. a bare "bird" entry resolving to nothing finer than
-#                   class Aves) rather than auto-accepting it as "matched".
-#                   2026-09-21: the GBIF-hop manual-match tooling
-#                   (taxa_lookup_gbif_usage(), taxa_export_gbif_review_template(),
-#                   taxa_apply_gbif_manual_matches()) moved here from
-#                   harmonize_names_to_checklist.R -- it's pure GBIF-crosswalk
-#                   logic with nothing checklist-specific about it.
-#                   2026-09-23: GBIF usage keys are alphanumeric now, not
-#                   guaranteed integer -- removed the as.integer() coercion
-#                   on manual_gbif_usageKey in taxa_apply_gbif_manual_matches()
-#                   that broke on the new key format.
-#                   2026-10-06: converted to a functions-only script. The run
-#                   block that used to sit at the bottom (build -> export ->
-#                   apply -> write.csv on the full `df`) moved into
-#                   harmonize_taxonomy_gbif() in
-#                   3aux_clean_data_taxonomy.R, which only queries GBIF for
-#                   names not already in the saved crosswalk (or rebuilds
-#                   everything when new_crosswalk = TRUE).
-#                   Sourcing this file no longer runs any GBIF queries.
-#                   taxa_build_gbif_crosswalk() now skips the GBIF call when
-#                   every name passed in is "excluded" (cf./aff./
-#                   morphospecies), which can happen in an incremental run
-#                   with only a handful of new names.
-#                   2026-10-06: accepted taxonomy rebuilt from the accepted
-#                   usageKey. The match columns (usageKey, rank,
-#                   canonicalName) still describe the matched name; new
-#                   final_rank / final_canonicalName plus every rank column
-#                   (kingdom ... species, subspecies, tribe, ...) and its
-#                   <rank>Key describe the ACCEPTED taxon. Synonyms and manual
-#                   matches get every rank column wiped and refilled from the
-#                   accepted record (taxa_resolve_accepted_taxonomy(),
-#                   taxa_overwrite_taxonomy()).
-#                   2026-10-06: taxa_lookup_gbif_usage() now uses
-#                   name_backbone_checklist() (GBIF v2 match API) with a
-#                   usageKey column instead of rgbif::name_usage(). name_usage()
-#                   hits the v1 API, which doesn't know the new alphanumeric
-#                   keys, so every lookup had been silently returning nothing
-#                   (manual matches had no taxonomy). A manual key GBIF doesn't
-#                   recognize now gets match_status "manual_key_not_found".
-#                   manual_gbif_canonicalName is a note for humans only -- the
-#                   accepted name always comes from GBIF.
-
-library(rgbif)
-library(tidyverse)
+# AUTHORS:          Kelly Kapsar, Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas,
+#                   Minyoung Lee, Patrick Bills
+# DATA INPUT:       Two CSVs, both read by taxa_update_gbif_crosswalk() from
+#                   paths its caller passes in (no path is read from the
+#                   enclosing environment):
+#                     ./docs/master_metanetworks_gbif_crosswalk.csv
+#                     3aux_clean_data_taxonomy_gbif_manual_matches.csv
+#                   The manual-matches CSV is created by
+#                   taxa_export_gbif_review_template(), edited by hand, and
+#                   re-read on the next run.
+# DATA OUTPUT:      Both CSVs above are written back by
+#                   taxa_update_gbif_crosswalk():
+#                     - crosswalk: one row per unique MetaNetworks raw_name,
+#                       matched against the GBIF backbone, with a
+#                       match_status, final_usageKey, and the accepted
+#                       taxonomy (every GBIF rank GBIF returns)
+#                     - manual matches: newly flagged names appended, never
+#                       overwritten
+#                   taxa_update_gbif_crosswalk() also RETURNS the updated
+#                   crosswalk to its caller (3a_aux_clean_data_taxonomy.R).
+# DATE:             initiated: summer 2026; last updated November 2026
+# OVERVIEW:         The GBIF layer of the taxonomy step. Everything here
+#                   operates on either (a) a vector of raw names plus a
+#                   matching vector of taxa_groups, or (b) a crosswalk data
+#                   frame. Nothing here knows the MetaNetworks data frame
+#                   schema (taxa1_scientific, taxa2_group, ...) or the
+#                   clean_data() note/flagging contract -- that lives in
+#                   3a_aux_clean_data_taxonomy.R. Keeping that boundary is
+#                   the point of the split: this file owns GBIF and the
+#                   crosswalk, that file owns rows and columns.
+#
+#                   What it does:
+#                     1. Classifies each raw taxon name (full name /
+#                        higher-rank-expected / excluded).
+#                     2. Matches it against the GBIF backbone, optionally
+#                        constrained by taxa_group (e.g. bird names searched
+#                        within class Aves).
+#                     3. Triages the result into an automatic match or a row
+#                        needing manual review.
+#                     4. Supports a hand-edited manual-match correction
+#                        registry
+#                        (3aux_clean_data_taxonomy_gbif_manual_matches.csv)
+#                        that overrides an automated match by usageKey and
+#                        backfills its accepted taxonomy via a live GBIF
+#                        lookup.
+#                     5. Resolves accepted taxonomy for automated rows.
+#                     6. Exposes the crosswalk to callers through accessors
+#                        (section 8) so that no other script has to know
+#                        which crosswalk columns exist or which match_status
+#                        values count as resolved.
+#                     7. Owns reading and writing the crosswalk CSV and the
+#                        manual-matches CSV (section 9), so both files in the
+#                        frozen-registry pattern have a single owner.
+# NOTES:            Every call is namespace-qualified (rgbif::, dplyr::,
+#                   stringr::, stats::, utils::) and the native pipe needs no
+#                   package, so this file deliberately attaches nothing --
+#                   sourcing it no longer changes the caller's search path.
+#                   Scripts that rely on tidyverse being attached must call
+#                   library() themselves (3_clean_data.R).
+#                   Sections 5, 7 and 9 make live GBIF calls, so they need a
+#                   network connection; a GBIF outage will stop clean_data().
+# NOTE:             Original version of this code was manually created, but was refactored and
+#                   comments were added using AI. All code was human-reviewed after refactoring.
 
 # ---- 0. taxa_group -> GBIF classification filter -----------------------------
 
-# Which GBIF rank field constrains a group's search. Shared by
-# taxa_group_to_gbif_filter() (the search-time constraint) and the
-# match_status logic in taxa_build_gbif_crosswalk() below (detecting a match
-# that only reached that constraint and nothing finer).
+# Which GBIF rank field constrains a group's search.
 taxa_group_to_gbif_rank_field <- function(taxa_group) {
   dplyr::case_when(
     taxa_group %in% c("bird", "mammal", "amphibian", "reptile") ~ "class",
@@ -280,6 +257,22 @@ taxa_build_gbif_crosswalk <- function(
     taxa_group = queryable$taxa_group
   )
 
+  # rgbif drops columns that are empty for the whole batch (e.g.
+  # acceptedUsageKey when no name is a synonym). Add them back as NA so the
+  # mutate() below always finds them.
+  expected_cols <- c(
+    "usageKey",
+    "acceptedUsageKey",
+    "status",
+    "rank",
+    "canonicalName",
+    "matchType",
+    "confidence"
+  )
+  for (col in setdiff(expected_cols, names(match_results))) {
+    match_results[[col]] <- NA
+  }
+
   matched <- cbind(queryable, match_results) |>
     dplyr::mutate(
       is_synonym = stringr::str_detect(status, "SYNONYM"),
@@ -291,6 +284,9 @@ taxa_build_gbif_crosswalk <- function(
       # the GBIF rank field that constrained this row's search (e.g. "class"
       # for a bird) -- NA for groups with no filter (fish, worm, protist, ...)
       coarsest_rank = taxa_group_to_gbif_rank_field(taxa_group),
+      # NOTE: any status added here must also be classified in
+      # taxa_resolved_statuses() (section 8) -- that function is the single
+      # definition of which statuses count as resolved downstream.
       match_status = dplyr::case_when(
         group_conflict ~ "needs_review_group_conflict",
         is.na(usageKey) ~ "needs_manual_id",
@@ -323,8 +319,7 @@ taxa_build_gbif_crosswalk <- function(
 # alphanumeric keys), so lookups go through the same API:
 # name_backbone_checklist() with a usageKey column. (rgbif::name_usage() uses
 # the old v1 API, which only knows the old numeric backbone keys -- it fails
-# on these keys, which is why manual matches used to come back with no
-# taxonomy.)
+# on these keys.)
 #
 # rgbif returns each rank in a record's classification as its own column,
 # named by the lowercased rank ("kingdom", "species", "subspecies", "tribe",
@@ -448,11 +443,7 @@ taxa_overwrite_taxonomy <- function(
 }
 
 # ---- 6. Manual corrections: GBIF hop ----------------------------------------
-# A frozen-registry CSV (aux_clean_data_taxonomy_gbif_manual_matches.csv),
-# built FROM pipeline output rather than anticipated -- same pattern as
-# aux_scientific_name_corrections.csv / aux_schema_metadata.csv elsewhere in
-# this project, and the same pattern harmonize_names_to_checklist.R uses for
-# its own (checklist-hop) registry.
+# A frozen-registry CSV (3aux_clean_data_taxonomy_gbif_manual_matches.csv)
 #   taxa_export_gbif_review_template()  appends newly-flagged names to the CSV
 #                                        (never overwrites an existing row, so
 #                                        hand-entered matches are never
@@ -468,18 +459,20 @@ taxa_overwrite_taxonomy <- function(
 # there isn't one" so it stops being re-flagged) -> apply corrections. Both
 # functions join on `raw_name`, the one identifier that's stable across the
 # whole pipeline (unlike query_name, which can get stripped of a "sp."/"unid."
-# qualifier). harmonize_taxonomy_gbif() in 3_clean_data.R runs this whole
-# cycle. Downstream, harmonize_names_to_checklist.R expects to receive a
-# crosswalk that has already been through it.
+# qualifier). taxa_update_gbif_crosswalk() (section 9) runs this whole cycle.
+# Downstream, harmonize_names_to_checklist.R expects to receive a crosswalk
+# that has already been through it.
 
 # "needs review" = anything taxa_build_gbif_crosswalk() didn't already accept
-# outright (matched / matched_fuzzy_high_confidence) and isn't already covered
+# outright (see taxa_resolved_statuses(), section 8) and isn't already covered
 # by a prior manual entry in the CSV.
+#
+# This is a status-only test on purpose: it runs BEFORE
+# taxa_resolve_accepted_taxonomy() has filled final_rank, so it must not use
+# taxa_is_resolved(), which also requires final_rank.
 taxa_export_gbif_review_template <- function(gbif_crosswalk, path) {
   flagged <- gbif_crosswalk |>
-    dplyr::filter(
-      !match_status %in% c("matched", "matched_fuzzy_high_confidence", "manual")
-    ) |>
+    dplyr::filter(!match_status %in% taxa_resolved_statuses()) |>
     dplyr::distinct(raw_name, clean_name, name_category, match_status)
 
   existing <- if (file.exists(path)) {
@@ -671,31 +664,241 @@ taxa_resolve_accepted_taxonomy <- function(gbif_crosswalk) {
   gbif_crosswalk
 }
 
-# ---- 8. (exploratory) AviList match counts ----------------------------------
-# Not part of the pipeline -- kept for reference.
+# ---- 8. Crosswalk accessors -------------------------------------------------
+# Everything a caller needs to know about a crosswalk row, without the caller
+# touching a crosswalk column name or hard-coding a match_status value. These
+# are the only functions 3a_aux_clean_data_taxonomy.R should need to read the
+# crosswalk with.
 
-# taxa_count_avilist_matches <- function(crosswalk, avilist_2025) {
-#   avilist_combined <-
-#     avilist_2025 |>
-#     dplyr::mutate(dplyr::across(dplyr::everything(), as.character)) |>
-#     tidyr::unite(
-#       "all_cols",
-#       dplyr::everything(),
-#       sep = " ",
-#       remove = TRUE,
-#       na.rm = TRUE
-#     ) |>
-#     dplyr::pull(all_cols)
+# THE single definition of which match_status values count as resolved.
+# Used by taxa_export_gbif_review_template() (section 6, what NOT to flag for
+# review), taxa_is_resolved() below, and, through those, by the cleaner in
+# 3a_aux_clean_data_taxonomy.R. Add a status to the case_when() in
+# taxa_build_gbif_crosswalk() and this is the one place to decide whether it
+# passes.
+taxa_resolved_statuses <- function() {
+  c("matched", "matched_fuzzy_high_confidence", "manual")
+}
 
-#   crosswalk |>
-#     dplyr::mutate(
-#       n_avilist_rows = purrr::map_int(
-#         query_name,
-#         ~ sum(stringr::str_detect(avilist_combined, stringr::fixed(.x)))
-#       )
-#     )
-# }
+# Resolved = a trusted match status AND an accepted taxon actually looked up.
+# A resolved status with a failed accepted-taxonomy lookup (final_rank NA) is
+# NOT resolved -- taxa_match_status_label() gives it its own label.
+# Requires final_rank/final_usageKey, so only call this on a crosswalk that
+# has been through taxa_resolve_accepted_taxonomy().
+taxa_is_resolved <- function(gbif_crosswalk) {
+  gbif_crosswalk$match_status %in%
+    taxa_resolved_statuses() &
+    !is.na(gbif_crosswalk$final_usageKey) &
+    !is.na(gbif_crosswalk$final_rank)
+}
 
-# avilist_2025 <- avilistr::avilist_2025
+# match_status, except that a resolved status whose accepted-taxonomy lookup
+# failed gets a label that says so (it's a transient GBIF failure, not a name
+# problem, and it's retried on the next run).
+taxa_match_status_label <- function(gbif_crosswalk) {
+  label <- gbif_crosswalk$match_status
+  lookup_failed <- gbif_crosswalk$match_status %in%
+    taxa_resolved_statuses() &
+    is.na(gbif_crosswalk$final_rank)
+  label[lookup_failed] <- "accepted taxonomy lookup failed, retried next run"
+  label
+}
 
-# crosswalk_new <- taxa_count_avilist_matches(crosswalk_new, avilist_2025)
+# The accepted GBIF name for each crosswalk row = the value of the column
+# named for its accepted rank (final_rank SUBSPECIES -> the `subspecies`
+# column). If that column is missing or blank (e.g. a rank GBIF reports
+# without a classification column), fall back to final_canonicalName.
+# Returns one name per crosswalk row.
+taxa_accepted_name <- function(gbif_crosswalk) {
+  rank_col <- tolower(gbif_crosswalk$final_rank)
+
+  from_rank <- vapply(
+    seq_len(nrow(gbif_crosswalk)),
+    function(i) {
+      if (!is.na(rank_col[i]) && rank_col[i] %in% names(gbif_crosswalk)) {
+        as.character(gbif_crosswalk[[rank_col[i]]][i])
+      } else {
+        NA_character_
+      }
+    },
+    character(1)
+  )
+
+  # treat "" as missing so the fallback actually fires (a blank rank column
+  # read back from CSV is "", not NA)
+  blank_to_na <- function(x) {
+    x[!is.na(x) & x == ""] <- NA_character_
+    x
+  }
+
+  dplyr::coalesce(
+    blank_to_na(from_rank),
+    blank_to_na(gbif_crosswalk$final_canonicalName)
+  )
+}
+
+# Look up a vector of raw taxon names in the crosswalk. Returns ONE ROW PER
+# INPUT NAME, in input order, so a caller can drop the columns straight onto
+# its own data frame:
+#   raw_name       the name passed in
+#   resolved       TRUE if this name has a usable accepted GBIF taxon
+#   match_status   taxa_match_status_label(), or "not in crosswalk"
+#   gbif_name      accepted GBIF name   (NA unless resolved)
+#   gbif_rank      accepted GBIF rank   (NA unless resolved)
+#   gbif_usageKey  accepted usageKey    (NA unless resolved)
+# An NA input name comes back resolved = FALSE, match_status =
+# "not in crosswalk"; the caller decides what to do with blanks.
+taxa_crosswalk_lookup <- function(gbif_crosswalk, taxon_names) {
+  idx <- match(taxon_names, gbif_crosswalk$raw_name) # NA = not in crosswalk
+
+  resolved <- taxa_is_resolved(gbif_crosswalk)[idx]
+  resolved[is.na(resolved)] <- FALSE
+
+  status <- taxa_match_status_label(gbif_crosswalk)[idx]
+  status[is.na(status)] <- "not in crosswalk"
+
+  data.frame(
+    raw_name = taxon_names,
+    resolved = resolved,
+    match_status = status,
+    gbif_name = dplyr::if_else(
+      resolved,
+      taxa_accepted_name(gbif_crosswalk)[idx],
+      NA_character_
+    ),
+    gbif_rank = dplyr::if_else(
+      resolved,
+      gbif_crosswalk$final_rank[idx],
+      NA_character_
+    ),
+    gbif_usageKey = dplyr::if_else(
+      resolved,
+      gbif_crosswalk$final_usageKey[idx],
+      NA_character_
+    ),
+    stringsAsFactors = FALSE
+  )
+}
+
+# ---- 9. Update (or rebuild) the saved crosswalk -----------------------------
+
+#' Update (or rebuild) the GBIF taxonomy crosswalk for a set of taxon names
+#'
+#' Takes a data frame of (raw_name, taxa_group) pairs -- NOT the MetaNetworks
+#' data frame; extracting the pairs from taxa1_*/taxa2_* columns is the
+#' caller's job -- and compares the names against the `raw_name` column of
+#' the saved crosswalk.
+#'   new_crosswalk = FALSE (default): only names NOT already in the saved
+#'     crosswalk are sent to GBIF (via taxa_build_gbif_crosswalk()), and their
+#'     rows are appended to it. If there are no new names, GBIF matching is
+#'     skipped. If no crosswalk file exists yet, a full one is built.
+#'   new_crosswalk = TRUE: the saved crosswalk is ignored and every name is
+#'     re-queried against GBIF from scratch; the result overwrites the file.
+#'
+#' Either way, the crosswalk then goes through the manual-match cycle:
+#' newly flagged names are appended to the manual-matches CSV (hand-entered
+#' rows are never overwritten) and every filled-in manual match is applied.
+#' That runs even when there are no new names, so usageKeys you've filled in
+#' by hand since the last run are picked up. The manual-matches CSV is never
+#' reset, including when new_crosswalk = TRUE.
+#'
+#' Names are matched on the exact `raw_name` string. A name already in the
+#' crosswalk is never re-queried in incremental mode, even if its taxa_group
+#' has changed -- use new_crosswalk = TRUE for that.
+#'
+#' Every column is stored as character (GBIF usageKeys are alphanumeric, and
+#' it keeps saved and newly queried rows the same type when combined).
+#' @param taxa data frame with raw_name and taxa_group columns. Rows with an
+#'   NA raw_name are dropped and the pairs are deduplicated here, so callers
+#'   can just stack their name columns. Pairs, not bare names, so that
+#'   taxa_resolve_group_conflicts() can still catch a new name entered under
+#'   two different groups.
+#' @param crosswalk_path path to the crosswalk CSV (read if it exists, always
+#'   written)
+#' @param manual_matches_path path to the manual GBIF matches CSV (created
+#'   if it doesn't exist)
+#' @param new_crosswalk TRUE = rebuild the whole crosswalk from fresh GBIF
+#'   queries; FALSE = only query names not already in the crosswalk
+#' @returns the updated crosswalk (also written to crosswalk_path), with
+#'   final_rank, final_canonicalName and final_usageKey filled in. Read it
+#'   with the section 8 accessors.
+taxa_update_gbif_crosswalk <- function(
+  taxa,
+  crosswalk_path,
+  manual_matches_path,
+  new_crosswalk = FALSE
+) {
+  stopifnot(all(c("raw_name", "taxa_group") %in% names(taxa)))
+
+  taxa <- unique(taxa[!is.na(taxa$raw_name), c("raw_name", "taxa_group")])
+
+  # decide which names to query
+  if (new_crosswalk) {
+    message(
+      "taxa_update_gbif_crosswalk(): new_crosswalk = TRUE -- re-querying ",
+      "all names against GBIF."
+    )
+    existing <- NULL
+    to_query <- taxa
+  } else if (!file.exists(crosswalk_path)) {
+    message(
+      "taxa_update_gbif_crosswalk(): no crosswalk at ",
+      crosswalk_path,
+      " -- building one from scratch."
+    )
+    existing <- NULL
+    to_query <- taxa
+  } else {
+    existing <- utils::read.csv(
+      crosswalk_path,
+      stringsAsFactors = FALSE,
+      colClasses = "character"
+    )
+    to_query <- taxa[!taxa$raw_name %in% existing$raw_name, ]
+  }
+
+  n_new <- length(unique(to_query$raw_name))
+
+  # query GBIF for the new names only, then append them
+  if (n_new == 0) {
+    message(
+      "taxa_update_gbif_crosswalk(): no new names -- skipping GBIF matching."
+    )
+    crosswalk <- existing
+  } else {
+    message(
+      "taxa_update_gbif_crosswalk(): querying GBIF for ",
+      n_new,
+      " name(s)."
+    )
+    new_rows <- taxa_build_gbif_crosswalk(
+      names_vector = to_query$raw_name,
+      taxa_group_vector = to_query$taxa_group
+    ) |>
+      dplyr::mutate(dplyr::across(dplyr::everything(), as.character))
+
+    # bind_rows() fills columns missing from either side with NA (rgbif
+    # doesn't always return the same set of columns)
+    crosswalk <- dplyr::bind_rows(existing, new_rows)
+  }
+
+  # manual-match cycle: flag anything new that needs a human, then apply
+  # every manual match filled in so far
+  taxa_export_gbif_review_template(crosswalk, manual_matches_path)
+  crosswalk <- taxa_apply_gbif_manual_matches(crosswalk, manual_matches_path)
+
+  # accepted taxonomy (final_rank, final_canonicalName, every rank column)
+  # for automated rows. Cached in the saved crosswalk via final_rank, so only
+  # rows that don't have it yet -- new synonyms -- trigger a GBIF lookup.
+  crosswalk <- taxa_resolve_accepted_taxonomy(crosswalk)
+
+  utils::write.csv(crosswalk, crosswalk_path, row.names = FALSE)
+  message(
+    "taxa_update_gbif_crosswalk(): wrote ",
+    nrow(crosswalk),
+    " row(s) to ",
+    crosswalk_path
+  )
+
+  crosswalk
+}

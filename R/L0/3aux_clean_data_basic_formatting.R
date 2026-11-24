@@ -1,7 +1,6 @@
 # TITLE:            Basic cleaning functions for the harmonized data frame
 # PROJECT:          The MetaNetworks Project
-# AUTHORS:          Kelly Kapsar
-# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
+# AUTHORS:          Kelly Kapsar, Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
 # DATA INPUT:       None (function definitions only). Every function takes the
 #                   harmonized data frame `df` (from
 #                   2_harmonize_datasheet_versions.R) plus whatever else it

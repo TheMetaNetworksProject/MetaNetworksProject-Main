@@ -1,7 +1,7 @@
 # TITLE:            Harmonize data sheet schema versions
 # PROJECT:          The MetaNetworks Project
-# AUTHORS:          Kelly Kapsar
-# COLLABORATORS:    Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas, Minyoung Lee, Patrick Bills
+# AUTHORS:          Kelly Kapsar, Phoebe Zarnetske, Lucas Mansfield, Jenna Baljunas,
+#                   Minyoung Lee, Patrick Bills
 # DATA INPUT:       CSV files listed in aux_files_with_schema.csv (path: ./R/L0/aux_files_with_schema.csv),
 #                    each tagged with a schema_name (schema_1 through schema_10) identifying which of
 #                    the historical column layouts that file was collected under
@@ -380,7 +380,7 @@ finalize_harmonized_schema <- function(df) {
     filter(
       !if_all(c(taxa1_scientific, taxa2_scientific, interaction), is.na)
     ) |>
-    select(-version) |>
+    select(-any_of("version")) |>
     rename(version = original_version)
 }
 
@@ -497,3 +497,5 @@ harmonized_df <- harmonize_all_datasheets(
   version_upgraders,
   version_sequence
 )
+
+saveRDS(harmonized_df, "./R/L0/2_harmonized_df.rds")
